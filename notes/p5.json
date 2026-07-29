@@ -1,0 +1,54 @@
+{
+  "chapter_id": "p1",
+  "title": "Units and Measurements",
+  "class": 11,
+  "subject": "Physics",
+  "summary": "Units and Measurements is the foundation chapter of Class 11 Physics. It introduces physical quantities, SI units, dimensions, significant figures, measurement errors, Vernier Calipers, Screw Gauge, and dimensional analysis. A strong understanding of this chapter helps in solving numerical problems accurately throughout Physics and is frequently tested in JEE Main and Advanced.",
+
+  "formulas": [
+    "Dimensional Formula: [MᵃLᵇTᶜ]",
+    "Absolute Error = |Measured Value − True Value|",
+    "Mean Absolute Error = (ΔA₁ + ΔA₂ + ... + ΔAₙ) / n",
+    "Relative Error = ΔA / A",
+    "Percentage Error = (ΔA / A) × 100",
+    "Error in Addition/Subtraction = ΔA + ΔB",
+    "Percentage Error in Multiplication/Division = Percentage Error of A + Percentage Error of B",
+    "Least Count of Vernier Calipers = 1 MSD − 1 VSD",
+    "Least Count of Screw Gauge = Pitch / Number of Circular Scale Divisions"
+  ],
+
+  "keyPoints": [
+    "Every physical quantity is expressed as a numerical value along with its unit.",
+    "The International System of Units (SI) consists of seven fundamental units from which all derived units are obtained.",
+    "Dimensions represent the powers of fundamental quantities such as Mass, Length, and Time.",
+    "Dimensional analysis is useful for checking the correctness of physical equations and deriving relationships between quantities.",
+    "Significant figures indicate the precision of a measured value and should always be maintained during calculations.",
+    "Absolute, relative, and percentage errors are important for estimating the accuracy of experimental measurements.",
+    "Random errors can be reduced by taking multiple observations, while systematic errors arise due to faulty instruments or incorrect methods.",
+    "Vernier Calipers and Screw Gauge are precision measuring instruments commonly used to measure small lengths and diameters.",
+    "Always apply zero-error correction before calculating the final reading from measuring instruments.",
+    "Correct unit conversion and proper rounding rules are essential for obtaining accurate numerical answers."
+  ],
+
+  "pyqs": [
+    "JEE Main: Questions based on dimensional analysis, SI units, and significant figures are frequently asked.",
+    "JEE Main: Numerical problems involving Vernier Calipers, Screw Gauge, and error calculations appear regularly.",
+    "JEE Advanced: Multi-concept problems combining dimensions, error propagation, and precision instruments are common.",
+    "JEE Advanced: Dimensional consistency and derivation of relations using dimensional analysis are high-weightage topics."
+  ],
+
+  "practiceQuestions": [
+    {
+      "q": "If Energy, Velocity, and Time are chosen as the fundamental quantities, determine the dimensions of Surface Tension.",
+      "ans": "Surface Tension = EV⁻²T⁻²"
+    },
+    {
+      "q": "The least count of a Vernier Calipers is 0.01 cm and its zero error is +0.03 cm. If the observed reading is 5.26 cm, calculate the corrected length.",
+      "ans": "Correct Reading = 5.26 − 0.03 = 5.23 cm"
+    },
+    {
+      "q": "A measurement has an absolute error of 0.2 cm and the measured value is 20 cm. Find the percentage error.",
+      "ans": "Percentage Error = (0.2 ÷ 20) × 100 = 1%"
+    }
+  ]
+}
