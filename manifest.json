@@ -1,0 +1,42 @@
+{
+  "name": "GENIQ - JEE AI Prep Platform",
+  "short_name": "GENIQ",
+  "description": "Advanced, Android-first glassmorphic web application engineered for JEE Main and Advanced aspirants[cite: 2].",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "categories": ["education", "productivity", "science"],
+  "icons": [
+    {
+      "src": "https://www.gstatic.com/images/icons/material/system/svg/baseline_school_24dp.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://www.gstatic.com/devrel-devsite/prod/v7db6c95e921d7b07d6d71cb94fa35c4cf7e7fb516f8ef1a7cf73cf76495cb2e3/firebase/images/touchicon-180.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "AI Tutor",
+      "short_name": "AI",
+      "description": "Launch Genius AI Tutor",
+      "url": "/?section=ai-tutor",
+      "icons": [{ "src": "https://www.gstatic.com/images/icons/material/system/svg/baseline_psychology_24dp.svg", "sizes": "96x96", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Notes Hub",
+      "short_name": "Notes",
+      "description": "Access JEE Syllabus & Modules",
+      "url": "/?section=notes",
+      "icons": [{ "src": "https://www.gstatic.com/images/icons/material/system/svg/baseline_menu_book_24dp.svg", "sizes": "96x96", "type": "image/svg+xml" }]
+    }
+  ]
+}
