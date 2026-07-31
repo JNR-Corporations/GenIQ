@@ -1,0 +1,267 @@
+{
+                            subTitle: "Units, Dimensions & Measurement (Complete JEE Guide)",
+                            desc: "Comprehensive database of SI Base units, 20+ High-Yield JEE physical quantities, dimensions & trick relations",
+                            badge: "JEE Main & Advanced",
+                            content: `
+    <div class="jee-card-body">
+      
+      <!-- SECTION 1: BASE UNITS -->
+      <div class="jee-section-title">
+        <span style="color: #2563eb;">⚡</span> 1. SI Base Quantities & Fundamental Dimensions
+      </div>
+      
+      <div class="jee-table-wrapper">
+        <table class="jee-table">
+          <thead>
+            <tr>
+              <th>Base Quantity</th>
+              <th>SI Unit</th>
+              <th>Symbol</th>
+              <th>Dimension</th>
+              <th>Defining Reference / Constant</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Length</strong></td>
+              <td>meter</td>
+              <td><span class="jee-unit-pill">m</span></td>
+              <td><span class="jee-dim-pill">[L]</span></td>
+              <td>Speed of light (c = 2.9979 × 10⁸ m/s)</td>
+            </tr>
+            <tr>
+              <td><strong>Mass</strong></td>
+              <td>kilogram</td>
+              <td><span class="jee-unit-pill">kg</span></td>
+              <td><span class="jee-dim-pill">[M]</span></td>
+              <td>Planck constant (h = 6.626 × 10⁻³⁴ J·s)</td>
+            </tr>
+            <tr>
+              <td><strong>Time</strong></td>
+              <td>second</td>
+              <td><span class="jee-unit-pill">s</span></td>
+              <td><span class="jee-dim-pill">[T]</span></td>
+              <td>Caesium transition (Δν_Cs = 9.192 × 10⁹ Hz)</td>
+            </tr>
+            <tr>
+              <td><strong>Electric Current</strong></td>
+              <td>ampere</td>
+              <td><span class="jee-unit-pill">A</span></td>
+              <td><span class="jee-dim-pill">[I] or [A]</span></td>
+              <td>Elementary charge (e = 1.602 × 10⁻¹⁹ C)</td>
+            </tr>
+            <tr>
+              <td><strong>Thermodynamic Temp</strong></td>
+              <td>kelvin</td>
+              <td><span class="jee-unit-pill">K</span></td>
+              <td><span class="jee-dim-pill">[K] or [Θ]</span></td>
+              <td>Boltzmann constant (k_B = 1.380 × 10⁻²³ J/K)</td>
+            </tr>
+            <tr>
+              <td><strong>Amount of Substance</strong></td>
+              <td>mole</td>
+              <td><span class="jee-unit-pill">mol</span></td>
+              <td><span class="jee-dim-pill">[N] or [mol]</span></td>
+              <td>Avogadro constant (N_A = 6.022 × 10²³ mol⁻¹)</td>
+            </tr>
+            <tr>
+              <td><strong>Luminous Intensity</strong></td>
+              <td>candela</td>
+              <td><span class="jee-unit-pill">cd</span></td>
+              <td><span class="jee-dim-pill">[J] or [Cd]</span></td>
+              <td>Luminous efficacy K_cd (540 × 10¹² Hz)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SECTION 2: HIGH YIELD JEE DERIVED QUANTITIES -->
+      <div class="jee-section-title">
+        <span style="color: #059669;">📊</span> 2. High-Yield Derived Quantities for JEE (Frequently Asked)
+      </div>
+
+      <div class="jee-table-wrapper">
+        <table class="jee-table">
+          <thead>
+            <tr>
+              <th>Physical Quantity</th>
+              <th>Standard Formula</th>
+              <th>SI Unit</th>
+              <th>Dimensional Formula</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Universal Gravitational Constant (G)</strong></td>
+              <td>F = G(m₁m₂)/r²</td>
+              <td>N·m²/kg²</td>
+              <td><span class="jee-dim-pill">[M⁻¹ L³ T⁻²]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Planck's Constant (h)</strong></td>
+              <td>E = hν</td>
+              <td>J·s or kg·m²/s</td>
+              <td><span class="jee-dim-pill">[M L² T⁻¹]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Permittivity of Free Space (ε₀)</strong></td>
+              <td>F = q₁q₂ / (4πε₀r²)</td>
+              <td>C²/N·m² or F/m</td>
+              <td><span class="jee-dim-pill">[M⁻¹ L⁻³ T⁴ A²]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Permeability of Free Space (μ₀)</strong></td>
+              <td>B = μ₀I / (2πr)</td>
+              <td>T·m/A or H/m</td>
+              <td><span class="jee-dim-pill">[M L T⁻² A⁻²]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Coefficient of Viscosity (η)</strong></td>
+              <td>F = -η A (dv/dx)</td>
+              <td>Pa·s or N·s/m²</td>
+              <td><span class="jee-dim-pill">[M L⁻¹ T⁻¹]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Surface Tension (S)</strong></td>
+              <td>S = Force / Length</td>
+              <td>N/m or J/m²</td>
+              <td><span class="jee-dim-pill">[M L⁰ T⁻²]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Magnetic Field Intensity (B)</strong></td>
+              <td>F = q(v × B)</td>
+              <td>Tesla (T) or Wb/m²</td>
+              <td><span class="jee-dim-pill">[M L⁰ T⁻² A⁻¹]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Self / Mutual Inductance (L, M)</strong></td>
+              <td>e = L (di/dt)</td>
+              <td>Henry (H) or Wb/A</td>
+              <td><span class="jee-dim-pill">[M L² T⁻² A⁻²]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Capacitance (C)</strong></td>
+              <td>Q = CV</td>
+              <td>Farad (F) or C/V</td>
+              <td><span class="jee-dim-pill">[M⁻¹ L⁻² T⁴ A²]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Electrical Resistance (R)</strong></td>
+              <td>V = IR</td>
+              <td>Ohm (Ω) or V/A</td>
+              <td><span class="jee-dim-pill">[M L² T⁻³ A⁻²]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Thermal Conductivity (k)</strong></td>
+              <td>dQ/dt = kA(ΔT/Δx)</td>
+              <td>W/m·K</td>
+              <td><span class="jee-dim-pill">[M L T⁻³ K⁻¹]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Stefan-Boltzmann Constant (σ)</strong></td>
+              <td>E = σ T⁴ A t</td>
+              <td>W/m²·K⁴</td>
+              <td><span class="jee-dim-pill">[M L⁰ T⁻³ K⁻⁴]</span></td>
+            </tr>
+            <tr>
+              <td><strong>Rydberg Constant (R_H)</strong></td>
+              <td>1/λ = R_H (1/n₁² - 1/n₂²)</td>
+              <td>m⁻¹</td>
+              <td><span class="jee-dim-pill">[M⁰ L⁻¹ T⁰]</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SECTION 3: SHORTCUT TIME-SAVER EQUIVALENCES -->
+      <div class="jee-box-blue">
+        <div style="font-weight: 700; color: #1d4ed8; margin-bottom: 8px; font-size: 0.95rem;">
+          🚀 JEE Shortcut Formula Equivalences (Direct Question Solvers)
+        </div>
+        <div class="jee-grid-2" style="font-size: 0.85rem;">
+          <div>
+            <strong>Time Dimension <span class="jee-dim-pill">[T]</span> Equivalents:</strong>
+            <ul style="margin: 4px 0; padding-left: 18px;">
+              <li><span class="jee-code-inline">R × C</span> (Time Constant in RC Circuit)</li>
+              <li><span class="jee-code-inline">L / R</span> (Time Constant in LR Circuit)</li>
+              <li><span class="jee-code-inline">√(L × C)</span> (LC Resonance Constant)</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Velocity Dimension <span class="jee-dim-pill">[L T⁻¹]</span> Equivalents:</strong>
+            <ul style="margin: 4px 0; padding-left: 18px;">
+              <li><span class="jee-code-inline">1 / √(μ₀ ε₀)</span> (Speed of Light)</li>
+              <li><span class="jee-code-inline">E / B</span> (Velocity Selector in EM Fields)</li>
+              <li><span class="jee-code-inline">√(P / ρ)</span> (Velocity of Sound in Medium)</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Resistance Dimension <span class="jee-dim-pill">[M L² T⁻³ A⁻²]</span> Equivalents:</strong>
+            <ul style="margin: 4px 0; padding-left: 18px;">
+              <li><span class="jee-code-inline">√(L / C)</span> (Characteristic Impedance)</li>
+            </ul>
+          </div>
+          <div>
+            <strong>Energy Dimension <span class="jee-dim-pill">[M L² T⁻²]</span> Equivalents:</strong>
+            <ul style="margin: 4px 0; padding-left: 18px;">
+              <li><span class="jee-code-inline">q × V</span>, <span class="jee-code-inline">½ C V²</span>, <span class="jee-code-inline">½ L I²</span>, <span class="jee-code-inline">k_B T</span>, <span class="jee-code-inline">h ν</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4: SUPPLEMENTARY UNITS -->
+      <div class="jee-box-purple">
+        <div style="font-weight: 700; color: #7e22ce; margin-bottom: 8px; font-size: 0.95rem;">
+          📐 Supplementary Quantities (Dimensionless but have Units)
+        </div>
+        <div class="jee-grid-2" style="font-size: 0.85rem;">
+          <div style="background: rgba(255,255,255,0.9); padding: 10px; border-radius: 8px;">
+            <strong style="color: #6b21a8;">1. Plane Angle (dθ):</strong><br>
+            • Unit: <span class="jee-code-inline">radian (rad)</span><br>
+            • Formula: <span class="jee-code-inline">dθ = arc / radius (ds/r)</span><br>
+            • Dimension: <span class="jee-dim-pill">[M⁰ L⁰ T⁰]</span>
+          </div>
+          <div style="background: rgba(255,255,255,0.9); padding: 10px; border-radius: 8px;">
+            <strong style="color: #6b21a8;">2. Solid Angle (dΩ):</strong><br>
+            • Unit: <span class="jee-code-inline">steradian (sr)</span><br>
+            • Formula: <span class="jee-code-inline">dΩ = dA / r²</span><br>
+            • Complete Sphere: <span class="jee-code-inline">4π sr</span> | Dimension: <span class="jee-dim-pill">[M⁰ L⁰ T⁰]</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 5: PRACTICAL UNITS -->
+      <div class="jee-box-amber">
+        <div style="font-weight: 700; color: #b45309; margin-bottom: 8px; font-size: 0.95rem;">
+          🏷️ Important Practical Units Conversion Table
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <span class="jee-tag-item">1 Ångström = 10⁻¹⁰ m</span>
+          <span class="jee-tag-item">1 Fermi (fm) = 10⁻¹⁵ m</span>
+          <span class="jee-tag-item">1 AU = 1.496 × 10¹¹ m</span>
+          <span class="jee-tag-item">1 Light Year = 9.46 × 10¹⁵ m</span>
+          <span class="jee-tag-item">1 Parsec = 3.08 × 10¹⁶ m ≈ 3.26 ly</span>
+          <span class="jee-tag-item">1 eV = 1.6 × 10⁻¹⁹ J</span>
+          <span class="jee-tag-item">1 amu (u) = 1.66 × 10⁻²⁷ kg</span>
+          <span class="jee-tag-item">1 Bar = 10⁵ Pa</span>
+          <span class="jee-tag-item">1 Torr = 1 mm of Hg = 133.32 Pa</span>
+          <span class="jee-tag-item">1 Barn = 10⁻²⁸ m² (Nuclear Area)</span>
+        </div>
+      </div>
+
+      <!-- SECTION 6: JEE TRAPS & RULES -->
+      <div class="jee-box-red">
+        <div style="font-weight: 700; color: #b91c1c; margin-bottom: 6px; font-size: 0.9rem;">
+          🎯 Principle of Homogeneity & JEE Traps
+        </div>
+        <ul style="margin: 0; padding-left: 18px; font-size: 0.84rem; color: #991b1b; line-height: 1.6;">
+          <li><strong>Rule 1:</strong> Only physical quantities with the <strong>same dimensional formula</strong> can be added or subtracted (e.g., in <span class="jee-code-inline">P + a/V²</span>, the dimension of <span class="jee-code-inline">a/V²</span> equals <span class="jee-code-inline">[P]</span>).</li>
+          <li><strong>Rule 2:</strong> Arguments of trigonometric, exponential, logarithmic, and power terms are strictly <strong>dimensionless</strong>.</li>
+          <li><strong>Rule 3:</strong> A quantity <em>can</em> have units without dimensions (e.g., Angle), but it <strong>can never</strong> have dimensions without units.</li>
+        </ul>
+      </div>
+
+    </div>
+  `
+                        },
