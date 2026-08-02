@@ -2,30 +2,54 @@
 <html lang="hi">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="theme-color" id="metaThemeColor" content="#f8fafc">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" id="appleStatusBar" content="default">
-  <title>GENIQ - JEE Ultimate Learning Platform v3.0</title>
+  <!-- Primary Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>GENIQ - JEE Ultimate Learning Platform v3.0</title>
 
-  <!-- Google Fonts -->
-  <link rel="manifest" href="manifest.json">
+<meta name="description" content="GENIQ is the ultimate JEE learning platform built by JNR Corporations. Access physics, chemistry, and maths formula sheets, notes, and PYQs. Developed by Raj Verma.">
+<meta name="keywords" content="GENIQ, JEE Main, JEE Advanced, JEE Study Material, Physics, Chemistry, Maths, JNR Corporations, Raj Verma, Formula Handbook, PYQ">
+<meta name="author" content="Raj Verma">
+<meta name="publisher" content="JNR Corporations">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://geniq-jnr.vercel.app/">
 
-  <meta id="theme-color-meta" name="theme-color" content="#0f172a">
+<!-- Theme Colors for Light & Dark Mode (Automatic OS Level + PWA) -->
+<meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#070a12" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 
-  <meta name="color-scheme" content="dark light">
+<!-- PWA & Apple Status Bar Settings -->
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" id="appleStatusBar" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GENIQ">
 
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="GENIQ">
+<!-- Open Graph / WhatsApp / Facebook Banner Preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://geniq-jnr.vercel.app/">
+<meta property="og:title" content="GENIQ - JEE Ultimate Learning Platform">
+<meta property="og:description" content="Crack JEE Main & Advanced with GENIQ. Handcrafted notes, formula handbooks, and chapterwise PYQs by JNR Corporations.">
+<meta property="og:image" content="https://geniq-jnr.vercel.app/banner.png">
+<meta property="og:image:secure_url" content="https://geniq-jnr.vercel.app/banner.png">
+<meta property="og:image:type" content="image/png">
 
-  <link rel="apple-touch-icon" href="logo192.png">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
-    rel="stylesheet">
+<!-- Twitter Cards Banner Preview -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://geniq-jnr.vercel.app/">
+<meta name="twitter:title" content="GENIQ - JEE Ultimate Learning Platform">
+<meta name="twitter:description" content="Crack JEE Main & Advanced with GENIQ. Complete notes & formula handbook platform by JNR Corporations.">
+<meta name="twitter:image" content="https://geniq-jnr.vercel.app/banner.png">
+
+<!-- Icons & Manifest -->
+<link rel="icon" type="image/png" href="logo192.png">
+<link rel="apple-touch-icon" href="logo192.png">
+<link rel="manifest" href="manifest.json">
+
+<!-- Google Fonts Preconnect & Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
@@ -9763,16 +9787,19 @@ Final Reading
       document.getElementById('profileYearSelector').value = state.user.year || '2026';
     }
     function updateThemeMeta() {
-      const meta = document.querySelector('#theme-color-meta');
+  const isDark = state.user.theme === 'dark';
+  const themeColor = isDark ? '#070a12' : '#f8fafc';
 
-      if (!meta) return;
+  // Page ke sabhi theme-color meta tags ko update karega (Light/Dark mode override)
+  document.querySelectorAll('meta[name="theme-color"]').forEach(meta => {
+    meta.setAttribute('content', themeColor);
+  });
 
-      if (state.user.theme === 'dark') {
-        meta.setAttribute('content', '#0f172a');
-      } else {
-        meta.setAttribute('content', '#ffffff');
-      }
-    }
+  // Apple iOS Status Bar style sync
+  document.querySelectorAll('meta[name="apple-mobile-web-app-status-bar-style"]').forEach(meta => {
+    meta.setAttribute('content', isDark ? 'black-translucent' : 'default');
+  });
+}
     function renderAppUI() {
       const isDark = state.user.theme === 'dark';
 

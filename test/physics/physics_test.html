@@ -958,7 +958,7 @@
                 </div>
             </div>
 
-            <!-- EXAM LEVEL SELECTION (NEW FEATURE) -->
+            <!-- EXAM LEVEL SELECTION -->
             <div>
                 <div class="section-title">Select Target Exam Level</div>
                 <div class="count-selector" style="grid-template-columns: repeat(3, 1fr);">
@@ -1188,7 +1188,7 @@
 
     <script>
         /* ==========================================================================
-           LOCAL STATE MANAGEMENT & SCALABLE PHYSICS QUESTION BANK (TAGGED WITH LEVEL)
+           LOCAL STATE MANAGEMENT & SCALABLE PHYSICS QUESTION BANK
            ========================================================================== */
 
         let state = {
@@ -1197,13 +1197,13 @@
             }
         };
 
-        // Complete Master Question Bank across all Physics Modules with level: "MAINS" or "ADVANCED"
+        // Master Question Bank across all Physics Modules with level: "MAINS" or "ADVANCED"
+        // Aap yahan jitne chahe (10,000+) questions safely add kar sakte hain!
         const QUESTION_BANK = {
             "Units and Measurements": [
                 { level: "MAINS", q: "What is the dimensional formula for Stefan-Boltzmann Constant (σ)?", options: ["[M L⁰ T⁻³ K⁻⁴]", "[M L² T⁻³ K⁻¹]", "[M L T⁻² K⁻⁴]", "[M L⁰ T⁻² K⁻²]"], correct: 0, explanation: "P = σ A T⁴ => σ = P / (A T⁴) = [M L² T⁻³] / ([L²][K⁴]) = [M L⁰ T⁻³ K⁻⁴]." },
                 { level: "ADVANCED", q: "The percentage error in mass and speed are 2% and 3%. Max error in KE is:", options: ["5%", "8%", "11%", "6%"], correct: 1, explanation: "KE = 1/2 m v² => ΔE/E = Δm/m + 2(Δv/v) = 2% + 2(3%) = 8%." },
                 { level: "MAINS", q: "Which physical quantity has same dimensions as Planck's Constant?", options: ["Linear Momentum", "Angular Momentum", "Energy", "Power"], correct: 1, explanation: "Planck's Constant (h) and Angular Momentum (L) both have units J·s ([M L² T⁻¹])." },
-
                 {
                     level: "MAINS",
                     q: "The dimensional formula of Stefan-Boltzmann Constant (σ) is:",
@@ -1930,7 +1930,7 @@
         const ALL_PHYSICS_CHAPTERS = Object.keys(QUESTION_BANK);
 
         // Class 11 vs Class 12 Split Mapping for Filters
-        const CLASS_11_INDEX_LIMIT = 20; // First 20 chapters belong to Class 11
+        const CLASS_11_INDEX_LIMIT = 20;
 
         /* APPLICATION STATE */
         let appState = {
@@ -2059,19 +2059,11 @@
                 chip.className = `chapter-chip ${isSelected ? 'selected' : ''}`;
                 chip.onclick = () => toggleChapterSelection(ch);
 
-                // Filter count based on Exam Level
-                let qList = QUESTION_BANK[ch] || [];
-                if (appState.selectedExamLevel !== 'ALL') {
-                    qList = qList.filter(q => q.level === appState.selectedExamLevel);
-                }
-                const count = qList.length;
-
                 chip.innerHTML = `
                     <div class="chip-left">
                         <div class="chip-checkbox">${isSelected ? '✓' : ''}</div>
                         <span class="chip-title">${ch}</span>
                     </div>
-                    
                 `;
                 container.appendChild(chip);
             });
@@ -2149,66 +2141,43 @@
                     }
                     startQuizEngine(true);
                 }
-            }, 300);
+            }, 200);
         }
 
-        /* STRENGTHENED REAL ADVANCED & MAINS QUESTION SELECTION LOGIC */
+        /* HIGH-PERFORMANCE 10K+ QUESTION SELECTION ENGINE */
         function buildQuestionPool() {
-            let poolByChapter = {};
+            let eligiblePool = [];
 
-            // Group & Filter questions by selected Exam Level (MAINS / ADVANCED / ALL)
+            // Fast single-pass indexing over selected chapters
             appState.selectedChapters.forEach(ch => {
-                if (QUESTION_BANK[ch] && QUESTION_BANK[ch].length > 0) {
-                    let filtered = QUESTION_BANK[ch];
-
-                    // Strict Exam Level Filtering
-                    if (appState.selectedExamLevel !== 'ALL') {
-                        filtered = filtered.filter(qObj => qObj.level === appState.selectedExamLevel);
-                    }
-
-                    if (filtered.length > 0) {
-                        // Shallow copy so original bank remains untouched
-                        poolByChapter[ch] = filtered.map(qObj => ({ ...qObj, chapter: ch }));
+                const list = QUESTION_BANK[ch];
+                if (list && list.length > 0) {
+                    for (let i = 0; i < list.length; i++) {
+                        const q = list[i];
+                        if (appState.selectedExamLevel === 'ALL' || q.level === appState.selectedExamLevel) {
+                            eligiblePool.push({ qObj: q, chapter: ch });
+                        }
                     }
                 }
             });
 
-            let chapterKeys = Object.keys(poolByChapter);
-
-            if (chapterKeys.length === 0) {
+            if (eligiblePool.length === 0) {
                 showToast(`No questions available for ${appState.selectedExamLevel} in selected chapters!`);
                 return false;
             }
 
+            let targetCount = Math.min(appState.questionCount, eligiblePool.length);
             let combinedPool = [];
-            let addedCount = 0;
-            let targetCount = appState.questionCount;
+            let usedIndices = new Set();
 
-            // Equal round-robin extraction across selected chapters
-            while (addedCount < targetCount && chapterKeys.length > 0) {
-                for (let i = 0; i < chapterKeys.length; i++) {
-                    let chKey = chapterKeys[i];
-                    if (poolByChapter[chKey].length > 0) {
-                        // Pick random question from chapter pool
-                        let randIdx = Math.floor(Math.random() * poolByChapter[chKey].length);
-                        let selectedQ = poolByChapter[chKey].splice(randIdx, 1)[0];
-
-                        // Shuffle Options of Question while tracking correct answer
-                        let shuffledQ = shuffleQuestionOptions(selectedQ);
-                        combinedPool.push(shuffledQ);
-                        addedCount++;
-
-                        if (addedCount >= targetCount) break;
-                    }
+            // O(1) Fast Direct Sampling without mutating main database array
+            while (combinedPool.length < targetCount && usedIndices.size < eligiblePool.length) {
+                let randIdx = Math.floor(Math.random() * eligiblePool.length);
+                if (!usedIndices.has(randIdx)) {
+                    usedIndices.add(randIdx);
+                    let item = eligiblePool[randIdx];
+                    combinedPool.push(shuffleQuestionOptions({ ...item.qObj, chapter: item.chapter }));
                 }
-                // Filter out empty chapter pools
-                chapterKeys = chapterKeys.filter(k => poolByChapter[k].length > 0);
-            }
-
-            // Final Fisher-Yates shuffle of combined question list for true random mix
-            for (let i = combinedPool.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [combinedPool[i], combinedPool[j]] = [combinedPool[j], combinedPool[i]];
             }
 
             appState.generatedQuestions = combinedPool;
@@ -2221,15 +2190,15 @@
             return true;
         }
 
-        // Shuffle Question Options & adjust correct index accordingly
+        // Shuffle Question Options safely & track correct answer index
         function shuffleQuestionOptions(qObj) {
             let originalOptions = [...qObj.options];
             let correctOptionText = originalOptions[qObj.correct];
 
-            // Fisher-Yates on Options
+            // Fisher-Yates shuffle on Options Array
             for (let i = originalOptions.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [originalOptions[i], originalOptions[j]] = [originalOptions[j], originalOriginalOptions[i]];
+                [originalOptions[i], originalOptions[j]] = [originalOptions[j], originalOptions[i]];
             }
 
             let newCorrectIndex = originalOptions.indexOf(correctOptionText);
@@ -2508,7 +2477,7 @@
 
             try {
                 const canvas = await html2canvas(certElement, {
-                    scale: 4, // 4x scale for crisp 4K image quality
+                    scale: 4,
                     useCORS: true,
                     allowTaint: true,
                     logging: false,
