@@ -11,15 +11,17 @@
   <title>GENIQ - JEE Ultimate Learning Platform v3.0</title>
 
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+
+  <meta id="theme-color-meta" name="theme-color" content="#0f172a">
+
+  <meta name="color-scheme" content="dark light">
+
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="GENIQ">
+
   <link rel="apple-touch-icon" href="logo192.png">
   <link
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
@@ -1634,7 +1636,7 @@
         </div>
         <div class="card"
           style="min-width: 160px; background: var(--card-subtle); border-left: 4px solid var(--accent-blue); cursor: pointer;"
-          onclick="showToast('Opening Physics Test...')">
+          onclick="window.location.href='test/physics/physics_test.html'">
           <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase;">
             Subject Test</div>
           <div style="font-weight: 800; font-size: 0.9rem; margin-top: 4px;">Physics Test</div>
@@ -7440,6 +7442,15 @@ Final Reading
 
           ]
         },
+
+
+
+
+        /* ==========================================================================
+
+                     Vectors & Mathematical Tools
+
+         ========================================================================== */
         {
           id: "p3",
           title: "Vectors & Mathematical Tools",
@@ -9751,9 +9762,20 @@ Final Reading
       document.getElementById('profileDateSelector').value = state.user.selectedDate || new Date().toISOString().split('T')[0];
       document.getElementById('profileYearSelector').value = state.user.year || '2026';
     }
+    function updateThemeMeta() {
+      const meta = document.querySelector('#theme-color-meta');
 
+      if (!meta) return;
+
+      if (state.user.theme === 'dark') {
+        meta.setAttribute('content', '#0f172a');
+      } else {
+        meta.setAttribute('content', '#ffffff');
+      }
+    }
     function renderAppUI() {
       const isDark = state.user.theme === 'dark';
+
       if (isDark) {
         document.body.classList.add('dark-theme');
         document.getElementById('themeToggle').checked = true;
@@ -9762,6 +9784,9 @@ Final Reading
         document.getElementById('themeToggle').checked = false;
       }
 
+      // Status Bar Color
+      updateThemeMeta();
+
       const firstName = (state.user.name || 'Raj').split(' ')[0];
       const initial = firstName.charAt(0).toUpperCase();
 
@@ -9769,7 +9794,8 @@ Final Reading
       document.getElementById('profileAvatarBig').textContent = initial;
       document.getElementById('headerUserName').textContent = firstName;
       document.getElementById('profileNameDisplay').textContent = state.user.name || 'Raj Verma';
-      document.getElementById('profileGoalDisplay').textContent = `${state.user.class || 'Class 12'} • JEE Target ${state.user.year || '2026'}`;
+      document.getElementById('profileGoalDisplay').textContent =
+        `${state.user.class || 'Class 12'} • JEE Target ${state.user.year || '2026'}`;
 
       renderTasks();
       renderSyllabusProgress();
