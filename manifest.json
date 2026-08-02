@@ -1,58 +1,142 @@
 {
+  "id": "/",
   "name": "GENIQ - JEE AI Prep Platform",
   "short_name": "GENIQ",
-  "description": "Advanced, Android-first glassmorphic web application engineered for JEE Main and Advanced aspirants.",
-  "start_url": "/",
-  "scope": "/",
+  "description": "AI-powered JEE Main & Advanced preparation platform with offline notes, formulas, mock tests, PYQs, AI Tutor and progress tracking.",
+
+  "lang": "en",
+  "dir": "ltr",
+
+  "start_url": "./?source=pwa",
+  "scope": "./",
+
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#6366f1",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
+
   "orientation": "portrait-primary",
+
+  "background_color": "#0B1020",
+  "theme_color": "#6D5DF6",
+
   "categories": [
     "education",
-    "productivity",
-    "science"
+    "science",
+    "productivity"
   ],
+
+  "prefer_related_applications": false,
+
   "icons": [
     {
-      "src": "logo.png",
+      "src": "logo192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "logo.png",
+      "src": "logo192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "logo512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
+
   "shortcuts": [
     {
       "name": "AI Tutor",
       "short_name": "AI",
-      "description": "Launch Genius AI Tutor",
-      "url": "/?section=ai-tutor",
+      "description": "Ask AI Doubts",
+      "url": "./?section=ai",
       "icons": [
         {
-          "src": "logo.png",
-          "sizes": "96x96",
+          "src": "logo192.png",
+          "sizes": "192x192",
           "type": "image/png"
         }
       ]
     },
     {
-      "name": "Notes Hub",
-      "short_name": "Notes",
-      "description": "Access JEE Syllabus & Modules",
-      "url": "/?section=notes",
+      "name": "Physics",
+      "short_name": "Physics",
+      "description": "Open Physics Notes",
+      "url": "./?section=physics",
       "icons": [
         {
-          "src": "logo.png",
-          "sizes": "96x96",
+          "src": "logo192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Mock Tests",
+      "short_name": "Tests",
+      "description": "Start Mock Test",
+      "url": "./?section=mock",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Formula Sheet",
+      "short_name": "Formula",
+      "description": "Quick Formula Revision",
+      "url": "./?section=formulas",
+      "icons": [
+        {
+          "src": "logo192.png",
+          "sizes": "192x192",
           "type": "image/png"
         }
       ]
     }
-  ]
+  ],
+
+  "screenshots": [
+    {
+      "src": "screenshots/home.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshots/dashboard.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+
+  "launch_handler": {
+    "client_mode": [
+      "navigate-existing",
+      "focus-existing",
+      "auto"
+    ]
+  },
+
+  "edge_side_panel": {
+    "preferred_width": 420
+  }
 }
