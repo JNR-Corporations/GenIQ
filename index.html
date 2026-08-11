@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="hi">
 
@@ -19702,4 +19703,661 @@ Find Relative Velocity First
   </script>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+  <!-- Primary Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>GENIQ - JEE Ultimate Learning Platform v3.0</title>
+
+  <meta name="description"
+    content="GENIQ is the ultimate JEE learning platform built by JNR Corporations. Access physics, chemistry, and maths formula sheets, notes, and PYQs. Developed by Raj Verma.">
+  <meta name="keywords"
+    content="GENIQ, JEE Main, JEE Advanced, JEE Study Material, Physics, Chemistry, Maths, JNR Corporations, Raj Verma, Formula Handbook, PYQ">
+  <meta name="author" content="Raj Verma">
+  <meta name="publisher" content="JNR Corporations">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://geniq-jnr.vercel.app/">
+
+  <!-- Theme Colors for Light & Dark Mode (Automatic OS Level + PWA) -->
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#070a12" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- PWA & Apple Status Bar Settings -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" id="appleStatusBar" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GENIQ">
+
+  <!-- Open Graph / WhatsApp / Facebook Banner Preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://geniq-jnr.vercel.app/">
+  <meta property="og:title" content="GENIQ - JEE Ultimate Learning Platform">
+  <meta property="og:description"
+    content="Crack JEE Main & Advanced with GENIQ. Handcrafted notes, formula handbooks, and chapterwise PYQs by JNR Corporations.">
+  <meta property="og:image" content="https://geniq-jnr.vercel.app/banner.png">
+  <meta property="og:image:secure_url" content="https://geniq-jnr.vercel.app/banner.png">
+  <meta property="og:image:type" content="image/png">
+
+  <!-- Twitter Cards Banner Preview -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://geniq-jnr.vercel.app/">
+  <meta name="twitter:title" content="GENIQ - JEE Ultimate Learning Platform">
+  <meta name="twitter:description"
+    content="Crack JEE Main & Advanced with GENIQ. Complete notes & formula handbook platform by JNR Corporations.">
+  <meta name="twitter:image" content="https://geniq-jnr.vercel.app/banner.png">
+
+  <!-- Icons & Manifest -->
+  <link rel="icon" type="image/png" href="logo192.png">
+  <link rel="apple-touch-icon" href="logo192.png">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Google Fonts Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="toast" class="toast">Notification</div>
+
+  <div class="card-loader-overlay" id="cardLoaderOverlay">
+    <div class="spinner"></div>
+    <div style="font-size: 0.85rem; font-weight: 800; color: #fff; letter-spacing: 0.5px;">Loading Content...</div>
+  </div>
+
+  <!-- AUTH MODAL WITH PASSCODE 84000 -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="brand-icon"
+      style="width: 60px; height: 60px; border-radius: 20px; font-size: 1.6rem; margin-bottom: 14px;">
+      <svg class="svg-icon" style="width: 30px; height: 30px;" viewBox="0 0 24 24">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+      </svg>
+    </div>
+    <h2 style="font-weight: 800; font-size: 1.5rem; margin-bottom: 6px;">Welcome to GENIQ v3.0</h2>
+    <p style="font-size: 0.82rem; color: var(--text-sub); margin-bottom: 20px; max-width: 300px; line-height: 1.5;">
+      Enter passcode 84000 to unlock full JEE features.
+    </p>
+
+    <div style="width: 100%; max-width: 310px; display: flex; flex-direction: column; gap: 12px; text-align: left;">
+      <div>
+        <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">STUDENT NAME</label>
+        <input type="text" id="authNameInput" class="custom-input" placeholder="Your Name">
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <div style="flex: 1;">
+          <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">CLASS</label>
+          <select id="authClassInput" class="custom-select">
+            <option value="Class 11">Class 11</option>
+            <option value="Class 12">Class 12</option>
+            <option value="Dropper">Dropper</option>
+          </select>
+        </div>
+
+        <div style="flex: 1;">
+          <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">JEE YEAR</label>
+          <select id="authYearInput" class="custom-select">
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">PASSCODE</label>
+        <input type="password" id="authPinInput" class="custom-input"
+          style="text-align: center; font-size: 1.2rem; letter-spacing: 6px;" placeholder="• • • • •" maxlength="6">
+      </div>
+
+      <button class="btn-pill btn-primary" style="padding: 13px; margin-top: 6px;" onclick="loginUser()">Save &
+        Unlock Platform</button>
+      <button class="btn-pill btn-outline" style="padding: 11px;" onclick="loginUser(true)">Quick Demo
+        Entrance</button>
+    </div>
+  </div>
+
+  <div class="app-viewport">
+
+    <!-- APP HEADER -->
+    <header class="app-header">
+      <div class="brand-logo" onclick="switchTab('home')">
+        <div class="brand-icon">
+          <svg class="svg-icon" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        GENIQ
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-btn" onclick="toggleNotifs()" aria-label="Notifications">
+          <svg class="svg-icon" viewBox="0 0 24 24">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+          </svg>
+          <span class="notif-dot" id="notifDot"></span>
+        </button>
+
+        <div class="user-pill" onclick="switchTab('profile')">
+          <div class="user-avatar-sm" id="headerAvatar">R</div>
+          <span class="user-pill-name" id="headerUserName">Raj</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- NOTIFICATIONS DRAWER -->
+    <div class="notif-drawer" id="notifDrawer">
+      <div
+        style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--divider); padding-bottom: 8px;">
+        <h4 style="font-size: 0.9rem; font-weight: 800;">Notifications & Sync</h4>
+        <span style="font-size: 0.75rem; color: var(--primary); font-weight: 800; cursor: pointer;"
+          onclick="clearNotifs()">Clear All</span>
+      </div>
+      <div id="notifList" style="display: flex; flex-direction: column; gap: 8px; max-height: 260px; overflow-y: auto;">
+      </div>
+    </div>
+
+    <!-- VIEW 1: HOME -->
+    <main id="view-home" class="view-panel active">
+      <!-- UNIVERSAL SEARCH -->
+      <div class="universal-search-container">
+        <div class="search-box-advanced">
+          <svg class="svg-icon" style="color: var(--primary);" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" id="universalSearchInput" placeholder="Search deep topics, formulas, sub-cards, PDFs..."
+            oninput="handleUniversalSearch(this.value)">
+        </div>
+        <div class="search-results-overlay" id="universalSearchResults"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="background: var(--primary-gradient); color: #ffffff;">
+          <div style="font-size: 0.68rem; font-weight: 800; opacity: 0.85; text-transform: uppercase;">Active
+            Repository</div>
+          <div style="font-size: 1.02rem; font-weight: 800; margin: 6px 0 12px 0;" id="activeTargetText">
+            Rotational Dynamics</div>
+          <button class="btn-pill btn-white" onclick="switchTab('notes')">Open Notes</button>
+        </div>
+
+        <div class="card streak-glow-card"
+          style="background: linear-gradient(135deg, #064e3b, #065f46); color: #ffffff;">
+          <div
+            style="font-size: 0.68rem; font-weight: 800; text-transform: uppercase; color: #34d399; display: flex; align-items: center; gap: 4px;">
+            <svg class="svg-icon" style="width: 14px; height: 14px;" viewBox="0 0 24 24">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg> About Developer
+          </div>
+          <div style="font-size: 1.3rem; font-weight: 800; margin: 6px 0;" ">Raj Verma</div>
+          <div style="font-size: 0.75rem; color: #a7f3d0; font-weight: 700;">App developer, JEE Mentor & Tech Enthusiast
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <div style="font-size: 0.9rem; font-weight: 800; color: var(--text-main);">Overall JEE Syllabus
+            Completed</div>
+          <div style="font-size: 0.75rem; color: var(--text-sub); margin-top: 3px;">Tracked across all core
+            JEE modules</div>
+        </div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary);" id="overallPercentText">0%
+        </div>
+      </div>
+
+      <div class="card" style="background: linear-gradient(135deg, #1e1b4b, #312e81); color: #fff;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #a5b4fc;">Pomodoro
+            Focus Hub</span>
+          <span id="pomodoroTimerDisplay"
+            style="font-family: var(--font-mono); font-size: 1.1rem; font-weight: 800; color: #34d399;">25:00</span>
+        </div>
+        <div style="font-size: 0.8rem; opacity: 0.9; margin-bottom: 12px;">Timed deep-work study blocks for
+          maximum retention.</div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-pill btn-white" style="padding: 6px 14px; font-size: 0.75rem;"
+            onclick="togglePomodoroTimer()">Start Focus</button>
+          <button class="btn-pill btn-outline"
+            style="padding: 6px 14px; font-size: 0.75rem; color: #fff; border-color: rgba(255,255,255,0.3);"
+            onclick="resetPomodoroTimer()">Reset</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          Daily Targets
+          <span class="action-link" onclick="openAddTaskModal()">+ Add Target</span>
+        </div>
+        <div id="taskList"></div>
+      </div>
+
+      <div>
+        <div class="section-title">Core JEE Subjects Repository</div>
+        <div class="grid-3">
+          <div class="card" style="text-align: center; cursor: pointer; border: 1px solid var(--border-color);"
+            onclick="switchTab('notes'); filterNotes('Physics');">
+            <div style="font-weight: 800; font-size: 0.88rem; color: var(--accent-blue);">Physics</div>
+            <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">36 Chapters</div>
+          </div>
+          <div class="card" style="text-align: center; cursor: pointer; border: 1px solid var(--border-color);"
+            onclick="switchTab('notes'); filterNotes('Chemistry');">
+            <div style="font-weight: 800; font-size: 0.88rem; color: var(--accent-pink);">Chemistry</div>
+            <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">28 Chapters</div>
+          </div>
+          <div class="card" style="text-align: center; cursor: pointer; border: 1px solid var(--border-color);"
+            onclick="switchTab('notes'); filterNotes('Mathematics');">
+            <div style="font-weight: 800; font-size: 0.88rem; color: var(--accent-green);">Mathematics</div>
+            <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">21 Chapters</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- VIEW 2: CHAPTERS LIST SCREEN -->
+    <main id="view-notes" class="view-panel">
+      <div class="section-title">
+        JEE Chapter Repository
+      </div>
+
+      <div class="search-box-advanced">
+        <svg class="svg-icon" style="color: var(--text-muted);" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input type="text" id="notesSearchInput" placeholder="Search JEE chapter..." oninput="renderNotes()">
+      </div>
+
+      <div class="subject-tabs">
+        <button class="subject-tab active" onclick="filterNotes('All', this)">All JEE (85)</button>
+        <button class="subject-tab" onclick="filterNotes('Physics', this)">Physics (36)</button>
+        <button class="subject-tab" onclick="filterNotes('Chemistry', this)">Chemistry (28)</button>
+        <button class="subject-tab" onclick="filterNotes('Mathematics', this)">Mathematics (21)</button>
+      </div>
+
+      <div id="notesContainer" style="display: flex; flex-direction: column; gap: 12px;"></div>
+    </main>
+
+    <!-- VIEW 2.5: ENHANCED CHAPTER SUB-CARDS SCREEN -->
+    <main id="view-subcards" class="view-panel">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <button class="btn-pill btn-outline" style="padding: 6px 14px; font-size: 0.8rem;" onclick="switchTab('notes')">
+          ← Back to Chapters
+        </button>
+        <span class="status-pill"
+          style="font-size:0.7rem; font-weight:800; padding:4px 10px; border-radius:12px; background:var(--primary-light); color:var(--primary);">Sub-Cards
+          Module</span>
+      </div>
+
+      <div class="reader-header-card" id="subCardsHeaderCard"></div>
+
+      <div
+        style="font-size: 0.95rem; font-weight: 800; margin-top: 4px; color: var(--text-main); display: flex; justify-content: space-between; align-items: center;">
+        <span>Available Topic Sub-Cards:</span>
+        <span id="subCardCountBadge" style="font-size:0.75rem; color:var(--primary); font-weight:800;"></span>
+      </div>
+
+      <div id="subCardsContainer" style="display: flex; flex-direction: column; gap: 12px;"></div>
+    </main>
+
+    <!-- VIEW 2.6: RICH READER SCREEN FOR SUB-CARD INNERHTML CONTENT -->
+    <main id="view-note-reader" class="view-panel">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <button class="btn-pill btn-outline" style="padding: 6px 14px; font-size: 0.8rem;"
+          onclick="switchTab('subcards')">
+          ← Back to Sub-Cards
+        </button>
+        <span class="status-pill"
+          style="font-size:0.7rem; font-weight:800; padding:4px 10px; border-radius:12px; background:var(--primary-light); color:var(--primary);">⚡
+          Rich Interactive Reader</span>
+      </div>
+
+      <div class="reader-header-card" id="readerHeaderCard"></div>
+
+      <div style="font-size: 0.95rem; font-weight: 800; margin-top: 6px; color: var(--text-main);">Detailed
+        Content & Formula Breakdown:</div>
+      <div id="readerContentContainer" class="reader-section-box"></div>
+
+      <div style="display: flex; gap: 10px; justify-content: space-between; margin-top: 8px;">
+        <button class="btn-pill btn-outline" id="prevSubCardBtn" style="flex:1;">← Previous</button>
+        <button class="btn-pill btn-primary" id="nextSubCardBtn" style="flex:1;">Next Sub-Card →</button>
+      </div>
+    </main>
+
+    <!-- VIEW 3: TESTS & ASSESSMENTS -->
+    <main id="view-tests" class="view-panel">
+      <div class="section-title">JEE Test Series & Assessment Hub</div>
+
+      <div class="grid-2">
+        <div class="card" style="background: linear-gradient(135deg, #1e1b4b, #312e81); color: #fff;">
+          <div style="font-size: 0.68rem; font-weight: 800; opacity: 0.85; text-transform: uppercase;">Active
+            Status</div>
+          <div style="font-size: 1.02rem; font-weight: 800; margin: 6px 0 12px 0;">Advanced Full Mock #09
+          </div>
+          <button class="btn-pill btn-white" onclick="showToast('Starting Advanced Mock...')">Start
+            Mock</button>
+        </div>
+        <div class="card" style="background: linear-gradient(135deg, #064e3b, #065f46); color: #fff;">
+          <div style="font-size: 0.68rem; font-weight: 800; opacity: 0.85; text-transform: uppercase;">Active
+            Status</div>
+          <div style="font-size: 1.02rem; font-weight: 800; margin: 6px 0 12px 0;">Main Speed Test #14</div>
+          <button class="btn-pill btn-white" onclick="showToast('Starting Main Speed Test...')">Take
+            Test</button>
+        </div>
+        <div class="card" style="background: linear-gradient(135deg, #7c3aed, #4f46e5); color: #fff;">
+          <div style="font-size: 0.68rem; font-weight: 800; opacity: 0.85; text-transform: uppercase;">Active
+            Status</div>
+          <div style="font-size: 1.02rem; font-weight: 800; margin: 6px 0 12px 0;">Chapterwise Drill #04</div>
+          <button class="btn-pill btn-white" onclick="showToast('Starting Chapterwise Drill...')">Open
+            Drill</button>
+        </div>
+        <div class="card" style="background: linear-gradient(135deg, #9333ea, #c026d3); color: #fff;">
+          <div style="font-size: 0.68rem; font-weight: 800; opacity: 0.85; text-transform: uppercase;">Active
+            Status</div>
+          <div style="font-size: 1.02rem; font-weight: 800; margin: 6px 0 12px 0;">Custom PYQ Quiz Hub</div>
+          <button class="btn-pill btn-white" onclick="showToast('Starting Custom Quiz...')">Launch
+            Quiz</button>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top: 10px;">Specialised Practice & Revision Modules</div>
+      <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none;">
+        <div class="card"
+          style="min-width: 160px; background: var(--card-subtle); border-left: 4px solid var(--accent-amber); cursor: pointer;"
+          onclick="showToast('Opening Formula Revision...')">
+          <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-amber); text-transform: uppercase;">
+            Revision</div>
+          <div style="font-weight: 800; font-size: 0.9rem; margin-top: 4px;">Formula Revision</div>
+          <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">All 85 Chapters</div>
+        </div>
+        <div class="card"
+          style="min-width: 160px; background: var(--card-subtle); border-left: 4px solid var(--accent-blue); cursor: pointer;"
+          onclick="window.location.href='test/physics/physics_test.html'">
+          <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase;">
+            Subject Test</div>
+          <div style="font-weight: 800; font-size: 0.9rem; margin-top: 4px;">Physics Test</div>
+          <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">Mechanics & Optics</div>
+        </div>
+        <div class="card"
+          style="min-width:160px; background:var(--card-subtle); border-left:4px solid var(--accent-pink); cursor:pointer;"
+          onclick="showToast('Opening Chemistry Test...')">
+
+          <div style="font-size:0.7rem; font-weight:800; color:var(--accent-pink); text-transform:uppercase;">
+            Subject Test
+          </div>
+
+          <div style="font-weight:800; font-size:0.9rem; margin-top:4px;">
+            Chemistry Test
+          </div>
+
+          <div style="font-size:0.72rem; color:var(--text-sub); margin-top:2px;">
+            Physical, Organic & Inorganic
+          </div>
+
+        </div>
+        <div class="card"
+          style="min-width: 160px; background: var(--card-subtle); border-left: 4px solid var(--accent-green); cursor: pointer;"
+          onclick="showToast('Opening Maths Test...')">
+          <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-green); text-transform: uppercase;">
+            Subject Test</div>
+          <div style="font-weight: 800; font-size: 0.9rem; margin-top: 4px;">Maths Test</div>
+          <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">Calculus & Algebra</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- VIEW 4: PDF MATERIALS (UPGRADED UI WITH MATCHING STYLING & DIRECT ACTIONS) -->
+    <main id="view-pdfs" class="view-panel">
+      <div class="card" style="background: var(--primary-gradient); color: #fff;">
+        <div style="font-weight: 800; font-size: 1.1rem;">Subject PDFs & Handnotes Hub</div>
+        <div style="font-size: 0.78rem; opacity: 0.9; margin-top: 4px; line-height: 1.5;">
+          Formula sheets, PYQ compilations, and handwritten notes styled in high-yield cards with instant
+          sub-topic breakdown.
+        </div>
+      </div>
+
+      <div class="search-box-advanced">
+        <svg class="svg-icon" style="color: var(--text-muted);" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+        <input type="text" id="pdfSearchInput" placeholder="Search PDF materials by subject or topic..."
+          oninput="renderPDFs(this.value)">
+      </div>
+
+      <!-- PDF Cards rendered with Enhanced Glassmorphic UI -->
+      <div id="pdfContainer" class="grid-2"></div>
+    </main>
+
+    <!-- VIEW 5: PROFILE & STATS -->
+    <main id="view-profile" class="view-panel">
+      <div class="card"
+        style="background: var(--primary-gradient); color: #fff; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow-md);">
+        <div class="user-avatar-sm"
+          style="width: 64px; height: 64px; font-size: 1.6rem; background: #fff; color: var(--primary);"
+          id="profileAvatarBig">R</div>
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 800;" id="profileNameDisplay">Raj Verma</h3>
+          <p style="font-size: 0.82rem; opacity: 0.9;" id="profileGoalDisplay">Class 12 • JEE Target 2026</p>
+          <span
+            style="display: inline-block; background: rgba(255,255,255,0.2); font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; margin-top: 6px;">Active
+            Workspace</span>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card" style="text-align: center; padding: 14px;">
+          <div style="font-size: 1.2rem; font-weight: 800; color: var(--primary);">85</div>
+          <div style="font-size: 0.7rem; color: var(--text-sub); margin-top: 2px;">Total Modules</div>
+        </div>
+        <div class="card" style="text-align: center; padding: 14px;">
+          <div style="font-size: 1.2rem; font-weight: 800; color: var(--accent-green);" id="profileStreakCount">1 Day
+          </div>
+          <div style="font-size: 0.7rem; color: var(--text-sub); margin-top: 2px;">Streak</div>
+        </div>
+        <div class="card" style="text-align: center; padding: 14px;">
+          <div style="font-size: 1.2rem; font-weight: 800; color: var(--accent-purple);">100%</div>
+          <div style="font-size: 0.7rem; color: var(--text-sub); margin-top: 2px;">Offline Sync</div>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="font-size: 0.9rem; font-weight: 800; color: var(--primary);">Interactive Study Planner &
+          Preferences</div>
+
+        <div style="display: flex; gap: 10px;">
+          <div style="flex: 1;">
+            <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">SELECT DATE</label>
+            <input type="date" id="profileDateSelector" class="custom-input" style="font-size: 0.8rem; padding: 10px;"
+              onchange="updateProfileDate(this.value)">
+          </div>
+          <div style="flex: 1;">
+            <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">TARGET YEAR</label>
+            <select id="profileYearSelector" class="custom-select" style="font-size: 0.8rem; padding: 10px;"
+              onchange="updateProfileYear(this.value)">
+              <option value="2026">2026</option>
+              <option value="2027">2027</option>
+              <option value="2028">2028</option>
+            </select>
+          </div>
+        </div>
+
+        <div
+          style="background: var(--card-subtle); padding: 14px; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-size: 0.8rem; font-weight: 800;">Local Storage Status</div>
+            <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;" id="localStorageSizeInfo">59
+              Chapters & PDFs Cached Locally</div>
+          </div>
+          <button class="btn-pill btn-outline" style="padding: 6px 12px; font-size: 0.75rem;"
+            onclick="exportLocalData()">Export JSON</button>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column; gap: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.88rem; font-weight: 700;">Dark Theme Mode</span>
+          <input type="checkbox" id="themeToggle" style="width: 22px; height: 22px;"
+            onchange="toggleTheme(this.checked)">
+        </div>
+        <hr style="border: none; border-top: 1px solid var(--divider);">
+        <button class="btn-pill btn-outline" style="justify-content: flex-start;" onclick="openEditProfileModal()">Edit
+          Student Profile</button>
+        <button class="btn-pill btn-outline" style="justify-content: flex-start;" onclick="openAboutModal()">About GENIQ
+          App & Developer</button>
+        <button class="btn-pill btn-danger" style="justify-content: flex-start;" onclick="logoutUser()">Log Out
+          of Platform</button>
+      </div>
+    </main>
+
+    <!-- FLOATING DOCK -->
+    <div class="iphone-dock-wrapper">
+      <nav class="iphone-dock">
+        <div class="dock-item active" id="dock-home" onclick="switchTab('home')">
+          <div class="dock-icon"><svg class="svg-icon" viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            </svg></div>
+          <span>Home</span>
+          <div class="dock-active-dot"></div>
+        </div>
+        <div class="dock-item" id="dock-notes" onclick="switchTab('notes')">
+          <div class="dock-icon"><svg class="svg-icon" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg></div>
+          <span>Notes</span>
+          <div class="dock-active-dot"></div>
+        </div>
+        <div class="dock-item" id="dock-tests" onclick="switchTab('tests')">
+          <div class="dock-icon"><svg class="svg-icon" viewBox="0 0 24 24">
+              <path d="M9 11l3 3L22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg></div>
+          <span>Tests</span>
+          <div class="dock-active-dot"></div>
+        </div>
+        <div class="dock-item" id="dock-pdfs" onclick="switchTab('pdfs')">
+          <div class="dock-icon"><svg class="svg-icon" viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg></div>
+          <span>PDFs</span>
+          <div class="dock-active-dot"></div>
+        </div>
+        <div class="dock-item" id="dock-profile" onclick="switchTab('profile')">
+          <div class="dock-icon"><svg class="svg-icon" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg></div>
+          <span>Profile</span>
+          <div class="dock-active-dot"></div>
+        </div>
+      </nav>
+    </div>
+
+  </div>
+
+  <!-- MODAL SHEET: ADD TASK -->
+  <div class="modal-overlay" id="addTaskModal">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <h3 style="font-size: 1.05rem; font-weight: 800;">Add Daily Target</h3>
+      <input type="text" id="newTaskInput" class="custom-input" placeholder="e.g. Solve 15 Rotational Motion PYQs">
+      <input type="text" id="newTaskSubInput" class="custom-input" placeholder="Subject (e.g. Physics • Class 11)">
+      <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 6px;">
+        <button class="btn-pill btn-outline" onclick="closeModal('addTaskModal')">Cancel</button>
+        <button class="btn-pill btn-primary" onclick="createTask()">Add Target</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL SHEET: EDIT PROFILE -->
+  <div class="modal-overlay" id="editProfileModal">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <h3 style="font-size: 1.05rem; font-weight: 800;">Edit Student Profile</h3>
+      <div>
+        <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">NAME</label>
+        <input type="text" id="editNameInput" class="custom-input" placeholder="Your Name">
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <div style="flex: 1;">
+          <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">CLASS</label>
+          <select id="editClassInput" class="custom-select">
+            <option value="Class 11">Class 11</option>
+            <option value="Class 12">Class 12</option>
+            <option value="Dropper">Dropper</option>
+          </select>
+        </div>
+        <div style="flex: 1;">
+          <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">TARGET YEAR</label>
+          <select id="editYearInput" class="custom-select">
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+          </select>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 6px;">
+        <button class="btn-pill btn-outline" onclick="closeModal('editProfileModal')">Cancel</button>
+        <button class="btn-pill btn-primary" onclick="saveProfile()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL SHEET: ABOUT DEVELOPER -->
+  <div class="modal-overlay" id="aboutAppModal">
+    <div class="modal-sheet" style="text-align: center; align-items: center;">
+      <div class="modal-handle"></div>
+
+      <div
+        style="width: 64px; height: 64px; border-radius: 22px; background: var(--primary-gradient); display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: 0 8px 24px var(--glow-color); margin-top: 4px;">
+        <svg class="svg-icon" style="width: 32px; height: 32px;" viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+      </div>
+
+      <h3 style="font-size: 1.3rem; font-weight: 800; margin-top: 4px;">GENIQ Platform v3.0</h3>
+      <p style="font-size: 0.82rem; color: var(--text-sub); line-height: 1.6; max-width: 340px;">
+        High-performance intelligent Android-first web application built with offline PDF repositories and
+        complete JEE chapter coverage.
+      </p>
+
+      <div
+        style="width: 100%; background: var(--card-subtle); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 22px; margin-top: 8px; text-align: center;">
+        <div
+          style="font-size: 0.68rem; font-weight: 800; text-transform: uppercase; color: var(--text-sub); letter-spacing: 1px; margin-bottom: 6px;">
+          Lead Software Architect & Creator</div>
+
+        <div class="glowing-developer-name">Raj Verma</div>
+
+        <p style="font-size: 0.78rem; color: var(--text-sub); margin-top: 8px; line-height: 1.4;">
+          Passionate Full-Stack Engineer & JEE UI Specialist building robust, lightning-fast mobile learning
+          tools.
+        </p>
+      </div>
+
+      <button class="btn-pill btn-primary" style="width: 100%; padding: 12px; margin-top: 4px;"
+        onclick="closeModal('aboutAppModal')">Close Info</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  </body>
+
+>>>>>>> c6e7f7f (Initial commit)
 </html>
