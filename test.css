@@ -1,0 +1,851 @@
+/* ==========================================================================
+   GENIQ TEST ENGINE SPECIFIC STYLES (Scoped with geniq-test-)
+   ========================================================================== */
+
+/* Screen Visibility */
+.geniq-test-screen {
+  display: none;
+  animation: geniqFadeIn 0.25s ease-in-out;
+}
+.geniq-test-screen.active {
+  display: block;
+}
+
+@keyframes geniqFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header Cards */
+.geniq-test-header-card {
+  background: var(--primary-gradient, linear-gradient(135deg, #1e1b4b, #312e81));
+  color: #ffffff;
+  padding: 18px 20px;
+  border-radius: var(--radius-lg, 16px);
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.1));
+}
+
+.geniq-test-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.geniq-test-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.geniq-test-subtitle {
+  font-size: 0.78rem;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* Form Cards & Components */
+.geniq-test-card {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, rgba(225, 231, 239, 0.8));
+  border-radius: var(--radius-lg, 16px);
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.04));
+}
+
+.geniq-test-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.geniq-test-card-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-main, #0f172a);
+  margin: 0;
+}
+
+.geniq-test-form-group {
+  margin-bottom: 16px;
+}
+
+.geniq-test-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--text-sub, #64748b);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+/* Button Toggles & Quick Chips */
+.geniq-test-toggle-group {
+  display: flex;
+  gap: 6px;
+  background: var(--card-subtle, #f1f5f9);
+  padding: 4px;
+  border-radius: var(--radius-md, 12px);
+  overflow-x: auto;
+}
+
+.geniq-test-toggle-btn {
+  flex: 1;
+  min-width: 80px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: var(--text-sub, #64748b);
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.geniq-test-toggle-btn.active {
+  background: var(--primary, #4f46e5);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+}
+
+.geniq-test-stepper-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 600px) {
+  .geniq-test-stepper-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.geniq-test-stepper {
+  display: flex;
+  align-items: center;
+  background: var(--card-subtle, #f1f5f9);
+  border-radius: 10px;
+  padding: 2px;
+  width: fit-content;
+}
+
+.geniq-test-step-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--text-main, #0f172a);
+  cursor: pointer;
+}
+
+.geniq-test-num-input {
+  width: 50px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--text-main, #0f172a);
+}
+
+.geniq-test-quick-chips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.geniq-test-chip {
+  padding: 6px 12px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  background: var(--card-bg, #ffffff);
+  color: var(--text-main, #0f172a);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.geniq-test-chip.active {
+  background: var(--primary-light, #e0e7ff);
+  border-color: var(--primary, #4f46e5);
+  color: var(--primary, #4f46e5);
+}
+
+.geniq-test-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 500px) {
+  .geniq-test-grid-2 { grid-template-columns: 1fr 1fr; }
+}
+
+.geniq-test-select, .geniq-test-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: var(--card-bg, #ffffff);
+  color: var(--text-main, #0f172a);
+  font-size: 0.85rem;
+  font-weight: 600;
+  outline: none;
+}
+
+/* Chapter Multi-Select */
+.geniq-test-chapter-dropdown {
+  position: relative;
+}
+
+.geniq-test-chapter-input-wrap {
+  display: flex;
+  gap: 6px;
+}
+
+.geniq-test-btn-clear-chapters {
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: var(--card-subtle, #f1f5f9);
+  color: var(--text-main, #0f172a);
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.geniq-test-chapter-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: 10px;
+  box-shadow: var(--shadow-md, 0 6px 16px rgba(0,0,0,0.12));
+  z-index: 50;
+  margin-top: 4px;
+}
+
+.geniq-test-chapter-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 0.8rem;
+  color: var(--text-main, #0f172a);
+  cursor: pointer;
+  border-bottom: 1px solid var(--divider, #f1f5f9);
+}
+.geniq-test-chapter-item:hover, .geniq-test-chapter-item.selected {
+  background: var(--card-subtle, #f8fafc);
+}
+
+.geniq-test-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.geniq-test-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--primary-light, #e0e7ff);
+  color: var(--primary, #4f46e5);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+.geniq-test-tag.active {
+  background: var(--card-subtle, #f1f5f9);
+  color: var(--text-sub, #64748b);
+}
+.geniq-test-tag button {
+  border: none;
+  background: transparent;
+  color: var(--primary, #4f46e5);
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+/* Pool Summary & Buttons */
+.geniq-test-pool-summary {
+  display: flex;
+  gap: 12px;
+  background: var(--card-subtle, #f8fafc);
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.geniq-test-stat-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.geniq-test-stat-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--text-sub, #64748b);
+  text-transform: uppercase;
+}
+
+.geniq-test-stat-val {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--primary, #4f46e5);
+}
+
+.geniq-test-alert {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+/* General Buttons */
+.geniq-test-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.geniq-test-btn-block { width: 100%; }
+
+.geniq-test-btn-primary {
+  background: var(--primary-gradient, linear-gradient(135deg, #4f46e5, #4338ca));
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.geniq-test-btn-outline {
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: transparent;
+  color: var(--text-main, #0f172a);
+}
+
+.geniq-test-btn-warning {
+  background: #f59e0b;
+  color: #ffffff;
+}
+
+.geniq-test-btn-danger {
+  background: #ef4444;
+  color: #ffffff;
+}
+
+.geniq-test-btn-text {
+  background: transparent;
+  border: none;
+  color: var(--primary, #4f46e5);
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* Active Test Screen Navbar & Timer */
+.geniq-test-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.geniq-test-nav-exam {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: var(--text-main, #0f172a);
+}
+
+.geniq-test-nav-count {
+  font-size: 0.75rem;
+  color: var(--text-sub, #64748b);
+  font-weight: 600;
+}
+
+.geniq-test-timer-badge {
+  background: #10b981;
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 800;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.geniq-test-timer-badge.warning {
+  background: #ef4444;
+  animation: geniqPulse 1s infinite;
+}
+
+@keyframes geniqPulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+.geniq-test-progress-bar-bg {
+  width: 100%;
+  height: 6px;
+  background: var(--card-subtle, #e2e8f0);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.geniq-test-progress-bar-fill {
+  height: 100%;
+  background: var(--primary, #4f46e5);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* Active Test Layout Grid */
+.geniq-test-layout-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 850px) {
+  .geniq-test-layout-grid {
+    grid-template-columns: 1fr 280px;
+  }
+}
+
+/* Active Question Elements */
+.geniq-test-question-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.geniq-test-badge-sm {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--card-subtle, #f1f5f9);
+  color: var(--text-sub, #475569);
+}
+
+.geniq-test-badge-marks {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.geniq-test-question-body {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text-main, #0f172a);
+  margin-bottom: 16px;
+}
+
+/* MCQ & Numerical Answer Inputs */
+.geniq-test-options-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.geniq-test-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color, #cbd5e1);
+  background: var(--card-bg, #ffffff);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.geniq-test-option-btn:hover {
+  border-color: var(--primary, #4f46e5);
+}
+
+.geniq-test-option-btn.selected {
+  border-color: var(--primary, #4f46e5);
+  background: var(--primary-light, #e0e7ff);
+}
+
+.geniq-test-option-prefix {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--card-subtle, #f1f5f9);
+  color: var(--text-main, #0f172a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.geniq-test-option-btn.selected .geniq-test-option-prefix {
+  background: var(--primary, #4f46e5);
+  color: #ffffff;
+}
+
+.geniq-test-option-text {
+  font-size: 0.88rem;
+  color: var(--text-main, #0f172a);
+  font-weight: 500;
+}
+
+.geniq-test-numerical-wrap {
+  background: var(--card-subtle, #f8fafc);
+  padding: 14px;
+  border-radius: 12px;
+}
+
+.geniq-test-num-field {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  border-radius: 10px;
+  border: 2px solid var(--primary, #4f46e5);
+  outline: none;
+  margin-top: 6px;
+}
+
+.geniq-test-actions-row {
+  display: flex;
+  gap: 8px;
+}
+.geniq-test-actions-row .geniq-test-btn {
+  flex: 1;
+}
+
+/* Question Palette Grid */
+.geniq-test-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 0.7rem;
+  color: var(--text-sub, #64748b);
+  font-weight: 600;
+}
+
+.geniq-test-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.geniq-test-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.geniq-test-dot.not-visited { background: #cbd5e1; }
+.geniq-test-dot.not-answered { background: #ef4444; }
+.geniq-test-dot.answered { background: #10b981; }
+.geniq-test-dot.marked { background: #8b5cf6; }
+.geniq-test-dot.answered-marked { background: #3b82f6; }
+
+.geniq-test-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+  gap: 6px;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.geniq-test-palette-btn {
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.78rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: #ffffff;
+  transition: transform 0.1s ease;
+}
+
+.geniq-test-palette-btn:active { transform: scale(0.95); }
+
+.geniq-test-palette-btn.not-visited { background: #cbd5e1; color: #334155; }
+.geniq-test-palette-btn.not-answered { background: #ef4444; }
+.geniq-test-palette-btn.answered { background: #10b981; }
+.geniq-test-palette-btn.marked { background: #8b5cf6; }
+.geniq-test-palette-btn.answered-marked { background: #3b82f6; }
+.geniq-test-palette-btn.active-q { border: 2px solid #000000; box-shadow: 0 0 0 2px #ffffff; }
+
+/* Result Screen Styles */
+.geniq-test-score-banner {
+  text-align: center;
+  padding: 20px;
+  background: var(--card-subtle, #f8fafc);
+}
+
+.geniq-test-main-score {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 4px;
+}
+
+.geniq-test-score-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--primary, #4f46e5);
+}
+
+.geniq-test-score-max {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-sub, #64748b);
+}
+
+.geniq-test-percent-pill {
+  display: inline-block;
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 4px 14px;
+  border-radius: 12px;
+  margin-top: 6px;
+}
+
+.geniq-test-percentile-box {
+  font-size: 0.8rem;
+  color: var(--text-sub, #64748b);
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-color, #cbd5e1);
+}
+
+.geniq-test-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+@media (min-width: 500px) {
+  .geniq-test-grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+.geniq-test-stat-card {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+}
+
+.geniq-test-stat-num {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.geniq-test-stat-title {
+  font-size: 0.68rem;
+  color: var(--text-sub, #64748b);
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.geniq-test-stat-card.green .geniq-test-stat-num { color: #10b981; }
+.geniq-test-stat-card.red .geniq-test-stat-num { color: #ef4444; }
+.geniq-test-stat-card.gray .geniq-test-stat-num { color: #64748b; }
+.geniq-test-stat-card.blue .geniq-test-stat-num { color: #3b82f6; }
+
+.geniq-test-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.geniq-test-breakdown-card {
+  background: var(--card-subtle, #f8fafc);
+  padding: 10px 12px;
+  border-radius: 10px;
+  border-left: 3px solid var(--primary, #4f46e5);
+}
+
+.geniq-test-breakdown-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text-main, #0f172a);
+}
+
+.geniq-test-breakdown-details {
+  font-size: 0.72rem;
+  color: var(--text-sub, #64748b);
+  margin-top: 4px;
+}
+
+/* Test History List */
+.geniq-test-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.geniq-test-history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--card-subtle, #f8fafc);
+  border: 1px solid var(--border-color, #e2e8f0);
+}
+
+.geniq-test-history-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text-main, #0f172a);
+}
+
+.geniq-test-history-sub {
+  font-size: 0.7rem;
+  color: var(--text-sub, #64748b);
+}
+
+.geniq-test-history-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.geniq-test-history-score {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--primary, #4f46e5);
+}
+
+.geniq-test-history-acc, .geniq-test-history-pct {
+  font-size: 0.68rem;
+  color: var(--text-sub, #64748b);
+  font-weight: 600;
+}
+
+.geniq-test-empty-state {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-sub, #94a3b8);
+  padding: 14px;
+}
+
+/* Review Mode */
+.geniq-test-review-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.geniq-test-review-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--divider, #e2e8f0);
+}
+
+.geniq-test-review-badge {
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 800;
+}
+.geniq-test-review-badge.correct { background: #d1fae5; color: #065f46; }
+.geniq-test-review-badge.wrong { background: #fee2e2; color: #991b1b; }
+.geniq-test-review-badge.unanswered { background: #f1f5f9; color: #475569; }
+
+.geniq-test-review-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 10px 0;
+}
+
+.geniq-test-review-opt {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  background: var(--card-subtle, #f8fafc);
+  color: var(--text-main, #0f172a);
+}
+.geniq-test-review-opt.correct-opt {
+  background: #d1fae5;
+  color: #065f46;
+  font-weight: 700;
+}
+.geniq-test-review-opt.wrong-opt {
+  background: #fee2e2;
+  color: #991b1b;
+  font-weight: 700;
+}
+
+.geniq-test-review-ans-box {
+  background: var(--card-subtle, #f8fafc);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  margin: 10px 0;
+}
+
+.geniq-test-explanation-box {
+  background: var(--primary-light, #e0e7ff);
+  color: var(--text-main, #1e1b4b);
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin-top: 10px;
+}

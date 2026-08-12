@@ -81,6 +81,7 @@
 </style>
 
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="test.css">
 </head>
 
 <body>
@@ -352,88 +353,259 @@
       </div>
     </main>
 
-    <!-- VIEW 3: TESTS & ASSESSMENTS -->
-    <main id="view-tests" class="view-panel">
-      <div class="section-title">JEE Test Series & Assessment Hub</div>
+    <!-- VIEW 3: TESTS & ASSESSMENTS (UPDATED GENIQ JEE TEST ENGINE) -->
+<main id="view-tests" class="view-panel">
+  
+  <!-- SCREEN 1: TEST BUILDER & HISTORY -->
+  <div id="geniq-test-builder-view" class="geniq-test-screen active">
+    <div class="geniq-test-header-card">
+      <div class="geniq-test-badge">GENIQ TEST ENGINE v3.0</div>
+      <h2 class="geniq-test-title">Custom JEE Practice Test</h2>
+      <p class="geniq-test-subtitle">Configure personalized mocks, chapter drills, or speed tests instantly.</p>
+    </div>
 
-      <div class="grid-2">
-        <div class="card" style="background: linear-gradient(135deg, #1e1b4b, #312e81); color: #fff;">
-          <div style="font-size: 0.68rem; font-weight: 800; opacity: 0.85; text-transform: uppercase;">Active
-            Status</div>
-          <div style="font-size: 1.02rem; font-weight: 800; margin: 6px 0 12px 0;">Advanced Full Mock #09
-          </div>
-          <button class="btn-pill btn-white" onclick="showToast('Starting Advanced Mock...')">Start
-            Mock</button>
-        </div>
-        <div class="card" style="background: linear-gradient(135deg, #064e3b, #065f46); color: #fff;">
-          <div style="font-size: 0.68rem; font-weight: 800; opacity: 0.85; text-transform: uppercase;">Active
-            Status</div>
-          <div style="font-size: 1.02rem; font-weight: 800; margin: 6px 0 12px 0;">Main Speed Test #14</div>
-          <button class="btn-pill btn-white" onclick="showToast('Starting Main Speed Test...')">Take
-            Test</button>
-        </div>
-        <div class="card" style="background: linear-gradient(135deg, #7c3aed, #4f46e5); color: #fff;">
-          <div style="font-size: 0.68rem; font-weight: 800; opacity: 0.85; text-transform: uppercase;">Active
-            Status</div>
-          <div style="font-size: 1.02rem; font-weight: 800; margin: 6px 0 12px 0;">Chapterwise Drill #04</div>
-          <button class="btn-pill btn-white" onclick="showToast('Starting Chapterwise Drill...')">Open
-            Drill</button>
-        </div>
-        <div class="card" style="background: linear-gradient(135deg, #9333ea, #c026d3); color: #fff;">
-          <div style="font-size: 0.68rem; font-weight: 800; opacity: 0.85; text-transform: uppercase;">Active
-            Status</div>
-          <div style="font-size: 1.02rem; font-weight: 800; margin: 6px 0 12px 0;">Custom PYQ Quiz Hub</div>
-          <button class="btn-pill btn-white" onclick="showToast('Starting Custom Quiz...')">Launch
-            Quiz</button>
+    <!-- TEST CONFIGURATION FORM -->
+    <div class="geniq-test-card">
+      <div class="geniq-test-form-group">
+        <label class="geniq-test-label">Target Exam</label>
+        <div class="geniq-test-toggle-group" id="geniq-exam-toggle">
+          <button type="button" class="geniq-test-toggle-btn active" data-value="JEE Main" onclick="geniqTestEngine.setExam('JEE Main')">JEE Main</button>
+          <button type="button" class="geniq-test-toggle-btn" data-value="JEE Advanced" onclick="geniqTestEngine.setExam('JEE Advanced')">JEE Advanced</button>
         </div>
       </div>
 
-      <div class="section-title" style="margin-top: 10px;">Specialised Practice & Revision Modules</div>
-      <div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none;">
-        <div class="card"
-          style="min-width: 160px; background: var(--card-subtle); border-left: 4px solid var(--accent-amber); cursor: pointer;"
-          onclick="showToast('Opening Formula Revision...')">
-          <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-amber); text-transform: uppercase;">
-            Revision</div>
-          <div style="font-weight: 800; font-size: 0.9rem; margin-top: 4px;">Formula Revision</div>
-          <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">All 85 Chapters</div>
-        </div>
-        <div class="card"
-          style="min-width: 160px; background: var(--card-subtle); border-left: 4px solid var(--accent-blue); cursor: pointer;"
-          onclick="window.location.href='test/physics/physics_test.html'">
-          <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-blue); text-transform: uppercase;">
-            Subject Test</div>
-          <div style="font-weight: 800; font-size: 0.9rem; margin-top: 4px;">Physics Test</div>
-          <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">Mechanics & Optics</div>
-        </div>
-        <div class="card"
-          style="min-width:160px; background:var(--card-subtle); border-left:4px solid var(--accent-pink); cursor:pointer;"
-          onclick="showToast('Opening Chemistry Test...')">
-
-          <div style="font-size:0.7rem; font-weight:800; color:var(--accent-pink); text-transform:uppercase;">
-            Subject Test
-          </div>
-
-          <div style="font-weight:800; font-size:0.9rem; margin-top:4px;">
-            Chemistry Test
-          </div>
-
-          <div style="font-size:0.72rem; color:var(--text-sub); margin-top:2px;">
-            Physical, Organic & Inorganic
-          </div>
-
-        </div>
-        <div class="card"
-          style="min-width: 160px; background: var(--card-subtle); border-left: 4px solid var(--accent-green); cursor: pointer;"
-          onclick="showToast('Opening Maths Test...')">
-          <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-green); text-transform: uppercase;">
-            Subject Test</div>
-          <div style="font-weight: 800; font-size: 0.9rem; margin-top: 4px;">Maths Test</div>
-          <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">Calculus & Algebra</div>
+      <div class="geniq-test-form-group">
+        <label class="geniq-test-label">Subject Selection</label>
+        <div class="geniq-test-toggle-group" id="geniq-subject-toggle">
+          <button type="button" class="geniq-test-toggle-btn active" data-value="All Subjects" onclick="geniqTestEngine.setSubject('All Subjects')">All Subjects</button>
+          <button type="button" class="geniq-test-toggle-btn" data-value="Physics" onclick="geniqTestEngine.setSubject('Physics')">Physics</button>
+          <button type="button" class="geniq-test-toggle-btn" data-value="Chemistry" onclick="geniqTestEngine.setSubject('Chemistry')">Chemistry</button>
+          <button type="button" class="geniq-test-toggle-btn" data-value="Mathematics" onclick="geniqTestEngine.setSubject('Mathematics')">Mathematics</button>
         </div>
       </div>
-    </main>
 
+      <div class="geniq-test-form-group">
+        <label class="geniq-test-label">Number of Questions</label>
+        <div class="geniq-test-stepper-row">
+          <div class="geniq-test-stepper">
+            <button type="button" class="geniq-test-step-btn" onclick="geniqTestEngine.adjustQuestionCount(-5)">-</button>
+            <input type="number" id="geniq-qcount-input" class="geniq-test-num-input" value="20" min="1" max="180" oninput="geniqTestEngine.onCustomCountInput(this.value)">
+            <button type="button" class="geniq-test-step-btn" onclick="geniqTestEngine.adjustQuestionCount(5)">+</button>
+          </div>
+          <div class="geniq-test-quick-chips">
+            <button type="button" class="geniq-test-chip" onclick="geniqTestEngine.setQuestionCount(5)">5</button>
+            <button type="button" class="geniq-test-chip" onclick="geniqTestEngine.setQuestionCount(10)">10</button>
+            <button type="button" class="geniq-test-chip active" onclick="geniqTestEngine.setQuestionCount(20)">20</button>
+            <button type="button" class="geniq-test-chip" onclick="geniqTestEngine.setQuestionCount(30)">30</button>
+            <button type="button" class="geniq-test-chip" onclick="geniqTestEngine.setQuestionCount(45)">45</button>
+            <button type="button" class="geniq-test-chip" onclick="geniqTestEngine.setQuestionCount(60)">60</button>
+            <button type="button" class="geniq-test-chip" onclick="geniqTestEngine.setQuestionCount(90)">90</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="geniq-test-grid-2">
+        <div class="geniq-test-form-group">
+          <label class="geniq-test-label">Difficulty</label>
+          <select id="geniq-difficulty-select" class="geniq-test-select" onchange="geniqTestEngine.updatePoolCount()">
+            <option value="Mixed">Mixed Difficulty</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </div>
+
+        <div class="geniq-test-form-group">
+          <label class="geniq-test-label">Question Type</label>
+          <select id="geniq-type-select" class="geniq-test-select" onchange="geniqTestEngine.updatePoolCount()">
+            <option value="All">All Types</option>
+            <option value="MCQ">Single Choice (MCQ)</option>
+            <option value="Numerical">Numerical / Integer</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="geniq-test-form-group">
+        <label class="geniq-test-label">Chapter / Topic Filter</label>
+        <div class="geniq-test-chapter-dropdown">
+          <div class="geniq-test-chapter-input-wrap">
+            <input type="text" id="geniq-chapter-search" class="geniq-test-input" placeholder="Search and select chapters..." oninput="geniqTestEngine.filterChapterDropdown(this.value)" onclick="geniqTestEngine.toggleChapterDropdown(true)">
+            <button type="button" class="geniq-test-btn-clear-chapters" onclick="geniqTestEngine.selectAllChapters()">Reset / All</button>
+          </div>
+          <div id="geniq-chapter-list" class="geniq-test-chapter-list"></div>
+        </div>
+        <div id="geniq-selected-chapters-tags" class="geniq-test-tags-container"></div>
+      </div>
+
+      <!-- METRICS & GENERATE ACTION -->
+      <div class="geniq-test-pool-summary">
+        <div class="geniq-test-stat-box">
+          <span class="geniq-test-stat-label">Pool Available</span>
+          <span class="geniq-test-stat-val" id="geniq-pool-count">0</span>
+        </div>
+        <div class="geniq-test-stat-box">
+          <span class="geniq-test-stat-label">Estimated Time</span>
+          <span class="geniq-test-stat-val" id="geniq-est-time">0 min</span>
+        </div>
+      </div>
+
+      <div id="geniq-builder-warning" class="geniq-test-alert" style="display: none;"></div>
+
+      <button type="button" class="geniq-test-btn geniq-test-btn-primary geniq-test-btn-block" onclick="geniqTestEngine.startGeneratedTest()">
+        ⚡ GENERATE TEST
+      </button>
+    </div>
+
+    <!-- TEST HISTORY SECTION -->
+    <div class="geniq-test-card" style="margin-top: 16px;">
+      <div class="geniq-test-card-header">
+        <h3 class="geniq-test-card-title">Recent Test History</h3>
+        <button type="button" class="geniq-test-btn-text" onclick="geniqTestEngine.clearHistory()">Clear History</button>
+      </div>
+      <div id="geniq-test-history-list" class="geniq-test-history-list">
+        <div class="geniq-test-empty-state">No test history available yet.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: ACTIVE TEST EXECUTION -->
+  <div id="geniq-test-active-view" class="geniq-test-screen">
+    <!-- TIMER & HEADER -->
+    <div class="geniq-test-navbar">
+      <div>
+        <div class="geniq-test-nav-exam" id="geniq-active-exam-subject">JEE MAIN • Physics</div>
+        <div class="geniq-test-nav-count" id="geniq-active-q-counter">Question 1 / 20</div>
+      </div>
+      <div class="geniq-test-timer-badge" id="geniq-timer-display">
+        ⏱️ <span id="geniq-timer-clock">00:00:00</span>
+      </div>
+    </div>
+
+    <div class="geniq-test-progress-bar-bg">
+      <div class="geniq-test-progress-bar-fill" id="geniq-active-progress"></div>
+    </div>
+
+    <div class="geniq-test-layout-grid">
+      <!-- MAIN QUESTION CONTAINER -->
+      <div class="geniq-test-question-container geniq-test-card">
+        <div class="geniq-test-question-meta">
+          <span class="geniq-test-badge-sm" id="geniq-active-q-type">MCQ</span>
+          <span class="geniq-test-badge-sm" id="geniq-active-q-chapter">Chapter Name</span>
+          <span class="geniq-test-badge-sm geniq-test-badge-marks" id="geniq-active-q-marks">+4 / -1</span>
+        </div>
+
+        <div class="geniq-test-question-body" id="geniq-active-q-text">
+          Loading question text...
+        </div>
+
+        <div class="geniq-test-options-box" id="geniq-active-options-box">
+          <!-- Dynamically filled with MCQ buttons or Numerical Input -->
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="geniq-test-actions-row">
+          <button type="button" class="geniq-test-btn geniq-test-btn-outline" id="geniq-btn-prev" onclick="geniqTestEngine.prevQuestion()">← Previous</button>
+          <button type="button" class="geniq-test-btn geniq-test-btn-warning" id="geniq-btn-review" onclick="geniqTestEngine.toggleMarkForReview()">Mark for Review</button>
+          <button type="button" class="geniq-test-btn geniq-test-btn-primary" id="geniq-btn-next" onclick="geniqTestEngine.nextQuestion()">Next →</button>
+        </div>
+      </div>
+
+      <!-- QUESTION PALETTE & LEGEND -->
+      <div class="geniq-test-palette-card geniq-test-card">
+        <h4 class="geniq-test-card-title">Question Palette</h4>
+        
+        <div class="geniq-test-legend">
+          <div class="geniq-test-legend-item"><span class="geniq-test-dot not-visited"></span> Not Visited</div>
+          <div class="geniq-test-legend-item"><span class="geniq-test-dot not-answered"></span> Not Answered</div>
+          <div class="geniq-test-legend-item"><span class="geniq-test-dot answered"></span> Answered</div>
+          <div class="geniq-test-legend-item"><span class="geniq-test-dot marked"></span> Marked for Review</div>
+          <div class="geniq-test-legend-item"><span class="geniq-test-dot answered-marked"></span> Answered & Marked</div>
+        </div>
+
+        <div class="geniq-test-palette-grid" id="geniq-palette-grid">
+          <!-- Dynamically filled grid buttons -->
+        </div>
+
+        <button type="button" class="geniq-test-btn geniq-test-btn-danger geniq-test-btn-block" style="margin-top: 16px;" onclick="geniqTestEngine.confirmSubmitTest()">
+          Submit Test
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: TEST RESULT & ANALYTICS -->
+  <div id="geniq-test-result-view" class="geniq-test-screen">
+    <div class="geniq-test-header-card">
+      <div class="geniq-test-badge">TEST PERFORMANCE ANALYSIS</div>
+      <h2 class="geniq-test-title" id="geniq-result-exam-title">JEE Main Performance</h2>
+      <p class="geniq-test-subtitle" id="geniq-result-date-subtitle">Submitted Just Now</p>
+    </div>
+
+    <!-- MAIN SCORE CARD -->
+    <div class="geniq-test-card geniq-test-score-banner">
+      <div class="geniq-test-main-score">
+        <span class="geniq-test-score-number" id="geniq-res-score">0</span>
+        <span class="geniq-test-score-max" id="geniq-res-max-score">/ 0 Marks</span>
+      </div>
+      <div class="geniq-test-percent-pill" id="geniq-res-percentage">0%</div>
+      <div class="geniq-test-percentile-box" id="geniq-res-percentile-box">
+        Percentile unavailable — complete more tests to build a benchmark.
+      </div>
+    </div>
+
+    <!-- STATS GRID -->
+    <div class="geniq-test-grid-4">
+      <div class="geniq-test-stat-card green">
+        <span class="geniq-test-stat-num" id="geniq-res-correct">0</span>
+        <span class="geniq-test-stat-title">Correct</span>
+      </div>
+      <div class="geniq-test-stat-card red">
+        <span class="geniq-test-stat-num" id="geniq-res-wrong">0</span>
+        <span class="geniq-test-stat-title">Wrong</span>
+      </div>
+      <div class="geniq-test-stat-card gray">
+        <span class="geniq-test-stat-num" id="geniq-res-unanswered">0</span>
+        <span class="geniq-test-stat-title">Unanswered</span>
+      </div>
+      <div class="geniq-test-stat-card blue">
+        <span class="geniq-test-stat-num" id="geniq-res-accuracy">0%</span>
+        <span class="geniq-test-stat-title">Accuracy</span>
+      </div>
+    </div>
+
+    <!-- SUBJECT & CHAPTER BREAKDOWN -->
+    <div class="geniq-test-card">
+      <h3 class="geniq-test-card-title">Subject-Wise Performance</h3>
+      <div id="geniq-res-subject-breakdown" class="geniq-test-breakdown-list"></div>
+    </div>
+
+    <div class="geniq-test-card">
+      <h3 class="geniq-test-card-title">Chapter Breakdown</h3>
+      <div id="geniq-res-chapter-breakdown" class="geniq-test-breakdown-list"></div>
+    </div>
+
+    <!-- RESULT ACTIONS -->
+    <div class="geniq-test-actions-row" style="margin-top: 16px;">
+      <button type="button" class="geniq-test-btn geniq-test-btn-outline" onclick="geniqTestEngine.openReviewMode()">📖 Review Answers</button>
+      <button type="button" class="geniq-test-btn geniq-test-btn-warning" onclick="geniqTestEngine.retryTest()">🔄 Retry Test</button>
+      <button type="button" class="geniq-test-btn geniq-test-btn-primary" onclick="geniqTestEngine.exitToBuilder()">➕ New Test</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: ANSWER REVIEW -->
+  <div id="geniq-test-review-view" class="geniq-test-screen">
+    <div class="geniq-test-navbar">
+      <button type="button" class="geniq-test-btn geniq-test-btn-outline" onclick="geniqTestEngine.showScreen('geniq-test-result-view')">← Back to Score</button>
+      <div class="geniq-test-nav-exam">Detailed Solutions & Explanations</div>
+      <div></div>
+    </div>
+
+    <div id="geniq-review-container" class="geniq-test-review-container">
+      <!-- Dynamically filled review list -->
+    </div>
+  </div>
+
+</main>
     <!-- VIEW 4: PDF MATERIALS (UPGRADED UI WITH MATCHING STYLING & DIRECT ACTIONS) -->
     <main id="view-pdfs" class="view-panel">
       <div class="card" style="background: var(--primary-gradient); color: #fff;">
@@ -757,7 +929,8 @@
 
 })();
 </script>
-  <script src="script.js"></script>
+  <script type="module" src="script.js"></script>
+  <script src="test.js"></script>
   </body>
 
 
