@@ -818,45 +818,6 @@ const ALL_CHAPTERS = {
         }
     );
 
-
-    /* -----------------------------------------------------
-       Automatically create history when UI changes
-       ----------------------------------------------------- */
-
-    let lastSnapshot =
-        JSON.stringify(getCurrentState());
-
-
-    const observer =
-        new MutationObserver(function () {
-
-            if (restoring) return;
-
-
-            const newState =
-                getCurrentState();
-
-            const snapshot =
-                JSON.stringify(newState);
-
-
-            if (snapshot === lastSnapshot) {
-                return;
-            }
-
-
-            lastSnapshot = snapshot;
-
-
-            history.pushState(
-                newState,
-                "",
-                location.href
-            );
-
-        });
-
-
     observer.observe(
         document.body,
         {
@@ -898,3 +859,76 @@ window.handleUniversalSearch = handleUniversalSearch;
 window.openSubCardsScreen = openSubCardsScreen;
 window.openSubCardReader = openSubCardReader;
 window.renderPDFs = renderPDFs;
+
+/* =========================================================
+   GENIQ — Android Smooth Scroll Manager
+   Lightweight + touch friendly
+   ========================================================= */
+function initAndroidScroll() {
+    let scrollTimer = null;
+    let ticking = false;
+
+    // Browser ko passive touch scrolling allow karo
+    document.addEventListener('touchstart', () => {}, {
+        passive: true
+    });
+
+    document.addEventListener('touchmove', () => {}, {
+        passive: true
+    });
+
+    // Scroll ko requestAnimationFrame ke through handle karo
+    window.addEventListener('scroll', () => {
+        if (ticking) return;
+
+        ticking = true;
+
+        requestAnimationFrame(() => {
+            ticking = false;
+
+            clearTimeout(scrollTimer);
+
+            scrollTimer = setTimeout(() => {
+                document.body.classList.remove('is-scrolling');
+            }, 120);
+
+            document.body.classList.add('is-scrolling');
+        });
+    }, {
+        passive: true
+    });
+}
+
+
+/* Safe scroll to top */
+function scrollToTop(smooth = false) {
+    requestAnimationFrame(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: smooth ? 'smooth' : 'auto'
+        });
+    });
+}
+
+
+/* Safe scroll to element */
+function scrollToElement(element, smooth = true) {
+    if (!element) return;
+
+    requestAnimationFrame(() => {
+        element.scrollIntoView({
+            behavior: smooth ? 'smooth' : 'auto',
+            block: 'start',
+            inline: 'nearest'
+        });
+    });
+}
+
+
+/* Initialize after DOM loads */
+document.addEventListener('DOMContentLoaded', () => {
+    initAndroidScroll();
+});
+
+scrollToTop(false);

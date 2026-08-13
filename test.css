@@ -849,3 +849,128 @@
   line-height: 1.5;
   margin-top: 10px;
 }
+
+/* =========================================================
+   GENIQ TEST — ANDROID SCROLL OPTIMIZATION
+   ========================================================= */
+
+/* Test screen should scroll naturally with the page */
+.geniq-test-screen {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+
+    /* Android touch scrolling */
+    touch-action: pan-y;
+    overscroll-behavior-x: none;
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.geniq-test-screen::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+
+/* Horizontal toggle/chip scrolling */
+.geniq-test-toggle-group,
+.geniq-test-quick-chips {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    touch-action: pan-x;
+}
+
+.geniq-test-toggle-group::-webkit-scrollbar,
+.geniq-test-quick-chips::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+
+/* Chapter dropdown */
+.geniq-test-chapter-list {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    touch-action: pan-y;
+}
+
+.geniq-test-chapter-list::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+
+/* Question palette */
+.geniq-test-palette-grid {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    touch-action: pan-y;
+}
+
+.geniq-test-palette-grid::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+
+/* Prevent accidental horizontal overflow */
+.geniq-test-card,
+.geniq-test-header-card,
+.geniq-test-layout-grid,
+.geniq-test-review-container {
+    max-width: 100%;
+    min-width: 0;
+}
+
+
+/* Better mobile touch response */
+.geniq-test-btn,
+.geniq-test-option-btn,
+.geniq-test-chip,
+.geniq-test-toggle-btn,
+.geniq-test-step-btn,
+.geniq-test-palette-btn {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+
+/* Android mobile */
+@media (max-width: 599px) {
+
+    .geniq-test-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .geniq-test-layout-grid {
+        display: block;
+    }
+
+    .geniq-test-actions-row {
+        width: 100%;
+    }
+
+    .geniq-test-actions-row .geniq-test-btn {
+        min-width: 0;
+    }
+}
