@@ -818,6 +818,45 @@ const ALL_CHAPTERS = {
         }
     );
 
+
+    /* -----------------------------------------------------
+       Automatically create history when UI changes
+       ----------------------------------------------------- */
+
+    let lastSnapshot =
+        JSON.stringify(getCurrentState());
+
+
+    const observer =
+        new MutationObserver(function () {
+
+            if (restoring) return;
+
+
+            const newState =
+                getCurrentState();
+
+            const snapshot =
+                JSON.stringify(newState);
+
+
+            if (snapshot === lastSnapshot) {
+                return;
+            }
+
+
+            lastSnapshot = snapshot;
+
+
+            history.pushState(
+                newState,
+                "",
+                location.href
+            );
+
+        });
+
+
     observer.observe(
         document.body,
         {
