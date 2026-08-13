@@ -164,10 +164,6 @@ function updateThemeMeta() {
   document.querySelectorAll('meta[name="theme-color"]').forEach(meta => {
     meta.setAttribute('content', themeColor);
   });
-
-  document.querySelectorAll('meta[name="apple-mobile-web-app-status-bar-style"]').forEach(meta => {
-    meta.setAttribute('content', isDark ? 'black-translucent' : 'default');
-  });
 }
 
 function renderAppUI() {
@@ -202,7 +198,7 @@ function renderAppUI() {
 }
 
 /* ==========================================================================
-   FAST TAB SWITCHING & SMOOTH NAVIGATION
+   INSTANT TAB SWITCHING (NO SMOOTH SCROLL INTERFERENCE)
    ========================================================================== */
 function switchTabUI(tabId) {
   currentActiveTab = tabId;
@@ -227,8 +223,10 @@ function switchTabUI(tabId) {
   document.getElementById('notifDrawer')?.classList.remove('active');
   document.getElementById('universalSearchResults')?.classList.remove('active');
 
-  // Ultra-fast scroll to top
+  // Hard Reset Scroll instantly (NO smooth scroll interference)
   window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
 }
 
 function switchTab(tabId, pushToHistory = true) {
@@ -316,7 +314,7 @@ function resetPomodoroTimer() {
 }
 
 /* ==========================================================================
-   HIGH PERFORMANCE NOTES & RICH SUB-CARDS RENDERING
+   NOTES & RICH SUB-CARDS RENDERING
    ========================================================================== */
 function filterNotes(filter, btnEl) {
   state.activeNoteFilter = filter;
@@ -387,58 +385,49 @@ function renderNotes() {
 }
 
 function openSubCardsScreen(chapterId, subject) {
-  const loader = document.getElementById('cardLoaderOverlay');
-  if (loader) loader.classList.add('active');
+  const chapter = state.chapters[subject]?.find(c => c.id === chapterId);
+  if (!chapter) return;
 
-  setTimeout(() => {
-    if (loader) loader.classList.remove('active');
-    const chapter = state.chapters[subject]?.find(c => c.id === chapterId);
-    if (!chapter) return;
+  state.activeChapter = { ...chapter, subject };
 
-    state.activeChapter = { ...chapter, subject };
+  const header = document.getElementById('subCardsHeaderCard');
+  if (header) {
+    header.innerHTML = `
+      <span style="font-size:0.68rem; font-weight:800; color:var(--primary); text-transform:uppercase;">${subject} • CLASS ${chapter.class}</span>
+      <h2 style="font-size:1.25rem; font-weight:800; margin-top:4px;">${chapter.title}</h2>
+      <p style="font-size:0.8rem; color:var(--text-sub); margin-top:2px;">${chapter.desc}</p>
+    `;
+  }
 
-    const header = document.getElementById('subCardsHeaderCard');
-    if (header) {
-      header.innerHTML = `
-        <span style="font-size:0.68rem; font-weight:800; color:var(--primary); text-transform:uppercase;">${subject} • CLASS ${chapter.class}</span>
-        <h2 style="font-size:1.25rem; font-weight:800; margin-top:4px;">${chapter.title}</h2>
-        <p style="font-size:0.8rem; color:var(--text-sub); margin-top:2px;">${chapter.desc}</p>
-      `;
+  const container = document.getElementById('subCardsContainer');
+  const subCardsCountBadge = document.getElementById('subCardCountBadge');
+
+  if (subCardsCountBadge) subCardsCountBadge.textContent = `${chapter.subCards ? chapter.subCards.length : 0} Available`;
+
+  if (container) {
+    if (chapter.subCards && chapter.subCards.length > 0) {
+      let htmlBuffer = '';
+      chapter.subCards.forEach((sc, idx) => {
+        htmlBuffer += `
+          <div class="sub-card-item-rich" onclick="openSubCardReader('${chapterId}', '${subject}', ${idx})">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span class="sub-card-badge-pill">${sc.badge || 'Topic Note'}</span>
+                  <span style="font-size:0.72rem; font-weight:800; color:var(--primary);">Explore Content →</span>
+              </div>
+              <div>
+                  <div style="font-size:0.98rem; font-weight:800; color:var(--text-main);">${sc.subTitle}</div>
+                  <div style="font-size:0.78rem; color:var(--text-sub); margin-top:3px;">${sc.desc}</div>
+              </div>
+          </div>
+        `;
+      });
+      container.innerHTML = htmlBuffer;
+    } else {
+      container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-sub); text-align:center; padding:20px;">No sub-cards available for this chapter yet.</div>`;
     }
+  }
 
-    const container = document.getElementById('subCardsContainer');
-    const subCardsCountBadge = document.getElementById('subCardCountBadge');
-
-    if (subCardsCountBadge) subCardsCountBadge.textContent = `${chapter.subCards ? chapter.subCards.length : 0} Available`;
-
-    if (container) {
-      if (chapter.subCards && chapter.subCards.length > 0) {
-        let htmlBuffer = '';
-        chapter.subCards.forEach((sc, idx) => {
-          htmlBuffer += `
-            <div class="sub-card-item-rich" onclick="openSubCardReader('${chapterId}', '${subject}', ${idx})">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span class="sub-card-badge-pill">${sc.badge || 'Topic Note'}</span>
-                    <span style="font-size:0.72rem; font-weight:800; color:var(--primary);">Explore Content →</span>
-                </div>
-                <div>
-                    <div style="font-size:0.98rem; font-weight:800; color:var(--text-main);">${sc.subTitle}</div>
-                    <div style="font-size:0.78rem; color:var(--text-sub); margin-top:3px;">${sc.desc}</div>
-                </div>
-                <div style="font-size:0.76rem; color:var(--text-muted); line-height:1.4; border-top:1px dashed var(--border-color); padding-top:8px;">
-                    Tap to view full formula breakdown & inner details.
-                </div>
-            </div>
-          `;
-        });
-        container.innerHTML = htmlBuffer;
-      } else {
-        container.innerHTML = `<div style="font-size:0.8rem; color:var(--text-sub); text-align:center; padding:20px;">No sub-cards available for this chapter yet.</div>`;
-      }
-    }
-
-    switchTab('subcards');
-  }, 120);
+  switchTab('subcards');
 }
 
 function openSubCardReader(chapterId, subject, index) {
@@ -467,7 +456,7 @@ function openSubCardReader(chapterId, subject, index) {
          <strong>Overview:</strong> ${sc.desc}
       </div>
       <div class="rich-formula-box">
-         Detailed content rendering via innerHTML is active. Formulas, diagrams & notes loaded smoothly.
+         Fast innerHTML rendering active without observers or backdrop-filters.
       </div>
     `;
   }
@@ -488,7 +477,7 @@ function openSubCardReader(chapterId, subject, index) {
 }
 
 /* ==========================================================================
-   PDF SECTION RENDERING
+   PDF SECTION
    ========================================================================== */
 function renderPDFs(query = '') {
   const container = document.getElementById('pdfContainer');
@@ -501,7 +490,7 @@ function renderPDFs(query = '') {
   );
 
   if (filtered.length === 0) {
-    container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:20px; font-size:0.8rem; color:var(--text-sub);">No PDFs matching your search.</div>`;
+    container.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:20px; font-size:0.8rem; color:var(--text-sub);">No PDFs matching search.</div>`;
     return;
   }
 
@@ -514,25 +503,16 @@ function renderPDFs(query = '') {
                   <span class="pdf-badge">${p.badge}</span>
                   <div style="font-size: 0.72rem; opacity: 0.85; margin-top: 4px;">${p.subject}</div>
               </div>
-              <div style="font-size: 0.72rem; font-weight: 800; background: rgba(0,0,0,0.25); padding: 4px 8px; border-radius: 8px;">
+              <div style="font-size: 0.72rem; font-weight: 800; background: rgba(0,0,0,0.3); padding: 4px 8px; border-radius: 8px;">
                   ${p.pages}
               </div>
           </div>
           <div class="pdf-body">
               <div style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);">${p.title}</div>
               <div style="font-size: 0.72rem; color: var(--text-sub);">Size: ${p.size} • Offline Ready</div>
-              
-              <div style="margin-top: 4px; display: flex; flex-direction: column; gap: 6px;">
-                  ${p.subCards ? p.subCards.map(s => `
-                      <div style="font-size: 0.72rem; background: var(--card-subtle); padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border-color);">
-                          <strong>${s.subTitle}:</strong> ${s.desc}
-                      </div>
-                  `).join('') : ''}
-              </div>
-
               <div style="display: flex; gap: 8px; margin-top: auto; padding-top: 8px;">
-                  <button class="btn-pill btn-primary" style="flex:1; padding:7px 12px; font-size:0.75rem;" onclick="showToast('Opening PDF Viewer...')">Read PDF</button>
-                  <button class="btn-pill btn-outline" style="padding:7px 10px; font-size:0.75rem;" onclick="showToast('Downloading ${p.title}...')">⬇</button>
+                  <button class="btn-pill btn-primary" style="flex:1; padding:7px 12px; font-size:0.75rem;" onclick="showToast('Opening PDF...')">Read PDF</button>
+                  <button class="btn-pill btn-outline" style="padding:7px 10px; font-size:0.75rem;" onclick="showToast('Downloading...')">⬇</button>
               </div>
           </div>
       </div>
@@ -543,7 +523,7 @@ function renderPDFs(query = '') {
 }
 
 /* ==========================================================================
-   SEARCH & TASKS MANAGERS
+   SEARCH & TASKS
    ========================================================================== */
 function handleUniversalSearch(q) {
   const overlay = document.getElementById('universalSearchResults');
@@ -562,32 +542,21 @@ function handleUniversalSearch(q) {
       if (ch.title.toLowerCase().includes(query)) {
         matches.push({ type: 'Chapter', title: ch.title, sub, id: ch.id });
       }
-      if (ch.subCards) {
-        ch.subCards.forEach((sc, idx) => {
-          if (sc.subTitle.toLowerCase().includes(query) || sc.desc.toLowerCase().includes(query)) {
-            matches.push({ type: 'Sub-Card', title: sc.subTitle, sub, id: ch.id, subIdx: idx });
-          }
-        });
-      }
     });
   });
 
   state.pdfs.forEach(pdf => {
     if (pdf.title.toLowerCase().includes(query)) {
-      matches.push({ type: 'PDF Material', title: pdf.title, sub: pdf.subject });
+      matches.push({ type: 'PDF', title: pdf.title, sub: pdf.subject });
     }
   });
 
   if (matches.length === 0) {
-    overlay.innerHTML = `<div style="padding:12px; font-size:0.8rem; color:var(--text-sub); text-align:center;">No search results found</div>`;
+    overlay.innerHTML = `<div style="padding:12px; font-size:0.8rem; color:var(--text-sub); text-align:center;">No results found</div>`;
   } else {
     let htmlBuffer = '';
     matches.forEach(m => {
-      let clickAttr = '';
-      if (m.type === 'Chapter') clickAttr = `openSubCardsScreen('${m.id}', '${m.sub}')`;
-      else if (m.type === 'Sub-Card') clickAttr = `openSubCardReader('${m.id}', '${m.sub}', ${m.subIdx})`;
-      else clickAttr = `switchTab('pdfs')`;
-
+      let clickAttr = m.type === 'Chapter' ? `openSubCardsScreen('${m.id}', '${m.sub}')` : `switchTab('pdfs')`;
       htmlBuffer += `
         <div class="search-result-item" onclick="${clickAttr}; document.getElementById('universalSearchResults').classList.remove('active');">
             <div>
@@ -608,7 +577,7 @@ function renderTasks() {
   if (!list) return;
 
   if (state.tasks.length === 0) {
-    list.innerHTML = `<p style="font-size:0.8rem; color:var(--text-sub); text-align:center; padding:10px;">No daily targets set.</p>`;
+    list.innerHTML = `<p style="font-size:0.8rem; color:var(--text-sub); text-align:center; padding:10px;">No targets set.</p>`;
     return;
   }
 
@@ -666,7 +635,7 @@ function renderSyllabusProgress() {
   if (elem) elem.textContent = `${pct}%`;
 }
 
-/* MODALS & PROFILE */
+/* MODALS & HELPERS */
 function openAddTaskModal() { document.getElementById('addTaskModal')?.classList.add('active'); }
 function openEditProfileModal() {
   if (document.getElementById('editNameInput')) document.getElementById('editNameInput').value = state.user.name || 'Raj Verma';
@@ -684,7 +653,7 @@ function saveProfile() {
   saveState();
   renderAppUI();
   closeModal('editProfileModal');
-  showToast('Profile updated successfully!');
+  showToast('Profile updated!');
 }
 
 function toggleTheme(isDark) {
@@ -696,14 +665,14 @@ function toggleTheme(isDark) {
 function updateProfileDate(val) {
   state.user.selectedDate = val;
   saveState();
-  showToast('Target date set: ' + val);
+  showToast('Target date set');
 }
 
 function updateProfileYear(val) {
   state.user.year = val;
   saveState();
   renderAppUI();
-  showToast('JEE Target year set: ' + val);
+  showToast('Target year updated');
 }
 
 function exportLocalData() {
@@ -714,7 +683,7 @@ function exportLocalData() {
   document.body.appendChild(downloadAnchor);
   downloadAnchor.click();
   downloadAnchor.remove();
-  showToast('Data exported as JSON');
+  showToast('Data exported');
 }
 
 function showToast(msg) {
@@ -722,30 +691,26 @@ function showToast(msg) {
   if (!toast) return;
   toast.textContent = msg;
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2200);
+  setTimeout(() => toast.classList.remove('show'), 1800);
 }
 
 /* ==========================================================================
-   CUSTOM EXIT PERMISSION DIALOG UI (NO BROWSER DEFAULT POPUP)
+   NO-LAG CUSTOM EXIT MODAL (NO BACKDROP-FILTER)
    ========================================================================== */
 function injectExitModalUI() {
   if (document.getElementById('customExitModal')) return;
 
   const modalContainer = document.createElement('div');
   modalContainer.id = 'customExitModal';
+  // Fast solid overlay with ZERO backdrop-filter GPU calculation
   modalContainer.style.cssText = `
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(3, 7, 18, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    display: flex;
+    background: rgba(5, 8, 16, 0.94);
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: 999999;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 20px;
     box-sizing: border-box;
   `;
@@ -753,62 +718,40 @@ function injectExitModalUI() {
   modalContainer.innerHTML = `
     <div id="customExitCard" style="
       background: var(--card-bg, #ffffff);
-      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.15));
-      border-radius: 24px;
+      border: 1px solid var(--border-color, #e2e8f0);
+      border-radius: 20px;
       width: 100%;
       max-width: 320px;
-      padding: 24px 20px 20px;
+      padding: 24px 20px;
       text-align: center;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-      transform: scale(0.92);
-      transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     ">
       <div style="
-        width: 58px; height: 58px;
-        background: rgba(239, 68, 68, 0.12);
+        width: 50px; height: 50px;
+        background: rgba(239, 68, 68, 0.15);
         color: #ef4444;
         border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
-        margin: 0 auto 16px auto;
-      ">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-          <polyline points="16 17 21 12 16 7"></polyline>
-          <line x1="21" y1="12" x2="9" y2="12"></line>
-        </svg>
-      </div>
+        margin: 0 auto 12px auto;
+        font-weight: 900;
+        font-size: 1.2rem;
+      ">✕</div>
 
-      <h3 style="margin: 0 0 6px 0; font-size: 1.15rem; font-weight: 800; color: var(--text-main, #0f172a);">App se Bahar Jayen?</h3>
-      <p style="margin: 0 0 20px 0; font-size: 0.82rem; color: var(--text-sub, #64748b); line-height: 1.45;">
-        Kya aap GenIQ app ko close karna chahte hain?
+      <h3 style="margin: 0 0 6px 0; font-size: 1.1rem; font-weight: 800; color: var(--text-main, #0f172a);">App Exit Karein?</h3>
+      <p style="margin: 0 0 18px 0; font-size: 0.8rem; color: var(--text-sub, #64748b);">
+        Kya aap GenIQ App ko close karna chahte hain?
       </p>
 
       <div style="display: flex; gap: 10px;">
         <button id="cancelExitModalBtn" style="
-          flex: 1;
-          padding: 12px;
-          border-radius: 14px;
+          flex: 1; padding: 12px; border-radius: 12px;
           border: 1px solid var(--border-color, #e2e8f0);
           background: var(--card-subtle, #f1f5f9);
-          color: var(--text-main, #334155);
-          font-weight: 700;
-          font-size: 0.88rem;
-          cursor: pointer;
-          outline: none;
-        ">Nahi, Ruko</button>
+          color: var(--text-main, #334155); font-weight: 700; font-size: 0.85rem;
+        ">Nahi</button>
 
         <button id="confirmExitModalBtn" style="
-          flex: 1;
-          padding: 12px;
-          border-radius: 14px;
-          border: none;
-          background: linear-gradient(135deg, #ef4444, #dc2626);
-          color: #ffffff;
-          font-weight: 700;
-          font-size: 0.88rem;
-          cursor: pointer;
-          outline: none;
-          box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+          flex: 1; padding: 12px; border-radius: 12px; border: none;
+          background: #ef4444; color: #ffffff; font-weight: 700; font-size: 0.85rem;
         ">Haan, Exit</button>
       </div>
     </div>
@@ -823,25 +766,16 @@ function injectExitModalUI() {
 function showExitModal() {
   injectExitModalUI();
   const modal = document.getElementById('customExitModal');
-  const card = document.getElementById('customExitCard');
   if (!modal || exitModalOpen) return;
 
   exitModalOpen = true;
-  modal.style.opacity = '1';
-  modal.style.pointerEvents = 'auto';
-  if (card) card.style.transform = 'scale(1)';
-
+  modal.style.display = 'flex';
   history.pushState({ modal: 'exit' }, '', '#exit');
 }
 
 function closeExitModal() {
   const modal = document.getElementById('customExitModal');
-  const card = document.getElementById('customExitCard');
-  if (card) card.style.transform = 'scale(0.92)';
-  if (modal) {
-    modal.style.opacity = '0';
-    modal.style.pointerEvents = 'none';
-  }
+  if (modal) modal.style.display = 'none';
   exitModalOpen = false;
 }
 
@@ -853,24 +787,20 @@ function confirmExitApp() {
     window.Android.exitApp();
   } else {
     showToast('Exiting Application...');
-    setTimeout(() => {
-      window.history.back();
-    }, 300);
+    setTimeout(() => { window.history.back(); }, 200);
   }
 }
 
 /* ==========================================================================
-   ANDROID BACK NAVIGATION TRAP & SCROLL OPTIMIZATIONS
+   ANDROID HARDWARE NAVIGATION STACK
    ========================================================================== */
 function setupAndroidPerformanceAndExitTrap() {
   injectExitModalUI();
 
-  // Initial history state
   if (!history.state) {
     history.replaceState({ tab: 'home' }, '', '#home');
   }
 
-  // Intercept back button completely
   window.addEventListener('popstate', (e) => {
     if (exitModalOpen) {
       closeExitModal();
@@ -878,13 +808,8 @@ function setupAndroidPerformanceAndExitTrap() {
     }
 
     if (e.state && e.state.tab) {
-      if (e.state.tab === 'home') {
-        switchTabUI('home');
-      } else {
-        switchTabUI(e.state.tab);
-      }
+      switchTabUI(e.state.tab);
     } else {
-      // User is at root home tab and pressed back button -> Show custom exit modal
       if (currentActiveTab === 'home') {
         showExitModal();
       } else {
@@ -892,13 +817,9 @@ function setupAndroidPerformanceAndExitTrap() {
       }
     }
   });
-
-  // Touch listener optimizations for Android WebView (Zero touch delays)
-  window.addEventListener('touchstart', () => {}, { passive: true });
-  window.addEventListener('touchmove', () => {}, { passive: true });
 }
 
-/* Expose Functions Globally for Inline HTML Listeners */
+/* Global Scope Bindings */
 window.showToast = showToast;
 window.switchTab = switchTab;
 window.toggleTask = toggleTask;
