@@ -1,4 +1,32 @@
+# Default rules for search engines
 User-agent: *
 Allow: /
 
-Sitemap: https://YOUR-DOMAIN.com/sitemap.xml
+# Block sensitive, admin, and backend routes
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /account/
+Disallow: /auth/
+Disallow: /login
+Disallow: /signup
+
+# Block Next.js internal build files
+Disallow: /_next/
+Disallow: /static/
+
+# Prevent indexing duplicate content via query parameters
+Disallow: /*?*
+
+# Block aggressive scrapers and unwanted bots (Optional)
+User-agent: Bytespider
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+# Primary Sitemap Location
+Sitemap: https://geniq-jnr.vercel.app/sitemap.xml

@@ -1,5 +1,6 @@
 {
-  "id": "/",
+  "$schema": "https://json.schemastore.org/web-manifest.json",
+  "id": "/?source=pwa",
   "name": "GENIQ - JEE AI Prep Platform",
   "short_name": "GENIQ",
   "description": "AI-powered JEE Main & JEE Advanced preparation platform with notes, formulas, PYQs, mock tests, AI Tutor and progress tracking.",
@@ -7,20 +8,21 @@
   "lang": "en-IN",
   "dir": "ltr",
 
-  "start_url": "./?source=pwa",
-  "scope": "./",
+  "start_url": "/?source=pwa",
+  "scope": "/",
 
   "display": "standalone",
   "display_override": [
+    "window-controls-overlay",
     "standalone",
     "minimal-ui",
     "browser"
   ],
 
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
 
-  "background_color": "#0B1020",
-  "theme_color": "#6D5DF6",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
 
   "categories": [
     "education",
@@ -32,13 +34,55 @@
 
   "icons": [
     {
-      "src": "logo512.png",
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192x192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "logo512.png",
+      "src": "/icons/icon-512x512-maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -47,80 +91,80 @@
 
   "shortcuts": [
     {
-      "name": "AI Tutor",
-      "short_name": "AI Tutor",
-      "description": "Ask questions and solve JEE doubts with AI Tutor.",
-      "url": "./?section=ai",
-      "icons": [
-        {
-          "src": "logo512.png",
-          "sizes": "512x512",
-          "type": "image/png",
-          "purpose": "any"
-        }
-      ]
+      "name": "AI Tutor Doubts",
+      "short_name": "AI Doubts",
+      "description": "Ask questions and solve JEE doubts instantly with AI Tutor.",
+      "url": "/?section=ai",
+      "icons": [{ "src": "/icons/shortcut-ai.png", "sizes": "192x192", "type": "image/png" }]
     },
-
     {
-      "name": "Physics",
+      "name": "Physics Revision",
       "short_name": "Physics",
-      "description": "Open Physics notes, formulas and JEE resources.",
-      "url": "./?section=physics",
-      "icons": [
-        {
-          "src": "logo512.png",
-          "sizes": "512x512",
-          "type": "image/png",
-          "purpose": "any"
-        }
-      ]
+      "description": "Access Physics formulas, notes and PYQs.",
+      "url": "/?section=physics",
+      "icons": [{ "src": "/icons/shortcut-physics.png", "sizes": "192x192", "type": "image/png" }]
     },
-
     {
-      "name": "Mock Tests",
-      "short_name": "Tests",
-      "description": "Start JEE Main and JEE Advanced mock tests.",
-      "url": "./?section=mock",
-      "icons": [
-        {
-          "src": "logo512.png",
-          "sizes": "512x512",
-          "type": "image/png",
-          "purpose": "any"
-        }
-      ]
+      "name": "Chemistry Practice",
+      "short_name": "Chemistry",
+      "description": "Access Organic, Inorganic & Physical Chemistry notes.",
+      "url": "/?section=chemistry",
+      "icons": [{ "src": "/icons/shortcut-chemistry.png", "sizes": "192x192", "type": "image/png" }]
     },
-
     {
-      "name": "Formula Sheet",
-      "short_name": "Formula",
-      "description": "Quickly revise important JEE formulas.",
-      "url": "./?section=formulas",
-      "icons": [
-        {
-          "src": "logo512.png",
-          "sizes": "512x512",
-          "type": "image/png",
-          "purpose": "any"
-        }
-      ]
+      "name": "Maths PYQs",
+      "short_name": "Maths",
+      "description": "Practice JEE Main & Advanced Maths problems.",
+      "url": "/?section=maths",
+      "icons": [{ "src": "/icons/shortcut-maths.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Mock Test Series",
+      "short_name": "Mock Tests",
+      "description": "Attempt full-length JEE Main & Advanced mock exams.",
+      "url": "/?section=mock",
+      "icons": [{ "src": "/icons/shortcut-mock.png", "sizes": "192x192", "type": "image/png" }]
     }
   ],
 
   "screenshots": [
     {
-      "src": "screenshots/home.png",
+      "src": "/screenshots/mobile-home.png",
       "sizes": "1080x2400",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "GENIQ mobile home screen"
+      "label": "GENIQ Mobile Home Screen & AI Doubts"
     },
     {
-      "src": "screenshots/dashboard.png",
+      "src": "/screenshots/mobile-test.png",
+      "sizes": "1080x2400",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Interactive JEE Mock Test Interface"
+    },
+    {
+      "src": "/screenshots/desktop-dashboard.png",
       "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "GENIQ desktop dashboard"
+      "label": "GENIQ Desktop Analytics Dashboard"
+    }
+  ],
+
+  "share_target": {
+    "action": "/share-target",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+
+  "protocol_handlers": [
+    {
+      "protocol": "web+geniq",
+      "url": "/?query=%s"
     }
   ],
 
@@ -129,5 +173,9 @@
       "navigate-existing",
       "focus-existing"
     ]
+  },
+
+  "edge_side_panel": {
+    "preferred_width": 400
   }
 }

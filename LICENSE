@@ -1,189 +1,551 @@
-# GenIq-jn — PROPRIETARY LICENSE
+# ✦ GenIQ
 
-## ALL RIGHTS RESERVED
+## 🔐 PROPRIETARY LICENSE
 
-**Project:** GenIq-jn
-**Published / Distributed Under:** JNR Corporations
-**Developer:** Yogendra (Raj) Verma
-**Copyright Holder:** JNR Corporations / Yogendra (Raj) Verma
-**Copyright:** © 2026 JNR Corporations / Yogendra (Raj) Verma
+<div align="center">
 
----
+<img src="logo512.png" width="90" alt="GenIQ">
 
-## 1. Ownership & Publication
+### **ALL RIGHTS RESERVED**
 
-**GenIq-jn** is a proprietary project published and distributed under **JNR Corporations**.
+**Copyright © 2026 JNR Corporations / Yogendra (Raj) Verma**
 
-The original source code, software architecture, application logic, website structure, user interface, original visual design, styling, scripts, components, original data structures, documentation, and other original materials of GenIq-jn are protected intellectual property.
+<br>
 
-The project is developed by **Yogendra (Raj) Verma** and published under **JNR Corporations**.
+`PROPRIETARY SOFTWARE` · `NO COPYING` · `NO CLONING` · `NO REDISTRIBUTION`
 
-Except for third-party materials that are separately licensed by their respective owners, all rights in the original GenIq-jn materials are reserved by the applicable copyright holder.
+</div>
 
 ---
 
-## 2. No Permission to Copy
+## 📌 Project Information
 
-**NO PERMISSION IS GRANTED TO COPY, REPRODUCE, DUPLICATE, OR REUSE THE SOURCE CODE OF GENIQ-JN.**
-
-Without prior written authorization from **JNR Corporations and/or the authorized copyright holder**, no person or organization may copy:
-
-* The complete source code.
-* Any substantial portion of the source code.
-* Individual source-code components or modules.
-* The website architecture or structure.
-* Original JavaScript functionality.
-* Original HTML structures.
-* Original CSS and UI implementations.
-* Original algorithms or application logic.
-* Original data structures or configurations.
-
-Copying only a portion of the project does not make that portion freely usable.
+|                     |                                                      |
+| ------------------- | ---------------------------------------------------- |
+| ✦ **Project**       | **GenIQ**                                            |
+| 🎯 **Purpose**      | JEE Main & JEE Advanced Learning & Practice Platform |
+| 👨‍💻 **Developer** | **Yogendra (Raj) Verma**                             |
+| 🏢 **Publisher**    | **JNR Corporations**                                 |
+| © **Copyright**     | **2026 JNR Corporations / Yogendra (Raj) Verma**     |
+| 🔐 **License**      | **Proprietary — All Rights Reserved**                |
 
 ---
 
-## 3. No Modification or Derivative Works
+# 1. ✦ Ownership
 
-Without prior written authorization, you may not:
+**GenIQ** is proprietary software created by **Yogendra (Raj) Verma** and published and distributed under **JNR Corporations**.
 
-* Modify the source code.
-* Adapt the source code.
-* Translate the source code into another programming language.
-* Create derivative works based on GenIq-jn.
-* Recreate substantially similar functionality from the source code.
-* Incorporate GenIq-jn code into another website, application, software, extension, or service.
+Unless a component is explicitly identified as third-party material and governed by its own license, the original materials created for GenIQ remain the intellectual property of the applicable copyright holder.
 
----
+This includes, but is not limited to:
 
-## 4. No Redistribution
-
-Without prior written authorization, you may not:
-
-* Upload the source code to another repository.
-* Publish the source code on GitHub, GitLab, Bitbucket, or similar platforms.
-* Fork or mirror the repository.
-* Share source files publicly or privately.
-* Package and redistribute the source code.
-* Sell or sublicense the source code.
-* Provide the source code to another person or organization.
-
----
-
-## 5. No Commercial or Personal Reuse
-
-The original GenIq-jn source code and proprietary materials may not be used for:
-
-* Commercial projects.
-* Personal projects.
-* Educational projects.
-* Client projects.
-* SaaS applications.
-* Mobile applications.
-* Websites.
-* Templates.
-* Themes.
-* Products or services.
-
-unless explicit written authorization has been granted by **JNR Corporations and/or the authorized copyright holder**.
+* Source code
+* HTML structure
+* CSS implementation
+* JavaScript
+* Application logic
+* UI architecture
+* UX implementation
+* Website structure
+* Page layouts
+* Component design
+* Data structures
+* Educational organization
+* Documentation
+* Original written content
+* Original visual content
+* Original graphics
+* Branding
+* Project identity
+* Resource organization
+* Test architecture
+* Configuration files
+* Original scripts
+* Original assets
 
 ---
 
-## 6. No AI Training, Scraping, or Dataset Use
+# 2. 🚫 No Permission to Copy
 
-Without prior written authorization, the source code and original materials of GenIq-jn may not be:
+## **NO PERMISSION IS GRANTED TO COPY GENIQ.**
 
-* Used to train or fine-tune AI or machine-learning models.
-* Included in AI training datasets.
-* Used to create code-generation datasets.
-* Systematically scraped or harvested for reproduction.
-* Used as a benchmark or source dataset for reproducing the project's implementation.
-* Submitted to an AI system for the purpose of recreating substantial portions of the project.
+Without prior written authorization from **JNR Corporations and/or the authorized copyright holder**, you may not copy, reproduce, duplicate, extract, reuse, or republish:
 
----
+* The complete source code
+* Any substantial portion of the source code
+* Individual source-code modules
+* HTML structures
+* CSS implementations
+* JavaScript functionality
+* Application logic
+* Data structures
+* Page layouts
+* UI components
+* Navigation systems
+* Educational structures
+* Original documentation
+* Original project assets
 
-## 7. No Cloning or Substantial Recreation
-
-You may not create a clone, copy, replica, or substantially similar implementation of GenIq-jn based on its source code, architecture, UI implementation, or original protected materials.
-
-Changing variable names, colors, filenames, layouts, or other superficial elements does not by itself make copied material independent.
-
----
-
-## 8. Website Access Does Not Grant Source-Code Rights
-
-Publicly accessing, viewing, or using the GenIq-jn website does **not** grant any license or ownership rights to its source code, original design, architecture, or proprietary materials.
-
-The technical availability of frontend resources through a web browser does not constitute permission to copy, reuse, redistribute, republish, or commercially exploit those resources.
+> ⚠️ **Copying only a portion of GenIQ does not automatically make that portion free to use.**
 
 ---
 
-## 9. Third-Party Materials
+# 3. 🎨 UI, UX & Visual Design Protection
 
-GenIq-jn may contain third-party libraries, frameworks, fonts, images, educational materials, PDFs, APIs, icons, or other third-party content.
+GenIQ's original visual presentation is part of the project's proprietary identity.
 
-Such materials remain subject to their respective licenses and copyright owners.
+Without authorization, you may not reproduce or substantially recreate:
 
-This license does not transfer ownership of or grant additional rights to third-party materials.
+* Glassmorphic UI patterns as implemented in GenIQ
+* Original card designs
+* Page compositions
+* Navigation layouts
+* Component arrangements
+* Typography combinations
+* Spacing systems
+* Visual hierarchy
+* Original animations
+* Original interaction patterns
+* Original dashboard structures
+* Original visual organization
+* Original resource-card designs
+* Original formula-box designs
+* Original test-interface designs
 
----
-
-## 10. Copyright and Ownership Notices
-
-Copyright notices, license notices, developer information, JNR Corporations branding, attribution notices, trademarks, and other ownership information must not be removed, altered, hidden, or replaced from authorized copies.
-
----
-
-## 11. Permission
-
-Any exception to this license must be granted **in writing** by **JNR Corporations or the authorized copyright holder**.
-
-Public availability, website access, repository access, or possession of a copy does not constitute authorization.
-
----
-
-## 12. Unauthorized Use
-
-Any unauthorized copying, reproduction, modification, redistribution, publication, commercial use, or substantial unauthorized recreation of GenIq-jn may constitute infringement of applicable intellectual-property rights.
-
-JNR Corporations and the applicable copyright holder reserve all rights and remedies available under applicable law.
+Changing colors, fonts, names, spacing, or minor visual elements does **not** automatically make a substantially copied implementation independent.
 
 ---
 
-## 13. No Warranty
+# 4. 🖼️ Images, Logo & Graphics
 
-GenIq-jn and its original materials are provided "as is", without warranties of any kind, to the maximum extent permitted by applicable law.
+The following GenIQ assets are proprietary unless explicitly identified otherwise:
+
+* `logo512.png`
+* `banner.png`
+* Project logos
+* Project icons
+* Original illustrations
+* Original graphics
+* Original backgrounds
+* Original UI images
+* Original visual assets
+* Branded graphical elements
+
+You may not:
+
+* Copy them
+* Re-upload them
+* Modify them
+* Remove branding
+* Use them in another project
+* Use them commercially
+* Create misleading derivatives
+* Use them to imply affiliation or authorization
+
+### 🔒 GenIQ Identity
+
+The **GenIQ name, logo, visual identity and associated branding** may not be used to falsely represent another project as GenIQ or imply an unauthorized relationship with **JNR Corporations**.
 
 ---
 
-# COPYRIGHT & OWNERSHIP NOTICE
+# 5. ✨ Emojis, Symbols & Creative Presentation
 
-**Project:** GenIq-jn
+GenIQ may use specific combinations and arrangements of:
 
-**Published Under:** JNR Corporations
+* Emojis
+* Unicode symbols
+* Decorative characters
+* Icons
+* Badges
+* Visual markers
+* Section symbols
+* Navigation symbols
+* Typography treatments
 
-**Developer:** Yogendra (Raj) Verma
+Generic emojis and Unicode characters are not individually claimed as exclusive property merely because they appear in GenIQ.
 
-**Copyright Holder:** JNR Corporations / Yogendra (Raj) Verma
+However, the **original creative arrangement, selection, combination, presentation, branding, and contextual use** created for GenIQ may constitute part of the project's protected original presentation.
 
-**Copyright:** © 2026 JNR Corporations / Yogendra (Raj) Verma
+Therefore, you may not reproduce GenIQ's distinctive visual presentation as a substantial copy of the original project.
 
-**License:** Proprietary — All Rights Reserved
+> 💡 **The restriction concerns GenIQ's original creative presentation—not ownership of ordinary Unicode or emoji characters themselves.**
 
 ---
 
-# FINAL NOTICE
+# 6. 🔗 URLs, Links & Digital Structure
 
-**DO NOT COPY.**
-**DO NOT REUSE.**
-**DO NOT MODIFY.**
-**DO NOT REDISTRIBUTE.**
-**DO NOT CLONE.**
-**DO NOT SELL.**
-**DO NOT REPUBLISH.**
-**DO NOT USE FOR AI TRAINING OR DATASET CREATION.**
+Public URLs themselves are not automatically proprietary simply because GenIQ uses them.
 
-**GenIq-jn is proprietary software published under JNR Corporations.**
+However, without authorization you may not systematically reproduce, mirror, or exploit GenIQ's proprietary digital structure, including where applicable:
 
-**All rights reserved.**
+* Original page organization
+* Proprietary route structures
+* Internal navigation architecture
+* Endpoint configurations
+* Resource mappings
+* Curated link collections
+* Structured resource URLs
+* Internal page relationships
+* Automated URL harvesting
+* URL-based content mirroring
 
-© 2026 JNR Corporations / Yogendra (Raj) Verma
+Creating automated systems specifically designed to reproduce or mirror substantial portions of GenIQ's proprietary website structure is prohibited.
+
+---
+
+# 7. 📚 Educational Content & Resources
+
+GenIQ may contain original or curated educational material including:
+
+* Notes
+* Formula sheets
+* Handwritten notes
+* Revision material
+* Topic organization
+* Concept organization
+* Practice material
+* Test structures
+* Problem collections
+* Educational explanations
+* PDF resources
+* Resource categorization
+* Learning pathways
+
+Without authorization, you may not systematically copy, redistribute, republish, mirror, or commercially exploit protected GenIQ-created educational material.
+
+> ⚠️ **Third-party educational material remains subject to its respective copyright and license.**
+
+---
+
+# 8. 🧠 Learning Architecture
+
+GenIQ uses a structured educational model such as:
+
+```text
+Subject
+   ↓
+Chapter
+   ↓
+Sub-topic
+   ↓
+Concept
+   ↓
+Formula
+   ↓
+Example
+   ↓
+Practice / PYQ
+   ↓
+Revision
+```
+
+The underlying general educational concepts are not claimed as exclusive inventions.
+
+However, the **original implementation, organization, data structure, UI representation, content mapping, code and creative presentation** used by GenIQ may be proprietary.
+
+You may not copy the GenIQ implementation and present it as an independent project.
+
+---
+
+# 9. 📝 Tests & Data Structures
+
+The project's original test architecture, datasets, configurations, question organization, navigation logic, and associated code may not be copied or reused without authorization.
+
+This includes, where applicable:
+
+* Test structures
+* Test datasets
+* Question metadata
+* Topic mappings
+* Subject mappings
+* Test navigation
+* Test configuration
+* Result structures
+* Practice organization
+* Data files
+* JavaScript datasets
+
+---
+
+# 10. 📂 Source Files & Repository Structure
+
+The following types of project files may contain proprietary implementation:
+
+```text
+HTML
+CSS
+JavaScript
+JSON / Data
+SVG
+Configuration
+PWA Files
+Documentation
+Assets
+PDF Resource Organization
+Test Data
+```
+
+The existence of a file in a publicly accessible repository or website does **not** grant permission to copy or reuse it.
+
+---
+
+# 11. 🛑 No Modification
+
+Without prior written permission, you may not:
+
+* Modify GenIQ source code
+* Adapt GenIQ source code
+* Translate source code into another language
+* Create derivative software from GenIQ
+* Incorporate GenIQ code into another project
+* Modify and redistribute GenIQ
+* Rebrand copied GenIQ material
+* Create substantially similar derivative implementations
+
+---
+
+# 12. 📤 No Redistribution
+
+Without written authorization, you may not:
+
+* Upload GenIQ source code elsewhere
+* Mirror the repository
+* Fork the project
+* Publish copied files
+* Share proprietary source files
+* Package the project for redistribution
+* Sell copies
+* Sublicense the project
+* Distribute proprietary assets
+* Redistribute protected PDFs or resources
+
+This applies to both **public and private redistribution**.
+
+---
+
+# 13. 💰 No Commercial Reuse
+
+GenIQ proprietary materials may not be used in:
+
+* Commercial websites
+* SaaS products
+* Mobile applications
+* Educational platforms
+* Templates
+* Themes
+* Client projects
+* Paid courses
+* Paid repositories
+* Commercial datasets
+* Commercial software
+* Competing educational products
+
+without prior written authorization.
+
+---
+
+# 14. 🤖 No Unauthorized AI Training
+
+Without prior written permission, protected GenIQ materials may not be systematically used for:
+
+* AI training
+* Machine-learning training
+* Fine-tuning
+* Dataset creation
+* Code-generation datasets
+* Embedding datasets
+* Automated reproduction
+* Model benchmarking intended to reproduce GenIQ
+* Automated extraction for AI systems
+* Large-scale ingestion into AI systems
+
+This restriction applies to protected GenIQ source code, original documentation, original educational material, structured datasets, proprietary implementation, and other protected original content.
+
+> 🔐 **Do not use GenIQ as a source for creating a dataset intended to reproduce its protected implementation or content.**
+
+---
+
+# 15. 🕷️ No Unauthorized Scraping
+
+Systematic automated extraction of GenIQ proprietary content is prohibited without authorization.
+
+This includes:
+
+* Web scraping
+* Crawling for reproduction
+* Bulk downloading
+* Automated mirroring
+* Content harvesting
+* Source extraction
+* Dataset harvesting
+* Automated resource collection
+* Systematic page duplication
+
+Normal human browsing of publicly available pages is not itself prohibited by this clause.
+
+---
+
+# 16. 🧬 No Cloning
+
+You may not create a clone, replica, mirror, or substantially similar implementation of GenIQ based on its protected source code, original UI, architecture, content, or proprietary materials.
+
+Changing:
+
+```text
+Names
+Colors
+Variables
+File Names
+Icons
+Minor Layout Details
+```
+
+does not automatically make copied implementation independent.
+
+---
+
+# 17. 🌐 Website Access ≠ Ownership
+
+Accessing or viewing GenIQ through a browser does **not** grant ownership or a license to its proprietary materials.
+
+Public accessibility does not mean:
+
+```text
+PUBLIC
+  ≠
+OPEN SOURCE
+  ≠
+FREE TO COPY
+```
+
+The technical ability to inspect frontend resources does not constitute authorization to reproduce them.
+
+---
+
+# 18. © Copyright Notices
+
+Copyright notices, ownership notices, branding, license notices, developer attribution, publisher information, or other ownership indicators must not be removed, hidden, altered, or replaced from any authorized copy.
+
+---
+
+# 19. 🔗 Third-Party Materials
+
+GenIQ may contain third-party materials, including:
+
+* Libraries
+* Frameworks
+* Fonts
+* Icons
+* APIs
+* Images
+* PDFs
+* Educational resources
+* Open-source components
+
+These materials remain subject to their respective licenses and copyright holders.
+
+### Important
+
+**This proprietary license does not override any third-party license.**
+
+If a third-party component has a separate license, that license governs the applicable component.
+
+---
+
+# 20. ✍️ Permission & Exceptions
+
+Any exception to this license must be explicitly authorized **in writing** by:
+
+**JNR Corporations and/or the authorized copyright holder.**
+
+Permission must be clear and specific.
+
+The following do **not** constitute permission:
+
+* Public website access
+* Repository visibility
+* Possession of a copy
+* Browser access
+* Discoverability through search engines
+* Publicly accessible assets
+* Linking to the project
+
+---
+
+# 21. ⚖️ Unauthorized Use
+
+Unauthorized copying, reproduction, modification, redistribution, publication, commercial exploitation, systematic scraping, or substantial unauthorized recreation may constitute infringement of applicable intellectual-property rights.
+
+**JNR Corporations and the applicable copyright holder reserve all rights and remedies available under applicable law.**
+
+---
+
+# 22. 🛡️ No Warranty
+
+GenIQ and its original materials are provided **"as is"**, without warranties of any kind, to the maximum extent permitted by applicable law.
+
+---
+
+# 💙 COPYRIGHT NOTICE
+
+<div align="center">
+
+<img src="logo512.png" width="70" alt="GenIQ">
+
+## **GenIQ**
+
+**JEE Main & JEE Advanced — Learning & Practice Platform**
+
+<br>
+
+**Developed by Yogendra (Raj) Verma**
+
+**Published under JNR Corporations**
+
+<br>
+
+### © 2026 JNR Corporations / Yogendra (Raj) Verma
+
+### **ALL RIGHTS RESERVED**
+
+</div>
+
+---
+
+# 🚨 FINAL NOTICE
+
+<div align="center">
+
+### ❌ DO NOT COPY
+
+### ❌ DO NOT CLONE
+
+### ❌ DO NOT MODIFY
+
+### ❌ DO NOT REDISTRIBUTE
+
+### ❌ DO NOT REPUBLISH
+
+### ❌ DO NOT SELL
+
+### ❌ DO NOT SCRAPE
+
+### ❌ DO NOT MIRROR
+
+### ❌ DO NOT USE FOR UNAUTHORIZED AI TRAINING
+
+### ❌ DO NOT CREATE DATASETS FROM PROTECTED GENIQ MATERIALS
+
+<br>
+
+## 🔐 GenIQ is proprietary software.
+
+### **Public access does not grant reuse rights.**
+
+<br>
+
+**© 2026 JNR Corporations / Yogendra (Raj) Verma**
+
+**All Rights Reserved.**
+
+</div>
