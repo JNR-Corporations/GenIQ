@@ -1,259 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 - Page Not Found | GENIQ AI</title>
+  <!-- Primary Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>404 - Page Not Found | GENIQ</title>
+
+  <meta name="description" content="The page you requested could not be found. Return to GENIQ homepage.">
+  <meta name="theme-color" id="metaThemeColor" content="#f8fafc">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
   <style>
-    /* --- CSS Variables & Theme (Matching Main UI) --- */
+    /* ==========================================================================
+       ULTRA GLASSMORPHIC DESIGN SYSTEM (MATCHED WITH JI.HTML)
+       ========================================================================== */
     :root {
-      --bg-color: #0b0f19;
-      --card-bg: rgba(22, 31, 49, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --primary: #6366f1;
-      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      --accent-cyan: #06b6d4;
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
+      --card-subtle: #f1f5f9;
+      --card-glass: rgba(255, 255, 255, 0.88);
+      --text-main: #0f172a;
+      --text-sub: #64748b;
+      --text-muted: #94a3b8;
+
+      --primary: #4f46e5;
+      --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      --primary-light: #eef2ff;
+      --glow-color: rgba(79, 70, 229, 0.25);
+
+      --border-color: #e2e8f0;
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+
+      --shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 24px 48px rgba(15, 23, 42, 0.12);
+
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body.dark-theme {
+      --bg-main: #070a12;
+      --card-bg: #121929;
+      --card-subtle: #1a2336;
+      --card-glass: rgba(18, 25, 41, 0.90);
       --text-main: #f8fafc;
       --text-sub: #94a3b8;
-      --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      --radius-lg: 20px;
-      --radius-md: 12px;
-      --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.25);
+      --text-muted: #64748b;
+
+      --primary: #6366f1;
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --primary-light: #1e1b4b;
+      --glow-color: rgba(99, 102, 241, 0.35);
+
+      --border-color: rgba(255, 255, 255, 0.08);
+      --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.6);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      overflow: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: var(--font-family);
-      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      overflow: hidden;
-      position: relative;
+      align-items: center;
       padding: 20px;
+      position: relative;
     }
 
-    /* Ambient Background Glows */
-    .bg-glow-1 {
+    /* Ambient Background Glow */
+    .bg-glow {
       position: absolute;
-      top: -10%;
-      left: -10%;
-      width: 450px;
-      height: 450px;
-      background: var(--primary);
-      filter: blur(160px);
-      opacity: 0.25;
-      border-radius: 50%;
-      z-index: 0;
-    }
-
-    .bg-glow-2 {
-      position: absolute;
-      bottom: -10%;
-      right: -10%;
-      width: 400px;
-      height: 400px;
-      background: var(--accent-cyan);
+      width: 380px;
+      height: 380px;
+      background: var(--primary-gradient);
       filter: blur(150px);
       opacity: 0.2;
       border-radius: 50%;
       z-index: 0;
+      pointer-events: none;
     }
 
-    /* Central Glassmorphism Card */
-    .error-card {
-      position: relative;
-      z-index: 10;
-      background: var(--card-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--card-border);
-      box-shadow: var(--shadow-glow);
-      border-radius: var(--radius-lg);
-      padding: 48px 32px;
-      max-width: 460px;
-      width: 100%;
-      text-align: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Header Bar */
+    .app-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: calc(64px + env(safe-area-inset-top));
+      padding: env(safe-area-inset-top) 24px 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-glass);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border-color);
     }
 
-    /* 404 Glowing Number */
-    .error-code {
-      font-size: 5.5rem;
-      font-weight: 900;
-      line-height: 1;
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
       background: var(--primary-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 12px;
-      letter-spacing: -2px;
-      animation: pulseGlow 3s infinite alternate;
+      text-decoration: none;
     }
 
-    @keyframes pulseGlow {
-      0% { filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.3)); }
-      100% { filter: drop-shadow(0 0 25px rgba(168, 85, 247, 0.6)); }
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--primary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      box-shadow: 0 4px 14px var(--glow-color);
     }
 
-    /* Orbiting Physics Graphic (Matching App Vibe) */
-    .atom-graphic {
-      width: 70px;
-      height: 70px;
-      margin: 0 auto 20px auto;
-      position: relative;
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary-light);
+      padding: 6px 14px 6px 8px;
+      border-radius: 22px;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    .user-pill:active { transform: scale(0.96); }
+
+    .user-pill-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--primary-gradient);
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .nucleus {
-      width: 14px;
-      height: 14px;
-      background: var(--accent-cyan);
-      border-radius: 50%;
-      box-shadow: 0 0 12px var(--accent-cyan);
+    .user-pill-name {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--primary);
     }
 
-    .orbit {
-      position: absolute;
-      border: 1.5px solid rgba(255, 255, 255, 0.25);
-      border-radius: 50%;
-      animation: spin 4s linear infinite;
+    /* Central Card */
+    .card-404 {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 440px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 40px 28px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .orbit-1 { width: 100%; height: 40%; transform: rotate(30deg); }
-    .orbit-2 { width: 100%; height: 40%; transform: rotate(-30deg); animation-duration: 6s; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
 
-    @keyframes spin {
-      100% { transform: rotate(360deg); }
+    /* Minimal Icon Badge */
+    .icon-badge {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px auto;
+      border-radius: 20px;
+      background: var(--primary-light);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      box-shadow: 0 8px 20px var(--glow-color);
+    }
+
+    .error-code {
+      font-family: var(--font-mono);
+      font-size: 4.5rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -2px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
     }
 
     .error-title {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 800;
-      margin-bottom: 10px;
       color: var(--text-main);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
     }
 
     .error-desc {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-sub);
-      line-height: 1.5;
+      line-height: 1.6;
       margin-bottom: 28px;
     }
 
-    /* Action Buttons Group */
+    /* Buttons Group */
     .btn-group {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
 
-    .btn {
+    .btn-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 20px;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 26px;
       font-size: 0.88rem;
-      font-weight: 700;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s ease;
+      font-weight: 800;
       border: none;
+      cursor: pointer;
+      transition: var(--transition);
       width: 100%;
+      text-decoration: none;
     }
+
+    .btn-pill:active { transform: scale(0.96); }
 
     .btn-primary {
       background: var(--primary-gradient);
       color: #ffffff;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+      box-shadow: 0 4px 16px var(--glow-color);
     }
 
-    .btn-primary:hover {
-      opacity: 0.92;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
+    .btn-outline {
+      background: var(--card-subtle);
+      border: 1px solid var(--border-color);
       color: var(--text-main);
-      border: 1px solid var(--card-border);
     }
 
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .redirect-timer {
-      font-size: 0.75rem;
+    /* Redirect Timer Badge */
+    .timer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
       color: var(--text-sub);
-      margin-top: 18px;
+      margin-top: 22px;
+      background: var(--card-subtle);
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
     }
 
-    .redirect-timer span {
-      color: var(--accent-cyan);
+    .timer-badge span {
+      color: var(--primary);
       font-weight: 800;
+    }
+
+    /* Universal SVG Icon Style */
+    .svg-icon {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Background Ambient Glows -->
-  <div class="bg-glow-1"></div>
-  <div class="bg-glow-2"></div>
+  <div class="bg-glow"></div>
 
-  <!-- Main Error Card -->
-  <div class="error-card" id="tiltCard">
-    
-    <!-- Physics Atom Visual Accent -->
-    <div class="atom-graphic">
-      <div class="orbit orbit-1"></div>
-      <div class="orbit orbit-2"></div>
-      <div class="nucleus"></div>
+  <!-- Header -->
+  <header class="app-header">
+    <a href="index.html" class="brand-logo">
+      <div class="brand-icon">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      GENIQ
+    </a>
+
+    <div class="user-pill" onclick="toggleTheme()">
+      <div class="user-pill-icon">
+        <svg class="svg-icon" style="width:14px; height:14px;" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </div>
+      <span class="user-pill-name" id="themeLabel">Light UI</span>
+    </div>
+  </header>
+
+  <!-- Central Card -->
+  <main class="card-404">
+    <div class="icon-badge">
+      <svg class="svg-icon" style="width: 28px; height: 28px;" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+      </svg>
     </div>
 
     <div class="error-code">404</div>
-    <h1 class="error-title">Page Hyperspace Mein Kho Gayi!</h1>
+    <h1 class="error-title">Page Not Found</h1>
     <p class="error-desc">
-      Aap jis page ko dhoondh rahe hain woh yahan nahi hai. Ho sakta hai URL galat ho ya page move ho gaya ho.
+      The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
     </p>
 
-    <!-- Action Buttons -->
     <div class="btn-group">
-      <a href="index.html" class="btn btn-primary">
-        🏠 Home Screen Par Jayein
+      <a href="index.html" class="btn-pill btn-primary">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Return to Homepage
       </a>
-      <button onclick="goBackSafe()" class="btn btn-secondary">
-        ⬅️ Wapas Pichhe Jayein
+      <button onclick="goBackSafe()" class="btn-pill btn-outline">
+        <svg class="svg-icon" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Go Back
       </button>
     </div>
 
-    <!-- Optional Auto Redirect Timer -->
-    <div class="redirect-timer">
-      Auto-redirecting in <span id="countdown">10</span> seconds...
+    <div class="timer-badge">
+      <svg class="svg-icon" style="width:14px; height:14px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Auto-redirecting in <span id="countdown">10</span>s
     </div>
-  </div>
+  </main>
 
   <script>
-    // 1. Interactive Mouse Parallax Effect for Glass Card
-    const card = document.getElementById('tiltCard');
-    document.addEventListener('mousemove', (e) => {
-      const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
-      const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
-      card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    // Theme Manager (Synchronized with ji.html)
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("geniq_theme") || "light";
+      applyTheme(savedTheme);
+
+      window.addEventListener("storage", (e) => {
+        if (e.key === "geniq_theme") {
+          applyTheme(e.newValue);
+        }
+      });
     });
 
-    // 2. Safe Navigation Guard Function
+    function applyTheme(theme) {
+      if (theme === "dark") {
+        document.body.classList.add("dark-theme");
+        document.getElementById("themeLabel").textContent = "Dark UI";
+        document.getElementById("metaThemeColor").setAttribute("content", "#070a12");
+      } else {
+        document.body.classList.remove("dark-theme");
+        document.getElementById("themeLabel").textContent = "Light UI";
+        document.getElementById("metaThemeColor").setAttribute("content", "#f8fafc");
+      }
+      localStorage.setItem("geniq_theme", theme);
+    }
+
+    function toggleTheme() {
+      const isDark = document.body.classList.contains("dark-theme");
+      applyTheme(isDark ? "light" : "dark");
+    }
+
+    // Safe Back Navigation Guard
     function goBackSafe() {
       if (window.history.length > 1) {
         window.history.back();
@@ -262,7 +404,7 @@
       }
     }
 
-    // 3. Auto-Redirect Countdown Logic
+    // Countdown Auto-Redirect Engine
     let seconds = 10;
     const countdownElem = document.getElementById('countdown');
 
@@ -277,4 +419,5 @@
     }, 1000);
   </script>
 </body>
+
 </html>

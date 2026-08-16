@@ -1604,6 +1604,132 @@
     transform: translateY(0);
   }
 }
+
+/* Dock overflow allow (तिरंगे को बाहर निकालने के लिए ज़रूरी) */
+.iphone-dock-wrapper,
+.iphone-dock,
+.dock-item,
+.dock-icon {
+  overflow: visible !important;
+}
+
+/* ==========================================
+   TIRANGA POP-OUT & REALISTIC WAVE ANIMATION
+   ========================================== */
+
+.flag-icon-box {
+  position: relative;
+  overflow: visible !important;
+}
+
+/* तिरंगा डॉक से ऊपर बाहर निकलेगा */
+.tiranga-svg {
+  width: 36px;
+  height: 36px;
+  margin-top: -16px;
+  transform: translateY(-8px) scale(1.18);
+  filter: drop-shadow(0px 6px 8px rgba(0, 0, 0, 0.45));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: flagFloat 3s ease-in-out infinite alternate;
+}
+
+/* Hover करने पर हल्का और ऊपर उड़ेगा */
+.dock-item:hover .tiranga-svg {
+  transform: translateY(-14px) scale(1.3);
+  filter: drop-shadow(0px 10px 12px rgba(0, 0, 0, 0.55));
+}
+
+/* कपड़े की सजीव लहराती हुई तरंगें (3D Cloth Motion) */
+.flag-cloth-wave {
+  transform-origin: 7px 13px; /* dande ke paas se wave start hogi */
+  animation: tirangaRealWave 2.4s ease-in-out infinite alternate;
+}
+
+/* 3D Wave Keyframes */
+@keyframes tirangaRealWave {
+  0% {
+    transform: skewY(0deg) scaleY(1) rotate(0deg);
+  }
+  25% {
+    transform: skewY(4deg) scaleY(1.03) rotate(0.8deg);
+  }
+  50% {
+    transform: skewY(-3deg) scaleY(0.97) rotate(-0.6deg);
+  }
+  75% {
+    transform: skewY(3deg) scaleY(1.02) rotate(0.4deg);
+  }
+  100% {
+    transform: skewY(-2deg) scaleY(0.98) rotate(-0.3deg);
+  }
+}
+
+/* हवा में तैरने का प्रभाव (Floating effect) */
+@keyframes flagFloat {
+  0% {
+    margin-top: -16px;
+  }
+  100% {
+    margin-top: -19px;
+  }
+}
+
+/* Container overflow */
+.iphone-dock-wrapper,
+.iphone-dock,
+.dock-item,
+.flag-icon-box {
+  overflow: visible !important;
+}
+
+/* Tiranga & Danda Styling */
+.tiranga-svg {
+  width: 38px;
+  height: 42px;
+  margin-top: -18px;
+  transform: translateY(-8px) scale(1.15);
+  filter: drop-shadow(0px 6px 8px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: flagFloat 3s ease-in-out infinite alternate;
+}
+
+.dock-item:hover .tiranga-svg {
+  transform: translateY(-14px) scale(1.25);
+  filter: drop-shadow(0px 10px 12px rgba(0, 0, 0, 0.55));
+}
+
+/* Waving animation pegged to the danda (Origin 7px, 16px) */
+.flag-cloth-wave {
+  transform-origin: 8px 16px;
+  animation: tirangaRealWave 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes tirangaRealWave {
+  0% {
+    transform: skewY(0deg) scaleY(1) rotate(0deg);
+  }
+  25% {
+    transform: skewY(4deg) scaleY(1.03) rotate(0.8deg);
+  }
+  50% {
+    transform: skewY(-3deg) scaleY(0.97) rotate(-0.6deg);
+  }
+  75% {
+    transform: skewY(3deg) scaleY(1.02) rotate(0.4deg);
+  }
+  100% {
+    transform: skewY(-2deg) scaleY(0.98) rotate(-0.3deg);
+  }
+}
+
+@keyframes flagFloat {
+  0% {
+    margin-top: -18px;
+  }
+  100% {
+    margin-top: -21px;
+  }
+}
   </style>
 </head>
 
@@ -2064,51 +2190,151 @@
 
     <!-- FLOATING DOCK -->
     <div class="iphone-dock-wrapper">
-      <nav class="iphone-dock">
-        <div class="dock-item active" id="dock-home" onclick="switchTab('home')">
-          <div class="dock-icon"><svg class="svg-icon" viewBox="0 0 24 24">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            </svg></div>
-          <span>Home</span>
-          <div class="dock-active-dot"></div>
-        </div>
-        <div class="dock-item" id="dock-notes" onclick="switchTab('notes')">
-          <div class="dock-icon"><svg class="svg-icon" viewBox="0 0 24 24">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-            </svg></div>
-          <span>Notes</span>
-          <div class="dock-active-dot"></div>
-        </div>
-        <div class="dock-item" id="dock-tests" onclick="switchTab('tests')">
-          <div class="dock-icon"><svg class="svg-icon" viewBox="0 0 24 24">
-              <path d="M9 11l3 3L22 4" />
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
-            </svg></div>
-          <span>Tests</span>
-          <div class="dock-active-dot"></div>
-        </div>
-        <div class="dock-item" id="dock-pdfs" onclick="switchTab('pdfs')">
-          <div class="dock-icon"><svg class="svg-icon" viewBox="0 0 24 24">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-            </svg></div>
-          <span>PDFs</span>
-          <div class="dock-active-dot"></div>
-        </div>
-        <div class="dock-item" id="dock-profile" onclick="switchTab('profile')">
-          <div class="dock-icon"><svg class="svg-icon" viewBox="0 0 24 24">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg></div>
-          <span>Profile</span>
-          <div class="dock-active-dot"></div>
-        </div>
-      </nav>
+  <nav class="iphone-dock">
+    
+    <!-- Home Tab -->
+    <div class="dock-item active" id="dock-home" onclick="switchTab('home')">
+      <div class="dock-icon">
+        <svg class="svg-icon" viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        </svg>
+      </div>
+      <span>Home</span>
+      <div class="dock-active-dot"></div>
     </div>
 
+    <!-- Notes Tab -->
+    <div class="dock-item" id="dock-notes" onclick="switchTab('notes')">
+      <div class="dock-icon">
+        <svg class="svg-icon" viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+        </svg>
+      </div>
+      <span>Notes</span>
+      <div class="dock-active-dot"></div>
+    </div>
+
+    <!-- Tests Tab with REALISTIC WAVING TIRANGA (Pop-Out) -->
+    <div class="dock-item tiranga-pop-item" id="dock-tests" onclick="switchTab('tests')">
+      <div class="dock-item" id="dock-tests" onclick="switchTab('tests')">
+  <div class="dock-icon flag-icon-box">
+    
+    <svg class="tiranga-svg" viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- 3D Metallic Danda Gradient -->
+        <linearGradient id="poleMetallic" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#52525B" />
+          <stop offset="30%" stop-color="#FFFFFF" />
+          <stop offset="70%" stop-color="#A1A1AA" />
+          <stop offset="100%" stop-color="#3F3F46" />
+        </linearGradient>
+
+        <!-- Gold Top Ball -->
+        <radialGradient id="goldFinial" cx="35%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#FFF099" />
+          <stop offset="50%" stop-color="#FACC15" />
+          <stop offset="100%" stop-color="#CA8A04" />
+        </radialGradient>
+
+        <!-- Gold Stand Base -->
+        <linearGradient id="goldBase" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FDE047" />
+          <stop offset="100%" stop-color="#854D0E" />
+        </linearGradient>
+
+        <!-- 3D Cloth Ripple Shade -->
+        <linearGradient id="clothShade" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="rgba(0,0,0,0.3)" />
+          <stop offset="25%" stop-color="rgba(255,255,255,0.4)" />
+          <stop offset="55%" stop-color="rgba(0,0,0,0.35)" />
+          <stop offset="85%" stop-color="rgba(255,255,255,0.3)" />
+          <stop offset="100%" stop-color="rgba(0,0,0,0.25)" />
+        </linearGradient>
+      </defs>
+
+      <!-- Danda Base/Pedestal (नीचे का स्टैंड) -->
+      <ellipse cx="7" cy="38" rx="4.5" ry="1.5" fill="url(#goldBase)" />
+      <rect x="5.2" y="35.5" width="3.6" height="2.5" fill="url(#goldBase)" rx="0.5" />
+
+      <!-- Main Danda (3D Metallic Pole) -->
+      <rect x="5.8" y="4" width="2.4" height="32" rx="1.2" fill="url(#poleMetallic)" />
+
+      <!-- Gold Knob Top (डंडे के ऊपर की गोल घुंडी) -->
+      <circle cx="7" cy="4" r="2.2" fill="url(#goldFinial)" />
+
+      <!-- Pole Rings/Ropes (झंडे की बँधी हुई रस्सी) -->
+      <line x1="5.2" y1="7.5" x2="8.8" y2="7.5" stroke="#1E293B" stroke-width="0.8" />
+      <line x1="5.2" y1="24.2" x2="8.8" y2="24.2" stroke="#1E293B" stroke-width="0.8" />
+
+      <!-- Waving Flag Cloth (लहराता तिरंगा) -->
+      <g class="flag-cloth-wave">
+        <!-- Saffron Stripe -->
+        <path d="M8,7.5 C14,6.2 19,8.8 31,7.5 C33,7.2 34,8.2 34,9.2 V13.2 C23,14.5 17,11.8 8,13.2 Z" fill="#FF9933" />
+        
+        <!-- White Stripe -->
+        <path d="M8,13.2 C17,11.8 23,14.5 33,13.2 V18.9 C23,20.2 17,17.5 8,18.9 Z" fill="#FFFFFF" />
+        
+        <!-- Green Stripe -->
+        <path d="M8,18.9 C17,17.5 23,20.2 33,18.9 V24.6 C22,25.9 14,23.2 8,24.6 Z" fill="#138808" />
+
+        <!-- Ashoka Chakra (24 Spokes) -->
+        <g class="ashoka-chakra-group" transform="translate(20.5, 16.05)">
+          <circle cx="0" cy="0" r="2.3" fill="none" stroke="#000080" stroke-width="0.45" />
+          <circle cx="0" cy="0" r="0.4" fill="#000080" />
+          <line x1="-2.3" y1="0" x2="2.3" y2="0" stroke="#000080" stroke-width="0.25" />
+          <line x1="0" y1="-2.3" x2="0" y2="2.3" stroke="#000080" stroke-width="0.25" />
+          <line x1="-2.3" y1="0" x2="2.3" y2="0" stroke="#000080" stroke-width="0.25" transform="rotate(15)" />
+          <line x1="-2.3" y1="0" x2="2.3" y2="0" stroke="#000080" stroke-width="0.25" transform="rotate(30)" />
+          <line x1="-2.3" y1="0" x2="2.3" y2="0" stroke="#000080" stroke-width="0.25" transform="rotate(45)" />
+          <line x1="-2.3" y1="0" x2="2.3" y2="0" stroke="#000080" stroke-width="0.25" transform="rotate(60)" />
+          <line x1="-2.3" y1="0" x2="2.3" y2="0" stroke="#000080" stroke-width="0.25" transform="rotate(75)" />
+          <line x1="-2.3" y1="0" x2="2.3" y2="0" stroke="#000080" stroke-width="0.25" transform="rotate(105)" />
+          <line x1="-2.3" y1="0" x2="2.3" y2="0" stroke="#000080" stroke-width="0.25" transform="rotate(120)" />
+          <line x1="-2.3" y1="0" x2="2.3" y2="0" stroke="#000080" stroke-width="0.25" transform="rotate(135)" />
+          <line x1="-2.3" y1="0" x2="2.3" y2="0" stroke="#000080" stroke-width="0.25" transform="rotate(150)" />
+          <line x1="-2.3" y1="0" x2="2.3" y2="0" stroke="#000080" stroke-width="0.25" transform="rotate(165)" />
+        </g>
+
+        <!-- 3D Silk Wave Shadow -->
+        <path d="M8,7.5 C14,6.2 19,8.8 31,7.5 C33,7.2 34,8.2 34,9.2 V24.6 C22,25.9 14,23.2 8,24.6 Z" fill="url(#clothShade)" style="mix-blend-mode: overlay; opacity: 0.65;" />
+      </g>
+    </svg>
+
+  </div>
+  <span>Tests</span>
+  <div class="dock-active-dot"></div>
+</div>
+    </div>
+
+    <!-- PDFs Tab -->
+    <div class="dock-item" id="dock-pdfs" onclick="switchTab('pdfs')">
+      <div class="dock-icon">
+        <svg class="svg-icon" viewBox="0 0 24 24">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <polyline points="14 2 14 8 20 8" />
+          <line x1="16" y1="13" x2="8" y2="13" />
+          <line x1="16" y1="17" x2="8" y2="17" />
+        </svg>
+      </div>
+      <span>PDFs</span>
+      <div class="dock-active-dot"></div>
+    </div>
+
+    <!-- Profile Tab -->
+    <div class="dock-item" id="dock-profile" onclick="switchTab('profile')">
+      <div class="dock-icon">
+        <svg class="svg-icon" viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      </div>
+      <span>Profile</span>
+      <div class="dock-active-dot"></div>
+    </div>
+
+  </nav>
+</div>
   </div>
 
   <!-- MODAL SHEET: ADD TASK -->
