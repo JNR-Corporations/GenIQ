@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Page Not Found | GENIQ AI</title>
+  <style>
+    /* --- CSS Variables & Theme (Matching Main UI) --- */
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: rgba(22, 31, 49, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --primary: #6366f1;
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --accent-cyan: #06b6d4;
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      padding: 20px;
+    }
+
+    /* Ambient Background Glows */
+    .bg-glow-1 {
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      width: 450px;
+      height: 450px;
+      background: var(--primary);
+      filter: blur(160px);
+      opacity: 0.25;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .bg-glow-2 {
+      position: absolute;
+      bottom: -10%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: var(--accent-cyan);
+      filter: blur(150px);
+      opacity: 0.2;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    /* Central Glassmorphism Card */
+    .error-card {
+      position: relative;
+      z-index: 10;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-glow);
+      border-radius: var(--radius-lg);
+      padding: 48px 32px;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* 404 Glowing Number */
+    .error-code {
+      font-size: 5.5rem;
+      font-weight: 900;
+      line-height: 1;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+      letter-spacing: -2px;
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.3)); }
+      100% { filter: drop-shadow(0 0 25px rgba(168, 85, 247, 0.6)); }
+    }
+
+    /* Orbiting Physics Graphic (Matching App Vibe) */
+    .atom-graphic {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 20px auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nucleus {
+      width: 14px;
+      height: 14px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--accent-cyan);
+    }
+
+    .orbit {
+      position: absolute;
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      animation: spin 4s linear infinite;
+    }
+
+    .orbit-1 { width: 100%; height: 40%; transform: rotate(30deg); }
+    .orbit-2 { width: 100%; height: 40%; transform: rotate(-30deg); animation-duration: 6s; }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .error-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .error-desc {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    /* Action Buttons Group */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: none;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.92;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .redirect-timer {
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      margin-top: 18px;
+    }
+
+    .redirect-timer span {
+      color: var(--accent-cyan);
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Ambient Glows -->
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <!-- Main Error Card -->
+  <div class="error-card" id="tiltCard">
+    
+    <!-- Physics Atom Visual Accent -->
+    <div class="atom-graphic">
+      <div class="orbit orbit-1"></div>
+      <div class="orbit orbit-2"></div>
+      <div class="nucleus"></div>
+    </div>
+
+    <div class="error-code">404</div>
+    <h1 class="error-title">Page Hyperspace Mein Kho Gayi!</h1>
+    <p class="error-desc">
+      Aap jis page ko dhoondh rahe hain woh yahan nahi hai. Ho sakta hai URL galat ho ya page move ho gaya ho.
+    </p>
+
+    <!-- Action Buttons -->
+    <div class="btn-group">
+      <a href="index.html" class="btn btn-primary">
+        🏠 Home Screen Par Jayein
+      </a>
+      <button onclick="goBackSafe()" class="btn btn-secondary">
+        ⬅️ Wapas Pichhe Jayein
+      </button>
+    </div>
+
+    <!-- Optional Auto Redirect Timer -->
+    <div class="redirect-timer">
+      Auto-redirecting in <span id="countdown">10</span> seconds...
+    </div>
+  </div>
+
+  <script>
+    // 1. Interactive Mouse Parallax Effect for Glass Card
+    const card = document.getElementById('tiltCard');
+    document.addEventListener('mousemove', (e) => {
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
+      card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+
+    // 2. Safe Navigation Guard Function
+    function goBackSafe() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    // 3. Auto-Redirect Countdown Logic
+    let seconds = 10;
+    const countdownElem = document.getElementById('countdown');
+
+    const timer = setInterval(() => {
+      seconds--;
+      if (countdownElem) countdownElem.textContent = seconds;
+      
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
