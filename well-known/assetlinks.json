@@ -1,14 +1,8 @@
-[
-  {
-    "relation": [
-      "delegate_permission/common.handle_all_urls"
-    ],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "com.jnrcorporations.geniq",
-      "sha256_cert_fingerprints": [
-        "YOUR_SHA256_FINGERPRINT"
-      ]
-    }
-  }
-]
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.vercel.geniq_jnr.twa",
+        "sha256_cert_fingerprints": ["0E:50:85:55:85:F2:82:22:0C:1A:84:D9:3C:A4:25:D2:51:4D:FE:F4:91:B3:25:B6:12:18:B0:54:D7:F5:17:66"]
+      }
+    }]
