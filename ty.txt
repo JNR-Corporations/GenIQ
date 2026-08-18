@@ -1,0 +1,657 @@
+content: `
+<div class="jee-card-body">
+
+<!-- SECTION 1 -->
+
+<div class="jee-section-title">
+<span style="color:#2563eb;">🚀</span>
+1. Uniformly Accelerated Motion (SUVAT)
+</div>
+
+<div class="jee-box-blue">
+
+<div class="rich-formula-box">
+
+v = u + at
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+s = ut + ½at²
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+v² = u² + 2as
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+s = (u+v)t/2
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+sₙ = u + (a/2)(2n−1)
+
+</div>
+
+</div>
+
+<!-- SECTION 2 -->
+
+<div class="jee-section-title">
+<span style="color:#16a34a;">⚡</span>
+2. Variable Acceleration
+</div>
+
+<div class="jee-box-green">
+
+<div class="rich-formula-box">
+
+v = dx/dt
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+a = dv/dt
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+a = d²x/dt²
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+a = v(dv/dx)
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+x = ∫vdt
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+v = ∫adt
+
+</div>
+
+</div>
+
+<!-- SECTION 3 -->
+
+<div class="jee-section-title">
+<span style="color:#9333ea;">📊</span>
+3. Average Speed & Velocity
+</div>
+
+<div class="jee-box-purple">
+
+<div class="rich-formula-box">
+
+Average Speed
+
+=
+
+Total Distance / Total Time
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Average Velocity
+
+=
+
+Displacement / Total Time
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Uniform Acceleration
+
+↓
+
+Vavg = (u+v)/2
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Equal Distance
+
+↓
+
+Vavg = 2V₁V₂/(V₁+V₂)
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Equal Time
+
+↓
+
+Vavg = (V₁+V₂)/2
+
+</div>
+
+</div>
+
+<!-- SECTION 4 -->
+
+<div class="jee-section-title">
+<span style="color:#dc2626;">🌍</span>
+4. Motion Under Gravity
+</div>
+
+<div class="jee-box-red">
+
+<div class="rich-formula-box">
+
+v = u − gt
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+h = ut − ½gt²
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+v² = u² − 2gh
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Maximum Height
+
+H = u²/2g
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Time to Highest Point
+
+t = u/g
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Total Time of Flight
+
+T = 2u/g
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Dropped Body
+
+v² = 2gh
+
+</div>
+
+</div>
+
+<!-- SECTION 5 -->
+
+<div class="jee-section-title">
+<span style="color:#ea580c;">➡️</span>
+5. Relative Motion (1D)
+</div>
+
+<div class="jee-box-orange">
+
+<div class="rich-formula-box">
+
+VAB = VA − VB
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Same Direction
+
+↓
+
+Relative Speed = |V₁−V₂|
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Opposite Direction
+
+↓
+
+Relative Speed = V₁+V₂
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Meeting Time
+
+=
+
+Distance / Relative Speed
+
+</div>
+
+</div>
+
+<!-- SECTION 6 -->
+
+<div class="jee-section-title">
+<span style="color:#0f766e;">🏹</span>
+6. Projectile Motion
+</div>
+
+<div class="jee-box-green">
+
+<div class="rich-formula-box">
+
+ux = ucosθ
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+uy = usinθ
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Time of Flight
+
+T = 2usinθ/g
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Maximum Height
+
+H = u²sin²θ/2g
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Horizontal Range
+
+R = u²sin2θ/g
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Trajectory
+
+y = xtanθ − gx²/(2u²cos²θ)
+
+</div>
+
+</div>
+
+<!-- SECTION 7 -->
+
+<div class="jee-section-title">
+<span style="color:#7c3aed;">🧭</span>
+7. Relative Motion (2D)
+</div>
+
+<div class="jee-box-purple">
+
+<div class="rich-formula-box">
+
+VAB = VA − VB
+
+(Vector Form)
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+|VAB|
+
+=
+
+√(VA²+VB²−2VAVBcosθ)
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Shortest Time Across River
+
+t = Width/Vboat
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Drift
+
+=
+
+Vriver × t
+
+</div>
+
+</div>
+
+<!-- SECTION 8 -->
+
+<div class="jee-section-title">
+<span style="color:#2563eb;">📈</span>
+8. Graph Formula Sheet
+</div>
+
+<div class="jee-box-blue">
+
+<div class="rich-formula-box">
+
+Slope of x-t Graph
+
+=
+
+Velocity
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Slope of v-t Graph
+
+=
+
+Acceleration
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Area under v-t Graph
+
+=
+
+Displacement
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Area under a-t Graph
+
+=
+
+Change in Velocity
+
+</div>
+
+</div>
+
+<!-- SECTION 9 -->
+
+<div class="jee-section-title">
+<span style="color:#dc2626;">🎯</span>
+9. Important JEE Shortcuts
+</div>
+
+<div class="jee-box-red">
+
+<div class="rich-formula-box">
+
+Average Velocity
+
+=
+
+(u+v)/2
+
+(Constant Acceleration)
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Distance in nth Second
+
+sₙ = u + a(2n−1)/2
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Distance in n Seconds
+
+S = ut + ½at²
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Free Fall
+
+↓
+
+Replace a by g
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Projectile
+
+↓
+
+Horizontal Motion
+
+↓
+
+a = 0
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Projectile
+
+↓
+
+Vertical Motion
+
+↓
+
+a = −g
+
+</div>
+
+</div>
+
+<!-- SECTION 10 -->
+
+<div class="jee-section-title">
+<span style="color:#f59e0b;">🏆</span>
+10. Golden Formula Box (Most Repeated in JEE)
+</div>
+
+<div class="jee-box-orange">
+
+<div class="rich-formula-box">
+
+v = u + at
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+v² = u² + 2as
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+s = ut + ½at²
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+VAB = VA − VB
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+R = u²sin2θ/g
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+H = u²sin²θ/2g
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+T = 2usinθ/g
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+a = v(dv/dx)
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Area(v-t) = Displacement
+
+</div>
+
+<br>
+
+<div class="rich-formula-box">
+
+Slope(v-t) = Acceleration
+
+</div>
+
+</div>
+
+</div>
+`
