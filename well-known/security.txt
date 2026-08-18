@@ -1,0 +1,6 @@
+Contact: mailto:jn.corporation@proton.me
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en, hi
+Canonical: https://geniq-jnr.vercel.app/.well-known/security.txt
+Policy: https://geniq-jnr.vercel.app/security-policy
+# Project: GenIQ by JNR Corporations (Yogendra (Raj) Verma)
