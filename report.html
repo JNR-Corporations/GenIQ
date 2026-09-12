@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Contact GENIQ</title>
+  <meta name="description" content="Contact GENIQ and send a message directly to JNR Corporations.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#f8fafc">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+      --card: rgba(255,255,255,.82);
+      --card-border: rgba(15,23,42,.08);
+      --input: rgba(248,250,252,.9);
+      --input-border: rgba(15,23,42,.1);
+      --primary: #4f46e5;
+      --primary-2: #7c3aed;
+      --success: #15803d;
+      --danger: #dc2626;
+      --shadow: 0 30px 80px rgba(15,23,42,.12);
+    }
+
+    html.dark {
+      --bg: #070a12;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --card: rgba(15,23,42,.72);
+      --card-border: rgba(255,255,255,.09);
+      --input: rgba(2,6,23,.55);
+      --input-border: rgba(255,255,255,.1);
+      --shadow: 0 30px 90px rgba(0,0,0,.42);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(99,102,241,.16), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(124,58,237,.14), transparent 30%),
+        var(--bg);
+      overflow-x: hidden;
+      transition: background .25s ease, color .25s ease;
+    }
+
+    .ambient {
+      position: fixed;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .25;
+      pointer-events: none;
+      animation: float 12s ease-in-out infinite alternate;
+    }
+
+    .ambient.one {
+      top: -170px;
+      left: -130px;
+      background: #6366f1;
+    }
+
+    .ambient.two {
+      right: -170px;
+      bottom: -180px;
+      background: #a855f7;
+      animation-delay: -5s;
+    }
+
+    @keyframes float {
+      from { transform: translate3d(0,0,0); }
+      to { transform: translate3d(35px,25px,0); }
+    }
+
+    header {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, calc(100% - 32px));
+      margin: 18px auto 0;
+      padding: 13px 15px 13px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      background: var(--card);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 15px 45px rgba(15,23,42,.06);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 10px 25px rgba(79,70,229,.25);
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .08em;
+    }
+
+    .theme-btn {
+      border: 1px solid var(--card-border);
+      background: var(--input);
+      color: var(--text);
+      width: 46px;
+      height: 38px;
+      border-radius: 13px;
+      cursor: pointer;
+      font-size: 17px;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .theme-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      width: min(720px, calc(100% - 32px));
+      margin: 58px auto 60px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .badge {
+      width: 66px;
+      height: 66px;
+      margin: 0 auto 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 21px;
+      color: white;
+      font-size: 27px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow:
+        0 18px 40px rgba(79,70,229,.28),
+        inset 0 1px 0 rgba(255,255,255,.3);
+    }
+
+    h1 {
+      font-size: clamp(31px, 6vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      max-width: 570px;
+      margin: auto;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .card {
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      background: var(--card);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 5vw, 34px);
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .01em;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--input-border);
+      border-radius: 15px;
+      background: var(--input);
+      color: var(--text);
+      outline: none;
+      font: inherit;
+      font-size: 14px;
+      transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
+    }
+
+    input {
+      height: 52px;
+      padding: 0 15px;
+    }
+
+    textarea {
+      min-height: 150px;
+      padding: 14px 15px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--muted);
+      opacity: .75;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(79,70,229,.65);
+      box-shadow: 0 0 0 4px rgba(79,70,229,.1);
+    }
+
+    .destination {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 15px;
+      border-radius: 15px;
+      border: 1px solid var(--input-border);
+      background: var(--input);
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      overflow: hidden;
+    }
+
+    .destination span {
+      color: var(--text);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .send-btn {
+      position: relative;
+      min-height: 54px;
+      margin-top: 3px;
+      border: 0;
+      border-radius: 16px;
+      cursor: pointer;
+      color: white;
+      font: inherit;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 15px 30px rgba(79,70,229,.24);
+      transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+
+    .send-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 38px rgba(79,70,229,.3);
+    }
+
+    .send-btn:active {
+      transform: translateY(0);
+    }
+
+    .send-btn:disabled {
+      cursor: wait;
+      opacity: .7;
+      transform: none;
+    }
+
+    .status {
+      display: none;
+      padding: 13px 15px;
+      border-radius: 14px;
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .status.success {
+      color: var(--success);
+      background: rgba(34,197,94,.09);
+      border: 1px solid rgba(34,197,94,.18);
+    }
+
+    .status.error {
+      color: var(--danger);
+      background: rgba(239,68,68,.08);
+      border: 1px solid rgba(239,68,68,.16);
+    }
+
+    .privacy {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .privacy code {
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        width: calc(100% - 20px);
+        margin-top: 10px;
+        border-radius: 17px;
+      }
+
+      main {
+        width: calc(100% - 20px);
+        margin-top: 42px;
+      }
+
+      .card {
+        border-radius: 22px;
+        padding: 19px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 13px;
+      }
+
+      .destination {
+        font-size: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="ambient one"></div>
+  <div class="ambient two"></div>
+
+  <header>
+    <div class="brand">
+      <div class="brand-icon">G</div>
+      <div>
+        GENIQ
+        <small>JEE PREP PLATFORM</small>
+      </div>
+    </div>
+
+    <button
+      class="theme-btn"
+      id="themeToggle"
+      type="button"
+      aria-label="Toggle theme">
+      ◐
+    </button>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="badge">✉</div>
+
+      <h1>Get in touch.</h1>
+
+      <p>
+        Have a question, suggestion, feedback, or something to share?
+        Send a message directly to the GENIQ team.
+      </p>
+    </section>
+
+    <section class="card">
+
+      <form
+        id="contactForm"
+        action="https://formsubmit.co/jn.corporation@proton.me"
+        method="POST">
+
+        <!-- FormSubmit configuration -->
+        <input type="hidden" name="_subject" value="New message from GENIQ">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" id="nextUrl" value="">
+
+        <div class="field">
+          <label for="email">Your Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="you@example.com"
+            maxlength="160"
+            required>
+        </div>
+
+        <div class="field">
+          <label for="subject">Subject</label>
+          <input
+            id="subject"
+            name="subject"
+            type="text"
+            placeholder="What would you like to say?"
+            maxlength="180"
+            required>
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Write your message here..."
+            maxlength="5000"
+            required></textarea>
+        </div>
+
+        <div class="field">
+          <label>Message will be sent to</label>
+
+          <div class="destination">
+            <span>jn.corporation@proton.me</span>
+          </div>
+        </div>
+
+        <div
+          class="status"
+          id="status"
+          role="status"
+          aria-live="polite">
+        </div>
+
+        <button
+          class="send-btn"
+          id="sendBtn"
+          type="submit">
+          Send Message
+        </button>
+
+      </form>
+
+      <p class="privacy">
+        Your message is submitted securely through FormSubmit.
+        GENIQ does not store your message in browser local storage.
+      </p>
+
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const themeToggle = document.getElementById("themeToggle");
+      const form = document.getElementById("contactForm");
+      const status = document.getElementById("status");
+      const sendBtn = document.getElementById("sendBtn");
+      const nextUrl = document.getElementById("nextUrl");
+
+      /* ---------------- THEME ---------------- */
+
+      const savedTheme = localStorage.getItem("geniq_theme");
+
+      if (savedTheme === "dark") {
+        root.classList.add("dark");
+      }
+
+      function updateThemeIcon() {
+        themeToggle.textContent =
+          root.classList.contains("dark") ? "☀" : "◐";
+      }
+
+      updateThemeIcon();
+
+      themeToggle.addEventListener("click", () => {
+        root.classList.toggle("dark");
+
+        localStorage.setItem(
+          "geniq_theme",
+          root.classList.contains("dark") ? "dark" : "light"
+        );
+
+        updateThemeIcon();
+      });
+
+      /* ---------------- FORM ---------------- */
+
+      /*
+       * FormSubmit normally redirects after submission.
+       * We use a same-page success destination so the user
+       * does not leave the GENIQ interface.
+       */
+
+      const currentUrl = new URL(window.location.href);
+      currentUrl.search = "";
+      currentUrl.hash = "";
+      nextUrl.value = currentUrl.toString() + "?sent=1";
+
+      const params = new URLSearchParams(window.location.search);
+
+      if (params.get("sent") === "1") {
+        showStatus(
+          "success",
+          "✓ Message sent successfully. Thank you for contacting GENIQ!"
+        );
+
+        history.replaceState(
+          {},
+          document.title,
+          window.location.pathname
+        );
+      }
+
+      form.addEventListener("submit", () => {
+        sendBtn.disabled = true;
+        sendBtn.textContent = "Sending…";
+
+        status.className = "status";
+        status.textContent = "";
+      });
+
+      function showStatus(type, message) {
+        status.className = "status show " + type;
+        status.textContent = message;
+      }
+
+      /* ---------------- VALIDATION ---------------- */
+
+      form.addEventListener("submit", (event) => {
+        const email = document.getElementById("email");
+        const subject = document.getElementById("subject");
+        const message = document.getElementById("message");
+
+        if (
+          !email.value.trim() ||
+          !subject.value.trim() ||
+          !message.value.trim()
+        ) {
+          event.preventDefault();
+
+          sendBtn.disabled = false;
+          sendBtn.textContent = "Send Message";
+
+          showStatus(
+            "error",
+            "Please fill in all fields before sending."
+          );
+
+          return;
+        }
+
+        if (!email.validity.valid) {
+          event.preventDefault();
+
+          sendBtn.disabled = false;
+          sendBtn.textContent = "Send Message";
+
+          showStatus(
+            "error",
+            "Please enter a valid email address."
+          );
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -18,13 +18,13 @@
 
   <style>
     /* ==========================================================================
-       ULTRA GLASSMORPHIC DESIGN SYSTEM (MATCHED WITH JI.HTML)
+       ULTRA GLASSMORPHIC DESIGN SYSTEM (ENHANCED)
        ========================================================================== */
     :root {
       --bg-main: #f8fafc;
-      --card-bg: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.85);
       --card-subtle: #f1f5f9;
-      --card-glass: rgba(255, 255, 255, 0.88);
+      --card-glass: rgba(255, 255, 255, 0.75);
       --text-main: #0f172a;
       --text-sub: #64748b;
       --text-muted: #94a3b8;
@@ -34,35 +34,35 @@
       --primary-light: #eef2ff;
       --glow-color: rgba(79, 70, 229, 0.25);
 
-      --border-color: #e2e8f0;
+      --border-color: rgba(226, 232, 240, 0.8);
       --radius-xl: 32px;
       --radius-lg: 24px;
       --radius-md: 16px;
 
       --shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.04);
-      --shadow-lg: 0 24px 48px rgba(15, 23, 42, 0.12);
+      --shadow-lg: 0 24px 48px rgba(15, 23, 42, 0.1);
 
       --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
-      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     body.dark-theme {
       --bg-main: #070a12;
-      --card-bg: #121929;
+      --card-bg: rgba(18, 25, 41, 0.85);
       --card-subtle: #1a2336;
-      --card-glass: rgba(18, 25, 41, 0.90);
+      --card-glass: rgba(18, 25, 41, 0.75);
       --text-main: #f8fafc;
       --text-sub: #94a3b8;
       --text-muted: #64748b;
 
       --primary: #6366f1;
       --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      --primary-light: #1e1b4b;
+      --primary-light: rgba(30, 27, 75, 0.6);
       --glow-color: rgba(99, 102, 241, 0.35);
 
-      --border-color: rgba(255, 255, 255, 0.08);
-      --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.6);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.5);
     }
 
     * {
@@ -79,7 +79,7 @@
       color: var(--text-main);
       font-family: var(--font-main);
       overflow: hidden;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
     body {
@@ -90,17 +90,36 @@
       position: relative;
     }
 
-    /* Ambient Background Glow */
+    /* Interactive Background Glow & Floating Orbs */
     .bg-glow {
       position: absolute;
-      width: 380px;
-      height: 380px;
+      width: 450px;
+      height: 450px;
       background: var(--primary-gradient);
-      filter: blur(150px);
-      opacity: 0.2;
+      filter: blur(160px);
+      opacity: 0.22;
       border-radius: 50%;
       z-index: 0;
       pointer-events: none;
+      transition: transform 0.2s ease-out;
+    }
+
+    .ambient-orb {
+      position: absolute;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      filter: blur(90px);
+      opacity: 0.15;
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+      animation: orbFloat 10s infinite alternate ease-in-out;
+    }
+
+    @keyframes orbFloat {
+      0% { transform: translate(-30px, -30px); }
+      100% { transform: translate(30px, 30px); }
     }
 
     /* Header Bar */
@@ -133,7 +152,10 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-decoration: none;
+      transition: transform 0.2s ease;
     }
+
+    .brand-logo:hover { transform: scale(1.03); }
 
     .brand-icon {
       width: 36px;
@@ -157,6 +179,11 @@
       cursor: pointer;
       border: 1px solid var(--border-color);
       transition: var(--transition);
+    }
+
+    .user-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px var(--glow-color);
     }
 
     .user-pill:active { transform: scale(0.96); }
@@ -184,38 +211,46 @@
       z-index: 10;
       width: 100%;
       max-width: 440px;
-      background-color: var(--card-bg);
+      background: var(--card-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-xl);
       padding: 40px 28px;
       box-shadow: var(--shadow-lg);
       text-align: center;
-      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: cardEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    @keyframes cardEntrance {
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* Minimal Icon Badge */
+    /* Floating Icon Badge */
     .icon-badge {
-      width: 64px;
-      height: 64px;
+      width: 68px;
+      height: 68px;
       margin: 0 auto 20px auto;
-      border-radius: 20px;
+      border-radius: 22px;
       background: var(--primary-light);
       border: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--primary);
-      box-shadow: 0 8px 20px var(--glow-color);
+      box-shadow: 0 8px 24px var(--glow-color);
+      animation: floatBadge 4s ease-in-out infinite;
+    }
+
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     .error-code {
       font-family: var(--font-mono);
-      font-size: 4.5rem;
+      font-size: 4.8rem;
       font-weight: 800;
       line-height: 1;
       letter-spacing: -2px;
@@ -224,10 +259,11 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 12px;
+      text-shadow: 0 10px 30px var(--glow-color);
     }
 
     .error-title {
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 800;
       color: var(--text-main);
       margin-bottom: 8px;
@@ -264,12 +300,20 @@
       text-decoration: none;
     }
 
-    .btn-pill:active { transform: scale(0.96); }
+    .btn-pill:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-pill:active { transform: translateY(0) scale(0.98); }
 
     .btn-primary {
       background: var(--primary-gradient);
       color: #ffffff;
-      box-shadow: 0 4px 16px var(--glow-color);
+      box-shadow: 0 6px 20px var(--glow-color);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 10px 28px var(--glow-color);
     }
 
     .btn-outline {
@@ -278,16 +322,27 @@
       color: var(--text-main);
     }
 
-    /* Redirect Timer Badge */
+    .btn-outline:hover {
+      background: var(--border-color);
+    }
+
+    /* Redirect Timer Badge & Progress Bar */
+    .timer-badge-wrap {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
     .timer-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       font-family: var(--font-mono);
       font-size: 0.78rem;
       font-weight: 700;
       color: var(--text-sub);
-      margin-top: 22px;
       background: var(--card-subtle);
       padding: 6px 14px;
       border-radius: 20px;
@@ -299,7 +354,36 @@
       font-weight: 800;
     }
 
-    /* Universal SVG Icon Style */
+    .pause-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: var(--transition);
+    }
+
+    .pause-btn:hover { color: var(--primary); }
+
+    .progress-bar-container {
+      width: 100%;
+      height: 4px;
+      background: var(--card-subtle);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 100%;
+      background: var(--primary-gradient);
+      transition: width 1s linear;
+    }
+
+    /* SVG Icon Style */
     .svg-icon {
       width: 18px;
       height: 18px;
@@ -314,20 +398,22 @@
 
 <body>
 
-  <div class="bg-glow"></div>
+  <!-- Ambient Glow Elements -->
+  <div class="bg-glow" id="bgGlow"></div>
+  <div class="ambient-orb"></div>
 
   <!-- Header -->
   <header class="app-header">
-    <a href="index.html" class="brand-logo">
+    <a href="index.html" class="brand-logo" aria-label="GENIQ Homepage">
       <div class="brand-icon">
         <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
       </div>
       GENIQ
     </a>
 
-    <div class="user-pill" onclick="toggleTheme()">
-      <div class="user-pill-icon">
-        <svg class="svg-icon" style="width:14px; height:14px;" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+    <div class="user-pill" onclick="toggleTheme()" role="button" aria-label="Toggle Theme">
+      <div class="user-pill-icon" id="themeIcon">
+        <!-- Sun/Moon SVG swapped via JS -->
       </div>
       <span class="user-pill-name" id="themeLabel">Light UI</span>
     </div>
@@ -336,7 +422,7 @@
   <!-- Central Card -->
   <main class="card-404">
     <div class="icon-badge">
-      <svg class="svg-icon" style="width: 28px; height: 28px;" viewBox="0 0 24 24">
+      <svg class="svg-icon" style="width: 32px; height: 32px;" viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="10"></circle>
         <line x1="12" y1="8" x2="12" y2="12"></line>
         <line x1="12" y1="16" x2="12.01" y2="16"></line>
@@ -360,34 +446,56 @@
       </button>
     </div>
 
-    <div class="timer-badge">
-      <svg class="svg-icon" style="width:14px; height:14px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Auto-redirecting in <span id="countdown">10</span>s
+    <div class="timer-badge-wrap">
+      <div class="timer-badge">
+        <svg class="svg-icon" style="width:14px; height:14px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Auto-redirecting in <span id="countdown">10</span>s
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <button class="pause-btn" id="pauseBtn" onclick="togglePause()">Pause Redirect</button>
     </div>
   </main>
 
   <script>
-    // Theme Manager (Synchronized with ji.html)
+    // 1. Interactive Background Mouse Tracking
+    const glow = document.getElementById('bgGlow');
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX - window.innerWidth / 2) * 0.15;
+      const y = (e.clientY - window.innerHeight / 2) * 0.15;
+      glow.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    // 2. Theme Manager (System Pref + LocalStorage Sync)
+    const sunIcon = `<svg class="svg-icon" style="width:14px; height:14px;" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>`;
+    const moonIcon = `<svg class="svg-icon" style="width:14px; height:14px;" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+
     document.addEventListener("DOMContentLoaded", () => {
-      const savedTheme = localStorage.getItem("geniq_theme") || "light";
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem("geniq_theme") || (systemPrefersDark ? "dark" : "light");
       applyTheme(savedTheme);
 
       window.addEventListener("storage", (e) => {
-        if (e.key === "geniq_theme") {
-          applyTheme(e.newValue);
-        }
+        if (e.key === "geniq_theme") applyTheme(e.newValue);
       });
     });
 
     function applyTheme(theme) {
+      const themeLabel = document.getElementById("themeLabel");
+      const themeIcon = document.getElementById("themeIcon");
+      const metaThemeColor = document.getElementById("metaThemeColor");
+
       if (theme === "dark") {
         document.body.classList.add("dark-theme");
-        document.getElementById("themeLabel").textContent = "Dark UI";
-        document.getElementById("metaThemeColor").setAttribute("content", "#070a12");
+        if(themeLabel) themeLabel.textContent = "Dark UI";
+        if(themeIcon) themeIcon.innerHTML = sunIcon;
+        if(metaThemeColor) metaThemeColor.setAttribute("content", "#070a12");
       } else {
         document.body.classList.remove("dark-theme");
-        document.getElementById("themeLabel").textContent = "Light UI";
-        document.getElementById("metaThemeColor").setAttribute("content", "#f8fafc");
+        if(themeLabel) themeLabel.textContent = "Light UI";
+        if(themeIcon) themeIcon.innerHTML = moonIcon;
+        if(metaThemeColor) metaThemeColor.setAttribute("content", "#f8fafc");
       }
       localStorage.setItem("geniq_theme", theme);
     }
@@ -397,7 +505,7 @@
       applyTheme(isDark ? "light" : "dark");
     }
 
-    // Safe Back Navigation Guard
+    // 3. Safe Back Navigation Guard
     function goBackSafe() {
       if (window.history.length > 1) {
         window.history.back();
@@ -406,19 +514,34 @@
       }
     }
 
-    // Countdown Auto-Redirect Engine
+    // 4. Countdown Engine with Progress Bar & Pause Option
     let seconds = 10;
+    const totalSeconds = 10;
+    let isPaused = false;
     const countdownElem = document.getElementById('countdown');
+    const progressBar = document.getElementById('progressBar');
+    const pauseBtn = document.getElementById('pauseBtn');
 
     const timer = setInterval(() => {
+      if (isPaused) return;
+
       seconds--;
       if (countdownElem) countdownElem.textContent = seconds;
+      if (progressBar) progressBar.style.width = `${(seconds / totalSeconds) * 100}%`;
       
       if (seconds <= 0) {
         clearInterval(timer);
         window.location.href = 'index.html';
       }
     }, 1000);
+
+    function togglePause() {
+      isPaused = !isPaused;
+      if (pauseBtn) {
+        pauseBtn.textContent = isPaused ? "Resume Redirect" : "Pause Redirect";
+        pauseBtn.style.color = isPaused ? "var(--primary)" : "var(--text-muted)";
+      }
+    }
   </script>
 </body>
 
