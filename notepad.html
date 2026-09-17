@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f7fb">
+  <title>GENIQ Notepad</title>
+  <link rel="stylesheet" href="notepad.css">
+  <script src="notepad.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="GENIQ Notepad home">
+        <span class="brand-mark">G</span>
+        <span><strong>GENIQ</strong><small>NOTEPAD</small></span>
+      </a>
+      <div class="top-actions">
+        <span id="saveStatus" class="save-status" role="status">All changes saved</span>
+        <button id="themeBtn" class="icon-btn" type="button" aria-label="Switch theme" title="Switch theme">
+          <svg id="themeIcon" viewBox="0 0 24 24" aria-hidden="true"></svg>
+        </button>
+        <button id="exportBtn" class="btn btn-soft" type="button">Export</button>
+        <button id="newNoteBtn" class="btn btn-primary" type="button">＋ New note</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="sidebar">
+        <div class="sidebar-heading">YOUR WORKSPACE</div>
+        <button class="nav-item active" data-filter="all" type="button"><span>▤</span> All notes <b id="allCount">0</b></button>
+        <button class="nav-item" data-filter="pinned" type="button"><span>⌑</span> Pinned <b id="pinnedCount">0</b></button>
+        <button class="nav-item" data-filter="trash" type="button"><span>♲</span> Trash <b id="trashCount">0</b></button>
+        <div class="sidebar-heading tags-heading">TAGS</div>
+        <div id="tagList" class="tag-list"><p class="muted tiny">Tags appear here</p></div>
+        <div class="sidebar-bottom">
+          <div class="storage-card"><span class="storage-dot"></span><div><strong>Private by default</strong><small>Notes stay in this browser</small></div></div>
+          <button id="importBtn" class="text-btn" type="button">↑ Import backup</button>
+          <input id="importInput" type="file" accept="application/json,.json" hidden>
+        </div>
+      </aside>
+
+      <section class="notes-pane" aria-label="Notes list">
+        <div class="pane-title-row">
+          <div><p class="eyebrow">PERSONAL SPACE</p><h1 id="listHeading">All notes</h1></div>
+          <button id="listNewBtn" class="round-add" type="button" aria-label="Create note">＋</button>
+        </div>
+        <label class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search notes..." autocomplete="off"><kbd>⌘ K</kbd></label>
+        <div class="list-meta"><span id="resultCount">0 notes</span><select id="sortSelect" aria-label="Sort notes"><option value="updated">Recently edited</option><option value="created">Date created</option><option value="title">Title A–Z</option></select></div>
+        <div id="notesList" class="notes-list" aria-live="polite"></div>
+        <div id="emptyList" class="empty-state"><div class="empty-icon">✎</div><strong>No notes here yet</strong><p>Create a note or try another search.</p><button id="emptyNewBtn" class="btn btn-primary" type="button">Create a note</button></div>
+      </section>
+
+      <section class="editor-pane" aria-label="Note editor">
+        <div id="editorEmpty" class="editor-empty"><div class="empty-art">✧</div><h2>Your thoughts, organized.</h2><p>Select a note to continue, or create something new.</p><button id="editorNewBtn" class="btn btn-primary" type="button">＋ Create note</button></div>
+        <div id="editor" class="editor" hidden>
+          <div class="editor-topline">
+            <span id="editorDate" class="muted tiny">New note</span>
+            <div class="editor-actions">
+              <button id="pinBtn" class="icon-btn" type="button" title="Pin note" aria-label="Pin note">⌑</button>
+              <button id="trashBtn" class="icon-btn" type="button" title="Move to trash" aria-label="Move to trash">♲</button>
+              <button id="moreBtn" class="icon-btn" type="button" title="More actions" aria-label="More actions">···</button>
+              <div id="moreMenu" class="more-menu" hidden>
+                <button id="duplicateBtn" type="button">Duplicate note</button>
+                <button id="restoreBtn" type="button" hidden>Restore note</button>
+                <button id="deleteForeverBtn" class="danger-text" type="button" hidden>Delete permanently</button>
+                <button id="printBtn" type="button">Print note</button>
+              </div>
+            </div>
+          </div>
+          <input id="noteTitle" class="note-title" type="text" maxlength="180" placeholder="Untitled note" aria-label="Note title">
+          <input id="noteTags" class="tag-input" type="text" placeholder="Add tags, separated by commas…" aria-label="Note tags">
+          <div class="toolbar" role="toolbar" aria-label="Text formatting">
+            <button data-command="bold" type="button" title="Bold"><b>B</b></button>
+            <button data-command="italic" type="button" title="Italic"><i>I</i></button>
+            <button data-command="underline" type="button" title="Underline"><u>U</u></button>
+            <span class="toolbar-separator"></span>
+            <button data-command="formatBlock" data-value="h2" type="button" title="Heading">H₂</button>
+            <button data-command="formatBlock" data-value="blockquote" type="button" title="Quote">❞</button>
+            <button data-command="insertUnorderedList" type="button" title="Bulleted list">• List</button>
+            <button data-command="insertOrderedList" type="button" title="Numbered list">1. List</button>
+            <span class="toolbar-separator"></span>
+            <button id="clearFormatBtn" type="button" title="Clear formatting">Tx</button>
+          </div>
+          <div id="noteBody" class="note-body" contenteditable="true" role="textbox" aria-label="Note content" aria-multiline="true" data-placeholder="Start writing…"></div>
+          <footer class="editor-footer"><span id="wordCount">0 words · 0 characters</span><span>Autosaves on this device</span></footer>
+        </div>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+</body>
+</html>

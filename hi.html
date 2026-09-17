@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>GENIQ - Next-Gen PDF Hub</title>
+  
+  <!-- Fonts & PDF.js Library for automated thumbnail/page processing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       1. CORE DESIGN SYSTEM & THEMES
+       ========================================================================== */
+    :root {
+      --primary: #6366F1;
+      --primary-hover: #4F46E5;
+      --primary-light: rgba(99, 102, 241, 0.12);
+      --primary-gradient: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+      --accent-gradient: linear-gradient(135deg, #3B82F6 0%, #2DD4BF 100%);
+      --card-gradient: linear-gradient(180deg, rgba(15, 23, 42, 0) 40%, rgba(15, 23, 42, 0.88) 100%);
+      
+      --bg-main: #F8FAFC;
+      --bg-surface: #FFFFFF;
+      --bg-surface-secondary: #F1F5F9;
+      --bg-card-muted: #E2E8F0;
+      
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #94A3B8;
+      
+      --border-color: rgba(226, 232, 240, 0.8);
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.4);
+      
+      --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.03);
+      --shadow-md: 0 12px 28px -6px rgba(99, 102, 241, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 20px 35px -10px rgba(99, 102, 241, 0.22);
+      
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 26px;
+      --radius-full: 9999px;
+      
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-main: #0B0F19;
+      --bg-surface: #141B2D;
+      --bg-surface-secondary: #1E293B;
+      --bg-card-muted: #1E293B;
+      
+      --text-primary: #F8FAFC;
+      --text-secondary: #94A3B8;
+      --text-muted: #64748B;
+      
+      --border-color: rgba(255, 255, 255, 0.08);
+      --glass-bg: rgba(20, 27, 45, 0.8);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      
+      --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 14px 30px rgba(0, 0, 0, 0.6);
+      --shadow-hover: 0 22px 40px rgba(99, 102, 241, 0.3);
+      
+      --primary-light: rgba(99, 102, 241, 0.22);
+    }
+
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body { width: 100%; min-height: 100%; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background-color: var(--bg-main); color: var(--text-primary); }
+    body { padding-bottom: 40px; overflow-x: hidden; }
+
+    /* Layout */
+    .app-wrapper { max-width: 1280px; margin: 0 auto; padding: 20px 16px; }
+    @media (min-width: 768px) { .app-wrapper { padding: 32px; } }
+
+    /* Header */
+    .app-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .brand-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon { width: 44px; height: 44px; background: var(--primary-gradient); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #FFF; box-shadow: 0 8px 20px rgba(99, 102, 241, 0.35); }
+    .brand-name { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: var(--text-primary); }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+    .icon-btn { width: 44px; height: 44px; border-radius: var(--radius-full); background: var(--bg-surface); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--text-primary); cursor: pointer; transition: transform var(--transition-fast); box-shadow: var(--shadow-sm); }
+    .icon-btn:active { transform: scale(0.92); }
+
+    /* Search Bar */
+    .search-box-wrapper { position: relative; margin-bottom: 28px; }
+    .search-input { width: 100%; height: 56px; border-radius: var(--radius-full); background: var(--bg-surface); border: 1px solid var(--border-color); padding: 0 24px 0 54px; font-size: 15px; font-weight: 600; color: var(--text-primary); box-shadow: var(--shadow-sm); transition: all 0.25s ease; }
+    .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-light); outline: none; }
+    .search-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--primary); pointer-events: none; }
+
+    /* Category Chips */
+    .chips-container { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 28px; scrollbar-width: none; }
+    .chips-container::-webkit-scrollbar { display: none; }
+    .chip-btn { padding: 10px 22px; border-radius: var(--radius-full); background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-secondary); font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: all var(--transition-fast); }
+    .chip-btn.active { background: var(--primary-gradient); color: #FFF; border-color: transparent; box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35); }
+
+    /* ==========================================================================
+       2. PREMIUM ENHANCED CARD LOOK
+       ========================================================================== */
+    .pdf-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    @media (min-width: 640px) { .pdf-grid { grid-template-columns: repeat(3, 1fr); gap: 22px; } }
+    @media (min-width: 1024px) { .pdf-grid { grid-template-columns: repeat(4, 1fr); gap: 26px; } }
+    @media (min-width: 1280px) { .pdf-grid { grid-template-columns: repeat(5, 1fr); } }
+
+    .pdf-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+    }
+    .pdf-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+    .pdf-card:active { transform: scale(0.96); }
+
+    /* Thumbnail Container with Auto PDF Page 1 Preview */
+    .thumb-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1.38; /* PDF Proportion Aspect Ratio */
+      background: var(--bg-card-muted);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .pdf-card:hover .thumb-img { transform: scale(1.06); }
+    .thumb-overlay { position: absolute; inset: 0; background: var(--card-gradient); opacity: 0.5; pointer-events: none; }
+
+    /* Floating Micro Badges */
+    .badge-top-left {
+      position: absolute; top: 12px; left: 12px;
+      background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(10px);
+      color: #FFF; font-size: 11px; font-weight: 800;
+      padding: 5px 10px; border-radius: 8px;
+      display: flex; align-items: center; gap: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.15); z-index: 2;
+    }
+
+    .badge-top-right {
+      position: absolute; top: 12px; right: 12px;
+      background: var(--primary-gradient);
+      color: #FFF; font-size: 11px; font-weight: 800;
+      padding: 5px 10px; border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); z-index: 2;
+    }
+
+    /* Fallback Canvas loader when parsing PDF page 1 */
+    .pdf-canvas-thumb { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Card Details */
+    .card-body { padding: 14px 16px 16px 16px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+    .card-cat { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 4px; }
+    .card-title { font-size: 15px; font-weight: 800; line-height: 1.35; color: var(--text-primary); margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    
+    .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border-color); margin-top: auto; }
+    .page-count-tag { font-size: 12px; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
+    .read-btn { background: var(--primary-light); color: var(--primary); padding: 6px 14px; border-radius: var(--radius-full); font-weight: 800; font-size: 12px; transition: all 0.2s ease; }
+    .pdf-card:hover .read-btn { background: var(--primary-gradient); color: #FFF; }
+
+    /* ==========================================================================
+       3. ULTRA-MODERN FULLSCREEN VIEWER WITH LOADING ANIMATION
+       ========================================================================== */
+    .viewer-modal {
+      position: fixed; inset: 0; background: var(--bg-main); z-index: 99999;
+      display: flex; flex-direction: column; opacity: 0; pointer-events: none;
+      transform: translateY(100%); transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .viewer-modal.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+    /* App Bar */
+    .viewer-appbar {
+      height: 64px; background: var(--bg-surface); border-bottom: 1px solid var(--border-color);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 18px;
+      box-shadow: var(--shadow-sm); z-index: 20;
+    }
+    .viewer-info { flex: 1; margin: 0 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .viewer-title { font-size: 16px; font-weight: 800; color: var(--text-primary); text-overflow: ellipsis; overflow: hidden; }
+    .viewer-cat { font-size: 12px; font-weight: 700; color: var(--primary); }
+
+    /* Viewport Frame Container */
+    .viewer-container { flex: 1; position: relative; background: #0F172A; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    
+    .viewer-iframe { width: 100%; height: 100%; border: none; opacity: 0; transition: opacity 0.4s ease; }
+    .viewer-iframe.loaded { opacity: 1; }
+
+    /* FULLSCREEN LOADING ANIMATION SCREEN */
+    .viewer-loader-screen {
+      position: absolute; inset: 0; background: #0F172A;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 10; transition: opacity 0.4s ease, visibility 0.4s;
+    }
+    .viewer-loader-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+    /* Pulse Glowing Loader Rings */
+    .loader-ring-wrapper { position: relative; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+    .loader-ring { position: absolute; inset: 0; border-radius: 50%; border: 4px solid transparent; border-top-color: var(--primary); animation: spin 1s linear infinite; }
+    .loader-ring.second { inset: -8px; border-top-color: #3B82F6; animation-duration: 1.5s; animation-direction: reverse; }
+    .loader-icon { color: #FFF; width: 32px; height: 32px; animation: pulse 1.5s ease-in-out infinite; }
+
+    /* Top Horizontal Progress Loader Bar */
+    .top-progress-bar { position: absolute; top: 0; left: 0; height: 4px; background: var(--primary-gradient); width: 0%; transition: width 0.3s ease; z-index: 30; }
+
+    .loader-text { color: #FFFFFF; font-size: 16px; font-weight: 800; letter-spacing: 0.3px; margin-bottom: 6px; }
+    .loader-subtext { color: #94A3B8; font-size: 13px; font-weight: 600; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes pulse { 0%, 100% { transform: scale(0.95); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
+
+    /* SVG Helpers */
+    .icon-svg { width: 22px; height: 22px; fill: currentColor; }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       APP INTERFACE
+       ========================================================================== -->
+  <div class="app-wrapper">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <a href="#" class="brand-logo">
+        <div class="logo-icon">
+          <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <span class="brand-name">GENIQ</span>
+      </a>
+
+      <div class="header-right">
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle Theme">
+          <svg class="icon-svg" id="themeIcon" viewBox="0 0 24 24"></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Search Box -->
+    <div class="search-box-wrapper">
+      <svg class="search-icon icon-svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search notes, topics, PDFs...">
+    </div>
+
+    <!-- Filter Chips -->
+    <div class="chips-container" id="categoryChips"></div>
+
+    <!-- PDF Cards Grid -->
+    <main>
+      <div class="pdf-grid" id="pdfGrid"></div>
+    </main>
+
+  </div>
+
+  <!-- ==========================================================================
+       FULLSCREEN VIEWER MODAL WITH FULL LOAD ANIMATION
+       ========================================================================== -->
+  <div class="viewer-modal" id="viewerModal" role="dialog" aria-modal="true">
+    <div class="top-progress-bar" id="topProgressBar"></div>
+
+    <div class="viewer-appbar">
+      <button class="icon-btn" id="closeViewerBtn">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      </button>
+
+      <div class="viewer-info">
+        <div class="viewer-title" id="vTitle">Document Title</div>
+        <div class="viewer-cat" id="vCat">Category</div>
+      </div>
+
+      <button class="icon-btn" id="openDriveBtn" title="Open in External Tab">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+      </button>
+    </div>
+
+    <div class="viewer-container">
+      <!-- Loading Animation Screen -->
+      <div class="viewer-loader-screen" id="loaderScreen">
+        <div class="loader-ring-wrapper">
+          <div class="loader-ring"></div>
+          <div class="loader-ring second"></div>
+          <svg class="loader-icon icon-svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <div class="loader-text" id="loaderStatusText">Opening PDF Document...</div>
+        <div class="loader-subtext">Please wait while the full document loads completely</div>
+      </div>
+
+      <!-- Iframe Target -->
+      <iframe class="viewer-iframe" id="viewerIframe" allow="fullscreen"></iframe>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    // Set PDF.js Worker Path
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    // PDF Data List (Including user's Google Drive Link)
+    const pdfList = [
+      {
+        id: 1,
+        title: "Rotational Dynamics Notes",
+        category: "Physics",
+        // YOUR SPECIFIED LINK:
+        url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view?usp=drivesdk",
+        pageCount: 34,
+        featured: true
+      },
+      {
+        id: 2,
+        title: "Organic Chemistry Reactions",
+        category: "Chemistry",
+        url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view?usp=drivesdk",
+        pageCount: 52,
+        featured: true
+      },
+      {
+        id: 3,
+        title: "Calculus & Integration Masterbook",
+        category: "Mathematics",
+        url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view?usp=drivesdk",
+        pageCount: 28,
+        featured: false
+      },
+      {
+        id: 4,
+        title: "Thermodynamics & Heat Transfer",
+        category: "Physics",
+        url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view?usp=drivesdk",
+        pageCount: 40,
+        featured: true
+      },
+      {
+        id: 5,
+        title: "Coordinate Geometry Formula Handbook",
+        category: "Mathematics",
+        url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view?usp=drivesdk",
+        pageCount: 18,
+        featured: false
+      }
+    ];
+
+    // DOM Elements
+    const pdfGrid = document.getElementById('pdfGrid');
+    const categoryChips = document.getElementById('categoryChips');
+    const searchInput = document.getElementById('searchInput');
+    const viewerModal = document.getElementById('viewerModal');
+    const viewerIframe = document.getElementById('viewerIframe');
+    const loaderScreen = document.getElementById('loaderScreen');
+    const loaderStatusText = document.getElementById('loaderStatusText');
+    const topProgressBar = document.getElementById('topProgressBar');
+    const vTitle = document.getElementById('vTitle');
+    const vCat = document.getElementById('vCat');
+    const closeViewerBtn = document.getElementById('closeViewerBtn');
+    const openDriveBtn = document.getElementById('openDriveBtn');
+
+    let activeCategory = "All";
+    let searchQuery = "";
+
+    // Extract Drive File ID
+    function getDriveId(url) {
+      const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) || url.match(/id=([a-zA-Z0-9_-]+)/);
+      return match ? match[1] : null;
+    }
+
+    // Get First Page Thumbnail URL (Automated Google Drive Page 1 Snapshot)
+    function getPdfThumbnail(url) {
+      const driveId = getDriveId(url);
+      if (driveId) {
+        // High-res Google Drive first page preview thumbnail endpoint
+        return `https://drive.google.com/thumbnail?id=${driveId}&sz=w800`;
+      }
+      return null;
+    }
+
+    // Embed URL for PDF Viewer
+    function getEmbedUrl(url) {
+      const driveId = getDriveId(url);
+      if (driveId) {
+        return `https://drive.google.com/file/d/${driveId}/preview`;
+      }
+      return url;
+    }
+
+    // Filter Categories Render
+    function renderCategories() {
+      const categories = ["All", ...new Set(pdfList.map(item => item.category))];
+      categoryChips.innerHTML = categories.map(cat => `
+        <button class="chip-btn ${cat === activeCategory ? 'active' : ''}" onclick="setCategory('${cat}')">
+          ${cat}
+        </button>
+      `).join('');
+    }
+
+    function setCategory(cat) {
+      activeCategory = cat;
+      renderCategories();
+      renderPdfCards();
+    }
+
+    // Render PDF Cards with Automated Thumbnail & Pages Count
+    function renderPdfCards() {
+      const filtered = pdfList.filter(pdf => {
+        const matchesCat = activeCategory === "All" || pdf.category === activeCategory;
+        const matchesSearch = pdf.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                              pdf.category.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCat && matchesSearch;
+      });
+
+      pdfGrid.innerHTML = filtered.map(pdf => {
+        const thumbUrl = getPdfThumbnail(pdf.url);
+        return `
+          <div class="pdf-card" onclick="openPdf(${pdf.id})">
+            <div class="thumb-frame">
+              <span class="badge-top-left">
+                <svg style="width:12px;height:12px" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                PDF
+              </span>
+              ${pdf.featured ? `<span class="badge-top-right">Featured</span>` : ''}
+
+              <img class="thumb-img" src="${thumbUrl}" alt="${pdf.title}" loading="lazy" onerror="fallbackThumb(this)">
+              <div class="thumb-overlay"></div>
+            </div>
+
+            <div class="card-body">
+              <div>
+                <div class="card-cat">${pdf.category}</div>
+                <h3 class="card-title">${pdf.title}</h3>
+              </div>
+
+              <div class="card-footer">
+                <span class="page-count-tag">
+                  <svg style="width:14px;height:14px" viewBox="0 0 24 24"><path fill="currentColor" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                  ${pdf.pageCount ? pdf.pageCount + ' Pages' : 'Page 1'}
+                </span>
+                <span class="read-btn">Open</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function fallbackThumb(img) {
+      img.src = 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80';
+    }
+
+    // ========================================
+    // OPEN PDF WITH DYNAMIC LOADING ANIMATION
+    // ========================================
+    function openPdf(id) {
+      const pdf = pdfList.find(p => p.id === id);
+      if (!pdf) return;
+
+      // Set Metadata
+      vTitle.textContent = pdf.title;
+      vCat.textContent = pdf.category;
+      openDriveBtn.onclick = () => window.open(pdf.url, '_blank');
+
+      // Reset Animation State
+      loaderScreen.classList.remove('hidden');
+      viewerIframe.classList.remove('loaded');
+      topProgressBar.style.width = '0%';
+      loaderStatusText.textContent = "Connecting to PDF server...";
+
+      // Open Modal Screen
+      viewerModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      // Animate Progress Bar Simulated Steps until completely loaded
+      let progress = 10;
+      topProgressBar.style.width = progress + '%';
+
+      const progressInterval = setInterval(() => {
+        if (progress < 90) {
+          progress += Math.floor(Math.random() * 15) + 5;
+          if (progress > 90) progress = 90;
+          topProgressBar.style.width = progress + '%';
+
+          if (progress > 40 && progress < 70) {
+            loaderStatusText.textContent = "Rendering document pages...";
+          } else if (progress >= 70) {
+            loaderStatusText.textContent = "Finalizing PDF render...";
+          }
+        }
+      }, 300);
+
+      // Set Iframe Source
+      const embedUrl = getEmbedUrl(pdf.url);
+      viewerIframe.src = embedUrl;
+
+      // STRICT LOGIC: Hide loading animation ONLY when iframe emits FULL LOAD
+      viewerIframe.onload = () => {
+        clearInterval(progressInterval);
+        topProgressBar.style.width = '100%';
+
+        setTimeout(() => {
+          loaderScreen.classList.add('hidden');
+          viewerIframe.classList.add('loaded');
+          topProgressBar.style.width = '0%';
+        }, 400);
+      };
+    }
+
+    function closeViewer() {
+      viewerModal.classList.remove('active');
+      viewerIframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    closeViewerBtn.addEventListener('click', closeViewer);
+
+    // Search Logic
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      renderPdfCards();
+    });
+
+    // Theme Toggle
+    const themeBtn = document.getElementById('themeBtn');
+    const themeIcon = document.getElementById('themeIcon');
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+
+      themeIcon.innerHTML = next === 'dark' 
+        ? `<path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z"/>`
+        : `<path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>`;
+    }
+
+    themeBtn.addEventListener('click', toggleTheme);
+
+    // Init App
+    toggleTheme(); // Default setup
+    renderCategories();
+    renderPdfCards();
+  </script>
+</body>
+</html>

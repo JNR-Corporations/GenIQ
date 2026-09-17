@@ -34793,3 +34793,47 @@ R<sub>min</sub> = 0
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2200);
     }
+
+
+    
+  function openGeniqSidebar(event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    document.body.classList.add("geniq-sidebar-open");
+    document.getElementById("geniqSidebar")?.setAttribute("aria-hidden", "false");
+
+    const headerName = document.getElementById("headerUserName");
+    const headerAvatar = document.getElementById("headerAvatar");
+    const sidebarName = document.getElementById("sidebarUserName");
+    const sidebarAvatar = document.getElementById("sidebarAvatar");
+
+    if (headerName && sidebarName) sidebarName.textContent = headerName.textContent.trim();
+    if (headerAvatar && sidebarAvatar) sidebarAvatar.textContent = headerAvatar.textContent.trim();
+  }
+
+  function closeGeniqSidebar() {
+    document.body.classList.remove("geniq-sidebar-open");
+    document.getElementById("geniqSidebar")?.setAttribute("aria-hidden", "true");
+  }
+
+  function geniqSidebarTab(tab) {
+    if (typeof window.switchTab === "function") {
+      window.switchTab(tab);
+    }
+
+    document.querySelectorAll(".geniq-sidebar-nav button").forEach(button => {
+      button.classList.toggle("active", button.dataset.tab === tab);
+    });
+
+    closeGeniqSidebar();
+  }
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeGeniqSidebar();
+  });
+function openGeniqNotepad() {
+  switchTab('notepad');
+}
