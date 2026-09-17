@@ -197,7 +197,7 @@
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
           <input type="text" id="universalSearchInput" placeholder="Search deep topics, formulas, sub-cards, PDFs..."
-            oninput="handleUniversalSearch(this.value)">
+            oninput="handleUniversalSearch(this.value)" style="border: none;">
         </div>
         <div class="search-results-overlay" id="universalSearchResults"></div>
       </div>
@@ -449,9 +449,11 @@
       
 
       <div class="header-right">
-        <button class="icon-btn" id="themeBtn" aria-label="Toggle Theme">
-          <svg class="icon-svg" id="themeIcon" viewBox="0 0 24 24"></svg>
-        </button>
+       <button class="icon-btn" id="themeBtn" aria-label="Toggle Theme">
+  <svg class="icon-svg" id="themeIcon" viewBox="0 0 24 24"
+       fill="none" stroke="currentColor" stroke-width="2"
+       stroke-linecap="round" stroke-linejoin="round"></svg>
+</button>
       </div>
     </header>
 

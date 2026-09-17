@@ -1932,3 +1932,10 @@ select:focus-visible,
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+#universalSearchInput,
+#universalSearchInput:focus,
+#universalSearchInput:focus-visible {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}

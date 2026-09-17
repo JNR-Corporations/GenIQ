@@ -1520,5 +1520,11 @@
   border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
 }
-
+#universalSearchInput,
+#universalSearchInput:focus,
+#universalSearchInput:focus-visible {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
 
