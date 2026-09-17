@@ -57,6 +57,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="bottom_flag_doc.css">
+ <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <!-- Google Rich Results / Schema.org JSON-LD (Advanced SEO) -->
 <script type="application/ld+json">
 {
@@ -81,7 +83,8 @@
 </script>
 
   <link rel="stylesheet" href="desktop.css">
-  
+  <link rel="stylesheet" href="pdf.css">
+
 </head>
 
 <body>
@@ -437,25 +440,77 @@
 
     <!-- VIEW 4: PDF MATERIALS (UPGRADED UI WITH MATCHING STYLING & DIRECT ACTIONS) -->
     <main id="view-pdfs" class="view-panel">
-      <div class="card" style="background: var(--primary-gradient); color: #fff;">
-        <div style="font-weight: 800; font-size: 1.1rem;">Subject PDFs & Handnotes Hub</div>
-        <div style="font-size: 0.78rem; opacity: 0.9; margin-top: 4px; line-height: 1.5;">
-          Formula sheets, PYQ compilations, and handwritten notes styled in high-yield cards with instant
-          sub-topic breakdown.
+            
+  <!-- ==========================================================================
+       APP INTERFACE
+       ========================================================================== -->
+  <div class="app-wrapper">
+    
+    <!-- Top Header -->
+    <header class="app-header" style="display: none;">
+      
+
+      <div class="header-right">
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle Theme">
+          <svg class="icon-svg" id="themeIcon" viewBox="0 0 24 24"></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Search Box -->
+    <div class="search-box-wrapper">
+      <svg class="search-icon icon-svg" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search notes, topics, PDFs...">
+    </div>
+
+    <!-- Filter Chips -->
+    <div class="chips-container" id="categoryChips"></div>
+
+    <!-- PDF Cards Grid -->
+    <main>
+      <div class="pdf-grid" id="pdfGrid"></div>
+    </main>
+
+  </div>
+
+  <!-- ==========================================================================
+       FULLSCREEN VIEWER MODAL WITH FULL LOAD ANIMATION
+       ========================================================================== -->
+  <div class="viewer-modal" id="viewerModal" role="dialog" aria-modal="true">
+    <div class="top-progress-bar" id="topProgressBar"></div>
+
+    <div class="viewer-appbar">
+      <button class="icon-btn" id="closeViewerBtn">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+      </button>
+
+      <div class="viewer-info">
+        <div class="viewer-title" id="vTitle">Document Title</div>
+        <div class="viewer-cat" id="vCat">Category</div>
+      </div>
+
+      <button class="icon-btn" id="openDriveBtn" title="Open in External Tab">
+        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+      </button>
+    </div>
+
+    <div class="viewer-container">
+      <!-- Loading Animation Screen -->
+      <div class="viewer-loader-screen" id="loaderScreen">
+        <div class="loader-ring-wrapper">
+          <div class="loader-ring"></div>
+          <div class="loader-ring second"></div>
+          <svg class="loader-icon icon-svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
         </div>
+        <div class="loader-text" id="loaderStatusText">Opening PDF Document...</div>
+        <div class="loader-subtext">Please wait while the full document loads completely</div>
       </div>
 
-      <div class="search-box-advanced">
-        <svg class="svg-icon" style="color: var(--text-muted);" viewBox="0 0 24 24">
-          <circle cx="11" cy="11" r="8" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-        <input type="text" id="pdfSearchInput" placeholder="Search PDF materials by subject or topic..."
-          oninput="renderPDFs(this.value)">
-      </div>
+      <!-- Iframe Target -->
+      <iframe class="viewer-iframe" id="viewerIframe" allow="fullscreen"></iframe>
+    </div>
+  </div>
 
-      <!-- PDF Cards rendered with Enhanced Glassmorphic UI -->
-      <div id="pdfContainer" class="grid-2"></div>
     </main>
 
     <!-- VIEW 5: PROFILE & STATS -->
@@ -766,6 +821,7 @@
   </div>
   
   <script src="script.js"></script>
+  <script src="pdf.js"></script>
   <script src="theme.js"></script>
 </body>
 
