@@ -10,7 +10,7 @@
         // YOUR SPECIFIED LINK:
         url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view?usp=drivesdk",
         pageCount: 34,
-        featured: true
+        featured: false
       },
       {
         id: 2,
@@ -18,7 +18,7 @@
         category: "Chemistry",
         url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view?usp=drivesdk",
         pageCount: 52,
-        featured: true
+        featured: false
       },
       {
         id: 3,
@@ -34,7 +34,7 @@
         category: "Physics",
         url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view?usp=drivesdk",
         pageCount: 40,
-        featured: true
+        featured: false
       },
       {
         id: 5,
@@ -118,10 +118,7 @@
         return `
           <div class="pdf-card" onclick="openPdf(${pdf.id})">
             <div class="thumb-frame">
-              <span class="badge-top-left">
-                <svg style="width:12px;height:12px" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                PDF
-              </span>
+              
               ${pdf.featured ? `<span class="badge-top-right">Featured</span>` : ''}
 
               <img class="thumb-img" src="${thumbUrl}" alt="${pdf.title}" loading="lazy" onerror="fallbackThumb(this)">
