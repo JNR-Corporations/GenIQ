@@ -1,0 +1,2128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<title>Notifications — GENIQ</title>
+
+<meta
+    name="theme-color"
+    id="metaThemeColor"
+    content="#ffffff"
+>
+
+<script src="theme.js" defer></script>
+
+<style>
+
+/* =========================================================
+   GENIQ NOTIFICATIONS
+   PURE WHITE / PURE BLACK
+   CLAY UI
+   ========================================================= */
+
+:root {
+
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f7f7f7;
+
+    --text: #111111;
+    --text-soft: #666666;
+    --text-muted: #999999;
+
+    --primary: #4f46e5;
+    --primary-soft: #eeeeff;
+
+    --border: #e8e8e8;
+
+    --shadow-outer:
+        8px 8px 20px rgba(0,0,0,.07),
+        -8px -8px 20px rgba(255,255,255,.95);
+
+    --shadow-small:
+        4px 4px 12px rgba(0,0,0,.06),
+        -4px -4px 12px rgba(255,255,255,.95);
+
+    --shadow-pressed:
+        inset 4px 4px 10px rgba(0,0,0,.07),
+        inset -4px -4px 10px rgba(255,255,255,.9);
+
+    --radius-xl: 30px;
+    --radius-lg: 22px;
+    --radius-md: 16px;
+
+    --ease: cubic-bezier(.2,.8,.2,1);
+
+    font-family:
+        Inter,
+        "Plus Jakarta Sans",
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+
+/* =========================================================
+   DARK
+   ========================================================= */
+
+body.dark-theme {
+
+    --bg: #000000;
+    --surface: #080808;
+    --surface-2: #101010;
+
+    --text: #ffffff;
+    --text-soft: #a1a1aa;
+    --text-muted: #666666;
+
+    --primary: #7c78ff;
+    --primary-soft: #151525;
+
+    --border: #1d1d1d;
+
+    --shadow-outer:
+        8px 8px 20px rgba(0,0,0,.7),
+        -5px -5px 15px rgba(255,255,255,.025);
+
+    --shadow-small:
+        4px 4px 12px rgba(0,0,0,.65),
+        -4px -4px 10px rgba(255,255,255,.02);
+
+    --shadow-pressed:
+        inset 4px 4px 10px rgba(0,0,0,.7),
+        inset -4px -4px 10px rgba(255,255,255,.025);
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+
+    min-height: 100vh;
+
+    background: var(--bg);
+    color: var(--text);
+
+    overflow-x: hidden;
+
+    transition:
+        background .25s ease,
+        color .25s ease;
+}
+
+button {
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+}
+
+button,
+.notification-card {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+.notification-app {
+
+    width: min(100%, 1000px);
+
+    margin: auto;
+
+    padding:
+        20px
+        20px
+        60px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.topbar {
+
+    height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 10px 12px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-outer);
+
+    position: sticky;
+    top: 15px;
+
+    z-index: 20;
+}
+
+
+.topbar-left {
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+}
+
+
+.back-button {
+
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    box-shadow: var(--shadow-small);
+
+    border: 1px solid var(--border);
+
+    transition:
+        transform .2s var(--ease),
+        box-shadow .2s ease;
+}
+
+.back-button:active {
+    transform: scale(.93);
+    box-shadow: var(--shadow-pressed);
+}
+
+.back-button svg {
+    width: 21px;
+    height: 21px;
+}
+
+
+.brand {
+
+    min-width: 0;
+}
+
+.brand-name {
+
+    font-size: 16px;
+
+    font-weight: 850;
+
+    letter-spacing: -.4px;
+
+    white-space: nowrap;
+}
+
+.brand-sub {
+
+    margin-top: 2px;
+
+    font-size: 10px;
+
+    color: var(--text-soft);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.topbar-actions {
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+.icon-button {
+
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+
+    background: var(--surface);
+
+    color: var(--text-soft);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow-small);
+
+    transition:
+        transform .2s var(--ease),
+        color .2s ease;
+}
+
+.icon-button:hover {
+    color: var(--primary);
+}
+
+.icon-button:active {
+    transform: scale(.92);
+    box-shadow: var(--shadow-pressed);
+}
+
+.icon-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+
+.clear-button {
+
+    height: 42px;
+
+    padding: 0 14px;
+
+    border-radius: 14px;
+
+    background: var(--surface);
+
+    color: var(--text-soft);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow-small);
+
+    font-size: 11px;
+    font-weight: 750;
+
+    transition:
+        transform .2s var(--ease),
+        color .2s ease;
+}
+
+.clear-button:hover {
+    color: var(--primary);
+}
+
+.clear-button:active {
+    transform: scale(.96);
+    box-shadow: var(--shadow-pressed);
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.intro {
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 42px 4px 25px;
+}
+
+
+.intro h1 {
+
+    font-size: clamp(
+        30px,
+        6vw,
+        44px
+    );
+
+    line-height: 1;
+
+    letter-spacing: -1.8px;
+
+    font-weight: 900;
+}
+
+
+.intro p {
+
+    max-width: 550px;
+
+    margin-top: 10px;
+
+    color: var(--text-soft);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+.count {
+
+    min-width: 48px;
+    height: 48px;
+
+    padding: 0 12px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 17px;
+
+    color: var(--primary);
+
+    background: var(--primary-soft);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow-small);
+
+    font-size: 14px;
+
+    font-weight: 850;
+}
+
+
+/* =========================================================
+   LIST
+   ========================================================= */
+
+.notification-list {
+
+    display: grid;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.notification-card {
+
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    width: 100%;
+
+    padding: 18px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-outer);
+
+    cursor: pointer;
+
+    user-select: none;
+
+    transition:
+        transform .22s var(--ease),
+        box-shadow .22s ease,
+        border-color .22s ease;
+}
+
+.notification-card:hover {
+
+    transform: translateY(-3px);
+
+    border-color:
+        rgba(79,70,229,.25);
+}
+
+.notification-card:active {
+
+    transform: scale(.985);
+
+    box-shadow: var(--shadow-pressed);
+}
+
+
+/* =========================================================
+   UNREAD
+   ========================================================= */
+
+.notification-card.unread::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 20px;
+    bottom: 20px;
+
+    width: 3px;
+
+    background: var(--primary);
+
+    border-radius:
+        0 5px 5px 0;
+}
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.notification-icon {
+
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 17px;
+
+    color: var(--primary);
+
+    background: var(--primary-soft);
+
+    box-shadow:
+        inset 2px 2px 5px rgba(0,0,0,.035),
+        inset -2px -2px 5px rgba(255,255,255,.8);
+}
+
+.notification-icon svg {
+
+    width: 23px;
+    height: 23px;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.notification-body {
+
+    min-width: 0;
+
+    flex: 1;
+}
+
+
+.notification-heading {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+
+.notification-title {
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+    font-weight: 820;
+}
+
+
+.notification-time {
+
+    flex-shrink: 0;
+
+    color: var(--text-muted);
+
+    font-size: 9px;
+}
+
+
+.notification-message {
+
+    margin-top: 6px;
+
+    color: var(--text-soft);
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+.notification-meta {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 11px;
+}
+
+
+.tag {
+
+    display: inline-flex;
+
+    padding: 4px 8px;
+
+    border-radius: 8px;
+
+    color: var(--primary);
+
+    background: var(--primary-soft);
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: .2px;
+}
+
+
+.unread-dot {
+
+    width: 7px;
+    height: 7px;
+
+    margin-top: 5px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: var(--primary);
+
+    box-shadow:
+        0 0 0 4px var(--primary-soft);
+}
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.empty {
+
+    display: none;
+
+    padding: 75px 20px;
+
+    text-align: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-xl);
+
+    background: var(--surface);
+
+    box-shadow: var(--shadow-outer);
+}
+
+
+.empty.show {
+    display: block;
+}
+
+
+.empty-icon {
+
+    width: 68px;
+    height: 68px;
+
+    margin: auto;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 22px;
+
+    color: var(--primary);
+
+    background: var(--primary-soft);
+
+    box-shadow: var(--shadow-small);
+}
+
+
+.empty-icon svg {
+
+    width: 30px;
+    height: 30px;
+}
+
+
+.empty h2 {
+
+    margin-top: 20px;
+
+    font-size: 19px;
+
+    font-weight: 850;
+}
+
+
+.empty p {
+
+    max-width: 390px;
+
+    margin: 8px auto 0;
+
+    color: var(--text-soft);
+
+    font-size: 11px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FULL SCREEN DETAIL
+   ========================================================= */
+
+.detail-screen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    background: var(--bg);
+
+    overflow-y: auto;
+
+    visibility: hidden;
+
+    opacity: 0;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity .25s ease,
+        transform .3s var(--ease),
+        visibility .25s ease;
+}
+
+
+.detail-screen.open {
+
+    visibility: visible;
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+.detail-inner {
+
+    width: min(100%, 850px);
+
+    min-height: 100%;
+
+    margin: auto;
+
+    padding:
+        20px
+        20px
+        70px;
+}
+
+
+/* =========================================================
+   DETAIL HEADER
+   ========================================================= */
+
+.detail-top {
+
+    height: 64px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+
+.detail-back {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    height: 44px;
+
+    padding: 0 14px;
+
+    border-radius: 14px;
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow-small);
+
+    font-size: 11px;
+
+    font-weight: 750;
+}
+
+.detail-back:active {
+    box-shadow: var(--shadow-pressed);
+    transform: scale(.97);
+}
+
+
+.detail-back svg {
+
+    width: 18px;
+    height: 18px;
+}
+
+
+.detail-label {
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   DETAIL CONTENT
+   ========================================================= */
+
+.detail-content {
+
+    padding-top: 60px;
+}
+
+
+.detail-icon {
+
+    width: 76px;
+    height: 76px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 24px;
+
+    color: var(--primary);
+
+    background: var(--primary-soft);
+
+    box-shadow: var(--shadow-outer);
+}
+
+
+.detail-icon svg {
+
+    width: 34px;
+    height: 34px;
+}
+
+
+.detail-tag {
+
+    display: inline-flex;
+
+    margin-top: 30px;
+
+    padding: 6px 10px;
+
+    border-radius: 9px;
+
+    color: var(--primary);
+
+    background: var(--primary-soft);
+
+    font-size: 9px;
+
+    font-weight: 850;
+}
+
+
+.detail-title {
+
+    margin-top: 16px;
+
+    max-width: 750px;
+
+    font-size: clamp(
+        29px,
+        7vw,
+        52px
+    );
+
+    line-height: 1.08;
+
+    letter-spacing: -2px;
+
+    font-weight: 900;
+}
+
+
+.detail-time {
+
+    margin-top: 12px;
+
+    color: var(--text-muted);
+
+    font-size: 10px;
+}
+
+
+.detail-divider {
+
+    width: 100%;
+
+    height: 1px;
+
+    margin: 32px 0;
+
+    background: var(--border);
+}
+
+
+.detail-message {
+
+    max-width: 760px;
+
+    color: var(--text-soft);
+
+    font-size: 15px;
+
+    line-height: 2;
+
+    white-space: pre-wrap;
+}
+
+
+/* =========================================================
+   DETAIL ACTION
+   ========================================================= */
+
+.detail-close {
+
+    margin-top: 40px;
+
+    min-height: 48px;
+
+    padding: 0 20px;
+
+    border-radius: 15px;
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow-small);
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+.detail-close:active {
+
+    box-shadow: var(--shadow-pressed);
+
+    transform: scale(.98);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .notification-app {
+
+        padding:
+            10px
+            10px
+            35px;
+    }
+
+    .topbar {
+
+        top: 8px;
+
+        height: 60px;
+
+        border-radius: 17px;
+    }
+
+    .brand-name {
+        font-size: 13px;
+    }
+
+    .brand-sub {
+        display: none;
+    }
+
+    .back-button {
+
+        width: 39px;
+        height: 39px;
+    }
+
+    .icon-button {
+
+        width: 39px;
+        height: 39px;
+    }
+
+    .clear-button {
+
+        height: 39px;
+
+        padding: 0 10px;
+
+        font-size: 9px;
+    }
+
+    .intro {
+
+        padding:
+            35px
+            3px
+            20px;
+    }
+
+    .intro h1 {
+
+        font-size: 31px;
+
+        letter-spacing: -1.4px;
+    }
+
+    .intro p {
+
+        font-size: 10px;
+    }
+
+    .count {
+
+        min-width: 42px;
+        height: 42px;
+
+        border-radius: 14px;
+    }
+
+    .notification-card {
+
+        padding: 14px;
+
+        gap: 11px;
+
+        border-radius: 17px;
+    }
+
+    .notification-icon {
+
+        width: 43px;
+        height: 43px;
+
+        border-radius: 14px;
+    }
+
+    .notification-icon svg {
+
+        width: 20px;
+        height: 20px;
+    }
+
+    .notification-title {
+
+        font-size: 11px;
+    }
+
+    .notification-message {
+
+        font-size: 9px;
+
+        line-height: 1.6;
+    }
+
+    .notification-time {
+
+        font-size: 7px;
+    }
+
+    .tag {
+
+        font-size: 7px;
+    }
+
+    .detail-inner {
+
+        padding:
+            10px
+            16px
+            50px;
+    }
+
+    .detail-top {
+
+        height: 55px;
+    }
+
+    .detail-content {
+
+        padding-top: 55px;
+    }
+
+    .detail-icon {
+
+        width: 65px;
+        height: 65px;
+
+        border-radius: 21px;
+    }
+
+    .detail-icon svg {
+
+        width: 29px;
+        height: 29px;
+    }
+
+    .detail-title {
+
+        font-size: 30px;
+
+        letter-spacing: -1.3px;
+    }
+
+    .detail-message {
+
+        font-size: 13px;
+
+        line-height: 1.9;
+    }
+
+    .detail-back {
+
+        height: 40px;
+
+        padding: 0 11px;
+
+        font-size: 9px;
+    }
+
+    .detail-label {
+
+        font-size: 8px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: .01ms !important;
+
+        transition-duration: .01ms !important;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     NOTIFICATION LIST
+     ======================================================= -->
+
+<main class="notification-app">
+
+
+    <header class="topbar">
+
+        <div class="topbar-left">
+
+            <button
+                class="back-button"
+                id="backButton"
+                aria-label="Go back"
+            >
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path
+                        d="M15 18L9 12L15 6"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+
+                </svg>
+
+            </button>
+
+
+            <div class="brand">
+
+                <div class="brand-name">
+                    GENIQ Notifications
+                </div>
+
+                <div class="brand-sub">
+                    Important updates & alerts
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="topbar-actions">
+
+            <button
+                class="icon-button"
+                id="themeButton"
+                aria-label="Change theme"
+            >
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path
+                        d="M21 12.8A8.5 8.5 0 1111.2 3
+                        A6.7 6.7 0 0021 12.8Z"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    />
+
+                </svg>
+
+            </button>
+
+
+            <button
+                class="clear-button"
+                id="clearButton"
+            >
+                Clear
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <section class="intro">
+
+        <div>
+
+            <h1>
+                Notifications
+            </h1>
+
+            <p>
+                Stay updated with GENIQ announcements,
+                study reminders and important updates.
+            </p>
+
+        </div>
+
+
+        <div
+            class="count"
+            id="unreadCount"
+        >
+            0
+        </div>
+
+    </section>
+
+
+    <section
+        class="notification-list"
+        id="notificationList"
+    ></section>
+
+
+    <section
+        class="empty"
+        id="emptyState"
+    >
+
+        <div class="empty-icon">
+
+            <svg viewBox="0 0 24 24" fill="none">
+
+                <path
+                    d="M18 8A6 6 0 006 8
+                    c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M10 21h4"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                />
+
+            </svg>
+
+        </div>
+
+
+        <h2>
+            You're all caught up
+        </h2>
+
+
+        <p>
+            New GENIQ notifications will appear here
+            whenever there is something important to share.
+        </p>
+
+    </section>
+
+</main>
+
+
+<!-- =======================================================
+     FULL SCREEN DETAIL
+     ======================================================= -->
+
+<section
+    class="detail-screen"
+    id="detailScreen"
+    aria-hidden="true"
+>
+
+    <div class="detail-inner">
+
+
+        <header class="detail-top">
+
+            <button
+                class="detail-back"
+                id="detailBack"
+            >
+
+                <svg viewBox="0 0 24 24" fill="none">
+
+                    <path
+                        d="M15 18L9 12L15 6"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+
+                </svg>
+
+                Back
+
+            </button>
+
+
+            <span class="detail-label">
+                GENIQ NOTIFICATION
+            </span>
+
+        </header>
+
+
+        <article class="detail-content">
+
+
+            <div
+                class="detail-icon"
+                id="detailIcon"
+            ></div>
+
+
+            <div
+                class="detail-tag"
+                id="detailTag"
+            ></div>
+
+
+            <h1
+                class="detail-title"
+                id="detailTitle"
+            ></h1>
+
+
+            <div
+                class="detail-time"
+                id="detailTime"
+            ></div>
+
+
+            <div class="detail-divider"></div>
+
+
+            <div
+                class="detail-message"
+                id="detailMessage"
+            ></div>
+
+
+            <button
+                class="detail-close"
+                id="detailClose"
+            >
+                Close Notification
+            </button>
+
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================================================
+   GENIQ NOTIFICATION DATABASE
+
+   👇 SIRF IS ARRAY KO EDIT KARKE NOTIFICATIONS MANAGE KARO.
+
+   New notification = ek new object.
+   ========================================================= */
+
+const notifications = [
+
+    {
+        id: "welcome-001",
+
+        title: "Welcome to GENIQ 🚀",
+
+        message:
+`Welcome to GENIQ.
+
+Your JEE Main & Advanced preparation journey starts here.
+
+Explore your study material, practice questions, formulas,
+tests and other preparation tools from one place.`,
+
+        time: "Just now",
+
+        tag: "GENIQ",
+
+        type: "system"
+    },
+
+
+    {
+        id: "practice-002",
+
+        title: "Daily Practice Reminder",
+
+        message:
+`Your daily practice session is waiting.
+
+Spend some focused time solving quality questions today
+and keep your preparation consistent.`,
+
+        time: "10 min ago",
+
+        tag: "Practice",
+
+        type: "practice"
+    },
+
+
+    {
+        id: "update-003",
+
+        title: "New Content Available",
+
+        message:
+`New preparation content can be added to GENIQ whenever
+a new chapter, test, formula sheet or study resource
+is published.`,
+
+        time: "Today",
+
+        tag: "Update",
+
+        type: "update"
+    }
+
+];
+
+
+/* =========================================================
+   STORAGE
+   ========================================================= */
+
+const STORAGE_KEY =
+    "geniq_notification_state";
+
+
+function getState() {
+
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(STORAGE_KEY)
+        ) || {
+            read: [],
+            cleared: false
+        };
+
+    } catch {
+
+        return {
+            read: [],
+            cleared: false
+        };
+
+    }
+
+}
+
+
+function saveState(state) {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(state)
+    );
+
+}
+
+
+/* =========================================================
+   ICONS
+   ========================================================= */
+
+function icon(type) {
+
+    const icons = {
+
+        system: `
+            <svg viewBox="0 0 24 24" fill="none">
+                <path
+                    d="M18 8A6 6 0 006 8
+                    c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                />
+                <path
+                    d="M10 21h4"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                />
+            </svg>
+        `,
+
+        practice: `
+            <svg viewBox="0 0 24 24" fill="none">
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="8"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                />
+                <path
+                    d="M12 8v8M8 12h8"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                />
+            </svg>
+        `,
+
+        update: `
+            <svg viewBox="0 0 24 24" fill="none">
+                <path
+                    d="M5 6h14M5 12h14M5 18h9"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                />
+            </svg>
+        `
+
+    };
+
+    return icons[type] || icons.system;
+
+}
+
+
+/* =========================================================
+   ELEMENTS
+   ========================================================= */
+
+const notificationList =
+    document.getElementById(
+        "notificationList"
+    );
+
+const emptyState =
+    document.getElementById(
+        "emptyState"
+    );
+
+const unreadCount =
+    document.getElementById(
+        "unreadCount"
+    );
+
+const detailScreen =
+    document.getElementById(
+        "detailScreen"
+    );
+
+const detailIcon =
+    document.getElementById(
+        "detailIcon"
+    );
+
+const detailTag =
+    document.getElementById(
+        "detailTag"
+    );
+
+const detailTitle =
+    document.getElementById(
+        "detailTitle"
+    );
+
+const detailTime =
+    document.getElementById(
+        "detailTime"
+    );
+
+const detailMessage =
+    document.getElementById(
+        "detailMessage"
+    );
+
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+
+function renderNotifications() {
+
+    const state = getState();
+
+    notificationList.innerHTML = "";
+
+
+    if (state.cleared) {
+
+        notificationList.style.display = "none";
+
+        emptyState.classList.add("show");
+
+        unreadCount.textContent = "0";
+
+        return;
+    }
+
+
+    notificationList.style.display = "grid";
+
+    emptyState.classList.remove("show");
+
+
+    let unread = 0;
+
+
+    notifications.forEach(
+        notification => {
+
+            const isRead =
+                state.read.includes(
+                    notification.id
+                );
+
+
+            if (!isRead) {
+                unread++;
+            }
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "notification-card" +
+                (
+                    isRead
+                        ? ""
+                        : " unread"
+                );
+
+
+            card.innerHTML = `
+
+                <div class="notification-icon">
+                    ${icon(notification.type)}
+                </div>
+
+                <div class="notification-body">
+
+                    <div class="notification-heading">
+
+                        <h2 class="notification-title">
+                            ${escapeHTML(
+                                notification.title
+                            )}
+                        </h2>
+
+                        <span class="notification-time">
+                            ${escapeHTML(
+                                notification.time
+                            )}
+                        </span>
+
+                    </div>
+
+                    <p class="notification-message">
+                        ${escapeHTML(
+                            notification.message
+                        )}
+                    </p>
+
+                    <div class="notification-meta">
+
+                        <span class="tag">
+                            ${escapeHTML(
+                                notification.tag
+                            )}
+                        </span>
+
+                    </div>
+
+                </div>
+
+                ${
+                    !isRead
+                    ? `
+                        <span
+                            class="unread-dot"
+                        ></span>
+                    `
+                    : ""
+                }
+
+            `;
+
+
+            /*
+             * CARD KE KISI BHI PART PAR TAP
+             * KARNE SE DETAIL OPEN HOGI.
+             */
+
+            card.addEventListener(
+                "click",
+                () => {
+
+                    markRead(
+                        notification.id
+                    );
+
+                    openDetail(
+                        notification
+                    );
+
+                }
+            );
+
+
+            notificationList.appendChild(
+                card
+            );
+
+        }
+    );
+
+
+    unreadCount.textContent =
+        unread > 99
+            ? "99+"
+            : unread;
+
+
+    if (!notifications.length) {
+
+        notificationList.style.display =
+            "none";
+
+        emptyState.classList.add(
+            "show"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   MARK READ
+   ========================================================= */
+
+function markRead(id) {
+
+    const state = getState();
+
+
+    if (
+        !state.read.includes(id)
+    ) {
+
+        state.read.push(id);
+
+        saveState(state);
+
+    }
+
+
+    renderNotifications();
+
+}
+
+
+/* =========================================================
+   OPEN FULL SCREEN DETAIL
+   ========================================================= */
+
+function openDetail(notification) {
+
+    detailIcon.innerHTML =
+        icon(notification.type);
+
+    detailTag.textContent =
+        notification.tag;
+
+    detailTitle.textContent =
+        notification.title;
+
+    detailTime.textContent =
+        notification.time;
+
+    detailMessage.textContent =
+        notification.message;
+
+
+    detailScreen.classList.add(
+        "open"
+    );
+
+    detailScreen.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.body.style.overflow =
+        "hidden";
+
+
+    /*
+     * Browser history me entry add.
+     * Back button bhi naturally work karega.
+     */
+
+    history.pushState(
+        {
+            notification: true
+        },
+        "",
+        "#notification"
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE DETAIL
+   ========================================================= */
+
+function closeDetail() {
+
+    detailScreen.classList.remove(
+        "open"
+    );
+
+    detailScreen.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =========================================================
+   DETAIL BACK
+   ========================================================= */
+
+document
+    .getElementById("detailBack")
+    .addEventListener(
+        "click",
+        () => {
+
+            closeDetail();
+
+            if (
+                location.hash ===
+                "#notification"
+            ) {
+
+                history.back();
+
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("detailClose")
+    .addEventListener(
+        "click",
+        () => {
+
+            closeDetail();
+
+            if (
+                location.hash ===
+                "#notification"
+            ) {
+
+                history.back();
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   BROWSER BACK
+   ========================================================= */
+
+window.addEventListener(
+    "popstate",
+    () => {
+
+        if (
+            !location.hash.includes(
+                "notification"
+            )
+        ) {
+
+            closeDetail();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CLEAR ALL
+   ========================================================= */
+
+document
+    .getElementById("clearButton")
+    .addEventListener(
+        "click",
+        () => {
+
+            const state = getState();
+
+            state.cleared = true;
+
+            saveState(state);
+
+            renderNotifications();
+
+        }
+    );
+
+
+/* =========================================================
+   MAIN BACK
+   ========================================================= */
+
+document
+    .getElementById("backButton")
+    .addEventListener(
+        "click",
+        () => {
+
+            if (
+                history.length > 1
+            ) {
+
+                history.back();
+
+            } else {
+
+                window.location.href =
+                    "index.html";
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   THEME
+   ========================================================= */
+
+document
+    .getElementById("themeButton")
+    .addEventListener(
+        "click",
+        () => {
+
+            if (
+                typeof window.toggleTheme ===
+                "function"
+            ) {
+
+                window.toggleTheme();
+
+            } else {
+
+                document.body.classList.toggle(
+                    "dark-theme"
+                );
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(value) {
+
+    const element =
+        document.createElement(
+            "div"
+        );
+
+    element.textContent =
+        value;
+
+    return element.innerHTML;
+
+}
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+renderNotifications();
+
+</script>
+
+</body>
+</html>

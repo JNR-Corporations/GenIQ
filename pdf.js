@@ -24,18 +24,18 @@ if (window.pdfjsLib?.GlobalWorkerOptions) {
 const pdfList = [
   {
     id: 1,
-    title: "Rotational Dynamics Notes",
-    category: "Physics",
+    title: "Trigonomentry Formula Sheet",
+    category: "Mathematics",
     url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view",
-    pageCount: 34,
+    pageCount: 8,
     featured: false
   },
   {
     id: 2,
-    title: "Organic Chemistry Reactions",
-    category: "Chemistry",
-    url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view",
-    pageCount: 52,
+    title: "Limits Formula Sheet",
+    category: "Mathematics",
+    url: "https://drive.google.com/file/d/1FFTp5OXfvnsjIAHXmImyswYX63j2wIpL/view?usp=sharing",
+    pageCount: 4,
     featured: false
   },
   {

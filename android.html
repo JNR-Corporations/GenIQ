@@ -81,10 +81,11 @@
   "image": "https://geniq-jnr.vercel.app/banner.png"
 }
 </script>
-<link rel="stylesheet" href="android.css">
-<link rel="stylesheet" href="pdf.css">
-<link rel="stylesheet" href="sidebar.css">
-<link rel="stylesheet" href="notepad.css">
+  <link rel="stylesheet" href="css/android.css">
+  <link rel="stylesheet" href="css/pdf.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/notepad.css">
+
 </head>
 
 <body>
@@ -449,6 +450,86 @@
           <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">Calculus & Algebra</div>
         </div>
       </div>
+
+      <div class="section-title" style="margin-top: 10px;">Smart Practice & Advanced Preparation</div>
+
+<div style="display: flex; gap: 12px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none;">
+
+  <div class="card"
+    style="min-width: 160px; background: var(--card-subtle); border-left: 4px solid #8b5cf6; cursor: pointer;"
+    onclick="showToast('Opening PYQ Practice...')">
+
+<div style="font-size: 0.7rem; font-weight: 800; color: #8b5cf6; text-transform: uppercase;">
+  PYQ Practice
+</div>
+
+<div style="font-weight: 800; font-size: 0.9rem; margin-top: 4px;">
+  JEE PYQs
+</div>
+
+<div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">
+  Main + Advanced
+</div>
+
+  </div>
+
+  <div class="card"
+    style="min-width: 160px; background: var(--card-subtle); border-left: 4px solid #06b6d4; cursor: pointer;"
+    onclick="showToast('Opening Concept Practice...')">
+
+
+<div style="font-size: 0.7rem; font-weight: 800; color: #06b6d4; text-transform: uppercase;">
+  Concepts
+</div>
+
+<div style="font-weight: 800; font-size: 0.9rem; margin-top: 4px;">
+  Concept Builder
+</div>
+
+<div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">
+  Basics to Advanced
+</div>
+
+  </div>
+
+  <div class="card"
+    style="min-width: 160px; background: var(--card-subtle); border-left: 4px solid #f43f5e; cursor: pointer;"
+    onclick="showToast('Opening Challenge Mode...')">
+
+<div style="font-size: 0.7rem; font-weight: 800; color: #f43f5e; text-transform: uppercase;">
+  Challenge
+</div>
+
+<div style="font-weight: 800; font-size: 0.9rem; margin-top: 4px;">
+  Advanced Challenge
+</div>
+
+<div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">
+  Multi-Concept
+</div>
+
+  </div>
+
+  <div class="card"
+    style="min-width: 160px; background: var(--card-subtle); border-left: 4px solid #10b981; cursor: pointer;"
+    onclick="showToast('Opening Speed Practice...')">
+
+<div style="font-size: 0.7rem; font-weight: 800; color: #10b981; text-transform: uppercase;">
+  Speed Drill
+</div>
+
+<div style="font-weight: 800; font-size: 0.9rem; margin-top: 4px;">
+  Rapid Practice
+</div>
+
+<div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;">
+  Accuracy + Time
+</div>
+
+  </div>
+
+</div>
+
     </main>
 
  <!-- VIEW 4: PDF MATERIALS (UPGRADED UI WITH MATCHING STYLING & DIRECT ACTIONS) -->
@@ -919,7 +1000,7 @@
 <button
   type="button"
   data-tab="notes"
-  onclick="geniqSidebarTab('notes')"
+  onclick="switchTab('notes')"
 >
   <span class="geniq-nav-icon">
     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -1010,6 +1091,7 @@
   <script src="theme.js"></script>
   <script src="sidebar.js"></script>
   <script src="notepad.js"></script>
+  <script src="version.js"></script>
 
 </body>
 

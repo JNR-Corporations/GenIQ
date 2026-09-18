@@ -32,15 +32,15 @@ body.dark-theme {
   --primary-hover: #aaaaff;
   --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%);
 
-  --bg-surface: #141b2d;
-  --bg-surface-secondary: #1b2439;
+  --bg-surface: #000000;
+  --bg-surface-secondary: #050505;
   --bg-card-muted: #202a40;
 
   --text-primary: #f4f6ff;
   --text-secondary: #b2bad0;
 
-  --glass-bg: rgba(20, 27, 45, 0.88);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(2, 2, 3, 0.88);
+  --glass-border: rgba(5, 5, 5, 0.08);
 
   --shadow-hover: 0 18px 38px rgba(0, 0, 0, 0.35);
 }

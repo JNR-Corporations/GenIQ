@@ -1,548 +1,1623 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Primary Meta Tags -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>404 - Page Not Found | GENIQ</title>
 
-  <meta name="description" content="The page you requested could not be found. Return to GENIQ homepage.">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+  >
+
   <meta name="theme-color" id="metaThemeColor" content="#f8fafc">
   <meta name="color-scheme" content="light dark">
 
-  <!-- Google Fonts -->
+  <meta
+    name="description"
+    content="GENIQ — The page you are looking for could not be found."
+  >
+
+  <title>404 — Page Not Found | GENIQ</title>
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- CENTRAL GENIQ THEME SYSTEM -->
+  <script src="theme.js" defer></script>
 
   <style>
-    /* ==========================================================================
-       ULTRA GLASSMORPHIC DESIGN SYSTEM (ENHANCED)
-       ========================================================================== */
+    /* =========================================================
+       GENIQ 404 — PREMIUM GLASS SYSTEM
+       Theme colors are controlled by theme.js
+       ========================================================= */
+
     :root {
       --bg-main: #f8fafc;
-      --card-bg: rgba(255, 255, 255, 0.85);
-      --card-subtle: #f1f5f9;
-      --card-glass: rgba(255, 255, 255, 0.75);
+
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-strong: rgba(255, 255, 255, 0.92);
+      --surface-soft: rgba(241, 245, 249, 0.72);
+
       --text-main: #0f172a;
-      --text-sub: #64748b;
+      --text-secondary: #64748b;
       --text-muted: #94a3b8;
 
       --primary: #4f46e5;
-      --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-      --primary-light: #eef2ff;
-      --glow-color: rgba(79, 70, 229, 0.25);
+      --primary-2: #7c3aed;
 
-      --border-color: rgba(226, 232, 240, 0.8);
-      --radius-xl: 32px;
+      --gradient:
+        linear-gradient(
+          135deg,
+          #4f46e5 0%,
+          #6366f1 45%,
+          #7c3aed 100%
+        );
+
+      --border: rgba(226, 232, 240, 0.82);
+
+      --glow: rgba(79, 70, 229, 0.22);
+      --glow-strong: rgba(99, 102, 241, 0.34);
+
+      --shadow:
+        0 30px 80px rgba(15, 23, 42, 0.12);
+
+      --shadow-small:
+        0 8px 30px rgba(15, 23, 42, 0.07);
+
+      --radius-xl: 34px;
       --radius-lg: 24px;
-      --radius-md: 16px;
+      --radius-md: 17px;
 
-      --shadow-sm: 0 4px 16px rgba(15, 23, 42, 0.04);
-      --shadow-lg: 0 24px 48px rgba(15, 23, 42, 0.1);
+      --font-main:
+        "Plus Jakarta Sans",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
 
-      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --font-mono:
+        "JetBrains Mono",
+        monospace;
+
+      --transition:
+        0.32s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+
+    /* =========================================================
+       DARK THEME
+       theme.js only adds .dark-theme
+       ========================================================= */
 
     body.dark-theme {
       --bg-main: #070a12;
-      --card-bg: rgba(18, 25, 41, 0.85);
-      --card-subtle: #1a2336;
-      --card-glass: rgba(18, 25, 41, 0.75);
+
+      --surface: rgba(18, 25, 41, 0.78);
+      --surface-strong: rgba(18, 25, 41, 0.92);
+      --surface-soft: rgba(26, 35, 54, 0.72);
+
       --text-main: #f8fafc;
-      --text-sub: #94a3b8;
+      --text-secondary: #94a3b8;
       --text-muted: #64748b;
 
       --primary: #6366f1;
-      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      --primary-light: rgba(30, 27, 75, 0.6);
-      --glow-color: rgba(99, 102, 241, 0.35);
+      --primary-2: #a855f7;
 
-      --border-color: rgba(255, 255, 255, 0.1);
-      --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.5);
+      --gradient:
+        linear-gradient(
+          135deg,
+          #6366f1 0%,
+          #818cf8 45%,
+          #a855f7 100%
+        );
+
+      --border: rgba(255, 255, 255, 0.095);
+
+      --glow: rgba(99, 102, 241, 0.25);
+      --glow-strong: rgba(129, 92, 246, 0.4);
+
+      --shadow:
+        0 30px 90px rgba(0, 0, 0, 0.48);
+
+      --shadow-small:
+        0 8px 30px rgba(0, 0, 0, 0.28);
     }
 
-    * {
+
+    /* =========================================================
+       RESET
+       ========================================================= */
+
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
-      user-select: none;
     }
 
-    html, body {
+
+    html,
+    body {
+      width: 100%;
       height: 100%;
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      font-family: var(--font-main);
-      overflow: hidden;
-      transition: background-color 0.4s ease, color 0.4s ease;
+      min-height: 100%;
     }
+
+
+    html {
+      background: var(--bg-main);
+    }
+
 
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
       position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+
+      padding:
+        calc(76px + env(safe-area-inset-top))
+        18px
+        calc(18px + env(safe-area-inset-bottom));
+
+      background: var(--bg-main);
+      color: var(--text-main);
+
+      font-family: var(--font-main);
+
+      transition:
+        background-color 0.4s ease,
+        color 0.4s ease;
     }
 
-    /* Interactive Background Glow & Floating Orbs */
-    .bg-glow {
-      position: absolute;
-      width: 450px;
-      height: 450px;
-      background: var(--primary-gradient);
-      filter: blur(160px);
-      opacity: 0.22;
-      border-radius: 50%;
-      z-index: 0;
-      pointer-events: none;
-      transition: transform 0.2s ease-out;
+
+    button,
+    a {
+      font: inherit;
     }
 
-    .ambient-orb {
-      position: absolute;
-      width: 250px;
-      height: 250px;
-      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-      filter: blur(90px);
-      opacity: 0.15;
-      border-radius: 50%;
-      z-index: 0;
-      pointer-events: none;
-      animation: orbFloat 10s infinite alternate ease-in-out;
+
+    button {
+      border: 0;
     }
 
-    @keyframes orbFloat {
-      0% { transform: translate(-30px, -30px); }
-      100% { transform: translate(30px, 30px); }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    /* Header Bar */
-    .app-header {
+
+    /* =========================================================
+       BACKGROUND
+       ========================================================= */
+
+    .page-background {
       position: fixed;
+      inset: 0;
+
+      overflow: hidden;
+
+      pointer-events: none;
+
+      z-index: 0;
+    }
+
+
+    .grid {
+      position: absolute;
+      inset: 0;
+
+      background-image:
+        linear-gradient(
+          rgba(100, 116, 139, 0.055) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(100, 116, 139, 0.055) 1px,
+          transparent 1px
+        );
+
+      background-size: 38px 38px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          transparent,
+          black 20%,
+          black 80%,
+          transparent
+        );
+
+      opacity: 0.55;
+    }
+
+
+    body.dark-theme .grid {
+      opacity: 0.25;
+    }
+
+
+    .orb {
+      position: absolute;
+
+      width: 420px;
+      height: 420px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          var(--primary) 0%,
+          transparent 68%
+        );
+
+      filter: blur(90px);
+
+      opacity: 0.12;
+
+      animation:
+        floatingOrb 11s ease-in-out infinite alternate;
+    }
+
+
+    .orb.one {
+      top: -190px;
+      left: -150px;
+    }
+
+
+    .orb.two {
+      right: -190px;
+      bottom: -190px;
+
+      width: 480px;
+      height: 480px;
+
+      animation-delay: -4s;
+    }
+
+
+    .orb.three {
+      top: 35%;
+      left: 50%;
+
+      width: 260px;
+      height: 260px;
+
+      transform: translate(-50%, -50%);
+
+      opacity: 0.06;
+
+      animation-delay: -7s;
+    }
+
+
+    @keyframes floatingOrb {
+      from {
+        transform: translate3d(-20px, -10px, 0) scale(1);
+      }
+
+      to {
+        transform: translate3d(24px, 25px, 0) scale(1.08);
+      }
+    }
+
+
+    /* =========================================================
+       TOP BAR
+       ========================================================= */
+
+    .topbar {
+      position: fixed;
+
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
-      height: calc(64px + env(safe-area-inset-top));
-      padding: env(safe-area-inset-top) 24px 0 24px;
+
+      z-index: 50;
+
+      height:
+        calc(70px + env(safe-area-inset-top));
+
+      padding:
+        env(safe-area-inset-top)
+        18px
+        0;
+
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      background: var(--card-glass);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid var(--border-color);
+
+      border-bottom: 1px solid var(--border);
+
+      background: var(--surface);
+
+      backdrop-filter:
+        blur(24px)
+        saturate(180%);
+
+      -webkit-backdrop-filter:
+        blur(24px)
+        saturate(180%);
+
+      transition:
+        background-color 0.4s ease,
+        border-color 0.4s ease;
     }
 
-    .brand-logo {
-      display: flex;
+
+    .brand {
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 1.2rem;
+      gap: 11px;
+
+      font-size: 1rem;
+      font-weight: 900;
+
       letter-spacing: -0.5px;
-      background: var(--primary-gradient);
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-decoration: none;
-      transition: transform 0.2s ease;
+
+      color: var(--text-main);
     }
 
-    .brand-logo:hover { transform: scale(1.03); }
 
-    .brand-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: var(--primary-gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      box-shadow: 0 4px 14px var(--glow-color);
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 13px;
+
+      background: var(--gradient);
+
+      color: #fff;
+
+      box-shadow:
+        0 8px 22px var(--glow);
     }
 
-    .user-pill {
-      display: flex;
+
+    .brand-mark svg {
+      width: 21px;
+      height: 21px;
+    }
+
+
+    .brand-name span {
+      color: var(--primary);
+    }
+
+
+    /* =========================================================
+       THEME BUTTON
+       theme.js controls it
+       ========================================================= */
+
+    #themeBtn {
+      min-height: 40px;
+
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--primary-light);
-      padding: 6px 14px 6px 8px;
+
+      padding: 6px 12px 6px 7px;
+
       border-radius: 22px;
+
+      background: var(--surface-soft);
+
+      border: 1px solid var(--border);
+
+      color: var(--text-secondary);
+
       cursor: pointer;
-      border: 1px solid var(--border-color);
-      transition: var(--transition);
+
+      transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        background-color 0.35s ease;
     }
 
-    .user-pill:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px var(--glow-color);
+
+    #themeBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-small);
     }
 
-    .user-pill:active { transform: scale(0.96); }
 
-    .user-pill-icon {
-      width: 24px;
-      height: 24px;
+    #themeBtn:active {
+      transform: scale(0.96);
+    }
+
+
+    #themeIconWrap {
+      width: 27px;
+      height: 27px;
+
+      display: grid;
+      place-items: center;
+
       border-radius: 50%;
-      background: var(--primary-gradient);
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+      background: var(--gradient);
+
+      color: #fff;
     }
 
-    .user-pill-name {
-      font-size: 0.8rem;
+
+    #themeIcon {
+      width: 14px;
+      height: 14px;
+    }
+
+
+    #themeLabel {
+      font-size: 0.72rem;
       font-weight: 800;
-      color: var(--primary);
+
+      white-space: nowrap;
     }
 
-    /* Central Card */
-    .card-404 {
+
+    /* =========================================================
+       MAIN CARD
+       ========================================================= */
+
+    .error-shell {
       position: relative;
       z-index: 10;
-      width: 100%;
-      max-width: 440px;
-      background: var(--card-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--border-color);
+
+      width: min(100%, 500px);
+
+      animation:
+        shellIn 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+
+    @keyframes shellIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+
+    .error-card {
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 34px 25px 24px;
+
+      border:
+        1px solid var(--border);
+
       border-radius: var(--radius-xl);
-      padding: 40px 28px;
-      box-shadow: var(--shadow-lg);
+
+      background: var(--surface);
+
+      backdrop-filter:
+        blur(28px)
+        saturate(180%);
+
+      -webkit-backdrop-filter:
+        blur(28px)
+        saturate(180%);
+
+      box-shadow: var(--shadow);
+
       text-align: center;
-      animation: cardEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+      transition:
+        background-color 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
     }
 
-    @keyframes cardEntrance {
-      from { opacity: 0; transform: translateY(20px) scale(0.96); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+
+    .error-card::before {
+      content: "";
+
+      position: absolute;
+
+      top: -150px;
+      left: 50%;
+
+      width: 330px;
+      height: 250px;
+
+      transform: translateX(-50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          var(--glow-strong),
+          transparent 68%
+        );
+
+      filter: blur(20px);
+
+      opacity: 0.45;
+
+      pointer-events: none;
     }
 
-    /* Floating Icon Badge */
-    .icon-badge {
-      width: 68px;
-      height: 68px;
-      margin: 0 auto 20px auto;
-      border-radius: 22px;
-      background: var(--primary-light);
-      border: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+    .card-content {
+      position: relative;
+      z-index: 2;
+    }
+
+
+    /* =========================================================
+       404 ICON
+       ========================================================= */
+
+    .status-icon {
+      width: 72px;
+      height: 72px;
+
+      margin: 0 auto 19px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 23px;
+
+      background: var(--surface-soft);
+
+      border: 1px solid var(--border);
+
       color: var(--primary);
-      box-shadow: 0 8px 24px var(--glow-color);
-      animation: floatBadge 4s ease-in-out infinite;
+
+      box-shadow:
+        0 14px 34px var(--glow);
+
+      animation:
+        iconFloat 4s ease-in-out infinite;
     }
 
-    @keyframes floatBadge {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+
+    .status-icon svg {
+      width: 33px;
+      height: 33px;
+
+      stroke: currentColor;
+      stroke-width: 1.8;
+
+      fill: none;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
+
+
+    @keyframes iconFloat {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+
+    /* =========================================================
+       ERROR CODE
+       ========================================================= */
 
     .error-code {
+      margin-bottom: 7px;
+
       font-family: var(--font-mono);
-      font-size: 4.8rem;
+
+      font-size:
+        clamp(4rem, 18vw, 6rem);
+
       font-weight: 800;
-      line-height: 1;
-      letter-spacing: -2px;
-      background: var(--primary-gradient);
+
+      line-height: 0.95;
+
+      letter-spacing: -0.08em;
+
+      background: var(--gradient);
+
       background-clip: text;
       -webkit-background-clip: text;
+
+      color: transparent;
+
       -webkit-text-fill-color: transparent;
-      margin-bottom: 12px;
-      text-shadow: 0 10px 30px var(--glow-color);
+
+      filter:
+        drop-shadow(
+          0 13px 26px var(--glow)
+        );
     }
+
 
     .error-title {
-      font-size: 1.4rem;
-      font-weight: 800;
+      margin-bottom: 10px;
+
+      font-size: clamp(1.35rem, 5vw, 1.65rem);
+
+      font-weight: 900;
+
+      letter-spacing: -0.7px;
+
       color: var(--text-main);
-      margin-bottom: 8px;
-      letter-spacing: -0.3px;
     }
 
-    .error-desc {
-      font-size: 0.88rem;
-      color: var(--text-sub);
-      line-height: 1.6;
-      margin-bottom: 28px;
+
+    .error-description {
+      max-width: 390px;
+
+      margin: 0 auto 23px;
+
+      font-size: 0.84rem;
+
+      line-height: 1.65;
+
+      color: var(--text-secondary);
     }
 
-    /* Buttons Group */
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+
+    /* =========================================================
+       LOCATION CHIP
+       ========================================================= */
+
+    .location-chip {
+      width: fit-content;
+
+      margin: 0 auto 21px;
+
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 7px 11px;
+
+      border-radius: 20px;
+
+      background: var(--surface-soft);
+
+      border: 1px solid var(--border);
+
+      color: var(--text-muted);
+
+      font-family: var(--font-mono);
+
+      font-size: 0.67rem;
+      font-weight: 700;
     }
 
-    .btn-pill {
+
+    .location-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--primary);
+
+      box-shadow:
+        0 0 0 4px var(--glow);
+    }
+
+
+    /* =========================================================
+       ACTIONS
+       ========================================================= */
+
+    .actions {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 10px;
+    }
+
+
+    .action {
+      min-height: 49px;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 14px 20px;
-      border-radius: 26px;
-      font-size: 0.88rem;
+      gap: 8px;
+
+      padding: 12px 14px;
+
+      border-radius: var(--radius-md);
+
+      font-size: 0.78rem;
       font-weight: 800;
-      border: none;
+
       cursor: pointer;
-      transition: var(--transition);
-      width: 100%;
-      text-decoration: none;
+
+      transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        background-color 0.35s ease;
     }
 
-    .btn-pill:hover {
+
+    .action svg {
+      width: 17px;
+      height: 17px;
+
+      flex: 0 0 auto;
+
+      stroke: currentColor;
+      stroke-width: 2.1;
+
+      fill: none;
+
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+
+    .action-primary {
+      color: #fff;
+
+      background: var(--gradient);
+
+      box-shadow:
+        0 9px 24px var(--glow);
+    }
+
+
+    .action-secondary {
+      color: var(--text-main);
+
+      background: var(--surface-soft);
+
+      border: 1px solid var(--border);
+    }
+
+
+    .action:hover {
       transform: translateY(-2px);
     }
 
-    .btn-pill:active { transform: translateY(0) scale(0.98); }
 
-    .btn-primary {
-      background: var(--primary-gradient);
-      color: #ffffff;
-      box-shadow: 0 6px 20px var(--glow-color);
+    .action-primary:hover {
+      box-shadow:
+        0 13px 32px var(--glow-strong);
     }
 
-    .btn-primary:hover {
-      box-shadow: 0 10px 28px var(--glow-color);
+
+    .action:active {
+      transform: scale(0.97);
     }
 
-    .btn-outline {
-      background: var(--card-subtle);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
+
+    /* =========================================================
+       REDIRECT PANEL
+       ========================================================= */
+
+    .redirect-panel {
+      margin-top: 18px;
+
+      padding: 13px;
+
+      border-radius: var(--radius-lg);
+
+      background: var(--surface-soft);
+
+      border: 1px solid var(--border);
+
+      text-align: left;
     }
 
-    .btn-outline:hover {
-      background: var(--border-color);
-    }
 
-    /* Redirect Timer Badge & Progress Bar */
-    .timer-badge-wrap {
-      margin-top: 24px;
+    .redirect-top {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 8px;
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-bottom: 9px;
     }
 
-    .timer-badge {
-      display: inline-flex;
+
+    .redirect-info {
+      display: flex;
       align-items: center;
       gap: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text-sub);
-      background: var(--card-subtle);
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1px solid var(--border-color);
+
+      min-width: 0;
     }
 
-    .timer-badge span {
+
+    .redirect-icon {
+      width: 28px;
+      height: 28px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 9px;
+
+      background: var(--surface-strong);
+
       color: var(--primary);
+
+      border: 1px solid var(--border);
+
+      flex: 0 0 auto;
+    }
+
+
+    .redirect-icon svg {
+      width: 15px;
+      height: 15px;
+
+      stroke: currentColor;
+      stroke-width: 2;
+
+      fill: none;
+    }
+
+
+    .redirect-text {
+      font-size: 0.7rem;
+      font-weight: 700;
+
+      color: var(--text-secondary);
+    }
+
+
+    #countdown {
+      color: var(--primary);
+
+      font-family: var(--font-mono);
+
       font-weight: 800;
     }
 
-    .pause-btn {
-      background: none;
-      border: none;
+
+    #pauseBtn {
+      padding: 5px 7px;
+
+      background: transparent;
+
       color: var(--text-muted);
-      font-size: 0.75rem;
-      font-weight: 700;
+
+      font-size: 0.66rem;
+      font-weight: 800;
+
       cursor: pointer;
-      text-decoration: underline;
-      transition: var(--transition);
+
+      border-radius: 7px;
+
+      transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
     }
 
-    .pause-btn:hover { color: var(--primary); }
 
-    .progress-bar-container {
+    #pauseBtn:hover {
+      color: var(--primary);
+      background: var(--surface-strong);
+    }
+
+
+    .progress-track {
       width: 100%;
-      height: 4px;
-      background: var(--card-subtle);
-      border-radius: 4px;
+      height: 5px;
+
       overflow: hidden;
-      margin-top: 4px;
+
+      border-radius: 10px;
+
+      background: var(--surface-strong);
+
+      border: 1px solid var(--border);
     }
 
-    .progress-bar {
-      height: 100%;
+
+    #progressBar {
       width: 100%;
-      background: var(--primary-gradient);
-      transition: width 1s linear;
+      height: 100%;
+
+      border-radius: inherit;
+
+      background: var(--gradient);
+
+      transform-origin: left center;
+
+      transition:
+        width 1s linear;
     }
 
-    /* SVG Icon Style */
-    .svg-icon {
-      width: 18px;
-      height: 18px;
-      stroke: currentColor;
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    .footer {
+      margin-top: 15px;
+
+      text-align: center;
+
+      color: var(--text-muted);
+
+      font-size: 0.61rem;
+
+      font-weight: 700;
+    }
+
+
+    .footer strong {
+      color: var(--primary);
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (min-width: 700px) {
+      body {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .topbar {
+        padding-left: 28px;
+        padding-right: 28px;
+      }
+
+      .error-card {
+        padding:
+          42px
+          34px
+          27px;
+      }
+    }
+
+
+    @media (max-height: 680px) {
+      body {
+        align-items: flex-start;
+
+        overflow-y: auto;
+
+        padding-top:
+          calc(82px + env(safe-area-inset-top));
+      }
+
+      .error-card {
+        margin-bottom: 20px;
+      }
+
+      .status-icon {
+        width: 60px;
+        height: 60px;
+
+        margin-bottom: 13px;
+      }
+
+      .error-code {
+        font-size: 4rem;
+      }
+
+      .error-description {
+        margin-bottom: 16px;
+      }
+
+      .location-chip {
+        margin-bottom: 15px;
+      }
+
+      .redirect-panel {
+        margin-top: 13px;
+      }
+    }
+
+
+    @media (max-width: 380px) {
+      .topbar {
+        padding-left: 13px;
+        padding-right: 13px;
+      }
+
+      .brand {
+        font-size: 0.9rem;
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+      }
+
+      #themeLabel {
+        display: none;
+      }
+
+      #themeBtn {
+        padding-right: 7px;
+      }
+
+      .error-card {
+        padding:
+          29px
+          16px
+          20px;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .action {
+        min-height: 46px;
+      }
+    }
+
+
+    /* =========================================================
+       ACCESSIBILITY
+       ========================================================= */
+
+    :focus-visible {
+      outline:
+        3px solid var(--glow-strong);
+
+      outline-offset: 3px;
+    }
+
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 
+
 <body>
 
-  <!-- Ambient Glow Elements -->
-  <div class="bg-glow" id="bgGlow"></div>
-  <div class="ambient-orb"></div>
+  <!-- =======================================================
+       BACKGROUND
+       ======================================================= -->
 
-  <!-- Header -->
-  <header class="app-header">
-    <a href="index.html" class="brand-logo" aria-label="GENIQ Homepage">
-      <div class="brand-icon">
-        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      </div>
-      GENIQ
+  <div class="page-background" aria-hidden="true">
+    <div class="grid"></div>
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+  </div>
+
+
+  <!-- =======================================================
+       TOP BAR
+       ======================================================= -->
+
+  <header class="topbar">
+
+    <a
+      class="brand"
+      href="index.html"
+      aria-label="GENIQ Homepage"
+    >
+
+      <span class="brand-mark">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M12 2L2 7l10 5 10-5-10-5Z"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linejoin="round"
+          />
+
+          <path
+            d="M2 17l10 5 10-5"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <path
+            d="M2 12l10 5 10-5"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+      </span>
+
+      <span class="brand-name">
+        GEN<span>IQ</span>
+      </span>
+
     </a>
 
-    <div class="user-pill" onclick="toggleTheme()" role="button" aria-label="Toggle Theme">
-      <div class="user-pill-icon" id="themeIcon">
-        <!-- Sun/Moon SVG swapped via JS -->
-      </div>
-      <span class="user-pill-name" id="themeLabel">Light UI</span>
-    </div>
+
+    <!--
+      IMPORTANT:
+      theme.js controls this button.
+      No independent theme manager exists in this page.
+    -->
+
+    <button
+      id="themeBtn"
+      type="button"
+      aria-label="Switch theme"
+    >
+
+      <span id="themeIconWrap">
+        <svg
+          id="themeIcon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        ></svg>
+      </span>
+
+      <span id="themeLabel">
+        Theme
+      </span>
+
+    </button>
+
   </header>
 
-  <!-- Central Card -->
-  <main class="card-404">
-    <div class="icon-badge">
-      <svg class="svg-icon" style="width: 32px; height: 32px;" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="12" y1="8" x2="12" y2="12"></line>
-        <line x1="12" y1="16" x2="12.01" y2="16"></line>
-      </svg>
-    </div>
 
-    <div class="error-code">404</div>
-    <h1 class="error-title">Page Not Found</h1>
-    <p class="error-desc">
-      The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
-    </p>
+  <!-- =======================================================
+       MAIN
+       ======================================================= -->
 
-    <div class="btn-group">
-      <a href="index.html" class="btn-pill btn-primary">
-        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        Return to Homepage
-      </a>
-      <button onclick="goBackSafe()" class="btn-pill btn-outline">
-        <svg class="svg-icon" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        Go Back
-      </button>
-    </div>
+  <main class="error-shell">
 
-    <div class="timer-badge-wrap">
-      <div class="timer-badge">
-        <svg class="svg-icon" style="width:14px; height:14px;" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        Auto-redirecting in <span id="countdown">10</span>s
+    <section
+      class="error-card"
+      aria-labelledby="errorTitle"
+    >
+
+      <div class="card-content">
+
+        <!-- Status -->
+        <div
+          class="status-icon"
+          aria-hidden="true"
+        >
+
+          <svg viewBox="0 0 24 24">
+
+            <circle
+              cx="12"
+              cy="12"
+              r="9.5"
+            />
+
+            <path
+              d="M12 7.5v5"
+            />
+
+            <path
+              d="M12 16.5h.01"
+            />
+
+          </svg>
+
+        </div>
+
+
+        <!-- Error Code -->
+        <div
+          class="error-code"
+          aria-label="Error 404"
+        >
+          404
+        </div>
+
+
+        <!-- Heading -->
+        <h1
+          class="error-title"
+          id="errorTitle"
+        >
+          Page Not Found
+        </h1>
+
+
+        <!-- Description -->
+        <p class="error-description">
+          The page you're looking for doesn't exist,
+          may have moved, or is temporarily unavailable.
+        </p>
+
+
+        <!-- Location -->
+        <div class="location-chip">
+
+          <span
+            class="location-dot"
+            aria-hidden="true"
+          ></span>
+
+          GENIQ / ERROR_404
+
+        </div>
+
+
+        <!-- Actions -->
+        <div class="actions">
+
+          <a
+            href="index.html"
+            class="action action-primary"
+          >
+
+            <svg viewBox="0 0 24 24">
+
+              <path
+                d="M3 10.5 12 3l9 7.5"
+              />
+
+              <path
+                d="M5 9.5V21h14V9.5"
+              />
+
+              <path
+                d="M9 21v-6h6v6"
+              />
+
+            </svg>
+
+            Homepage
+
+          </a>
+
+
+          <button
+            type="button"
+            class="action action-secondary"
+            id="backBtn"
+          >
+
+            <svg viewBox="0 0 24 24">
+
+              <path d="M19 12H5" />
+
+              <path d="m12 19-7-7 7-7" />
+
+            </svg>
+
+            Go Back
+
+          </button>
+
+        </div>
+
+
+        <!-- Redirect -->
+        <div
+          class="redirect-panel"
+          aria-live="polite"
+        >
+
+          <div class="redirect-top">
+
+            <div class="redirect-info">
+
+              <span
+                class="redirect-icon"
+                aria-hidden="true"
+              >
+
+                <svg viewBox="0 0 24 24">
+
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9"
+                  />
+
+                  <path d="M12 7v5l3 2" />
+
+                </svg>
+
+              </span>
+
+              <span class="redirect-text">
+                Returning to GENIQ in
+                <span id="countdown">10</span>s
+              </span>
+
+            </div>
+
+
+            <button
+              type="button"
+              id="pauseBtn"
+              aria-label="Pause automatic redirect"
+            >
+              Pause
+            </button>
+
+          </div>
+
+
+          <div
+            class="progress-track"
+            aria-hidden="true"
+          >
+
+            <div
+              id="progressBar"
+            ></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="footer">
+          Built for <strong>GENIQ</strong> · JNR Corporations
+        </div>
+
       </div>
-      <div class="progress-bar-container">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-      <button class="pause-btn" id="pauseBtn" onclick="togglePause()">Pause Redirect</button>
-    </div>
+
+    </section>
+
   </main>
 
+
+  <!-- =======================================================
+       PAGE LOGIC
+       Theme logic intentionally NOT included here.
+       theme.js remains the single source of truth.
+       ======================================================= -->
+
   <script>
-    // 1. Interactive Background Mouse Tracking
-    const glow = document.getElementById('bgGlow');
-    document.addEventListener('mousemove', (e) => {
-      const x = (e.clientX - window.innerWidth / 2) * 0.15;
-      const y = (e.clientY - window.innerHeight / 2) * 0.15;
-      glow.style.transform = `translate(${x}px, ${y}px)`;
-    });
+    (() => {
+      "use strict";
 
-    // 2. Theme Manager (System Pref + LocalStorage Sync)
-    const sunIcon = `<svg class="svg-icon" style="width:14px; height:14px;" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>`;
-    const moonIcon = `<svg class="svg-icon" style="width:14px; height:14px;" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+      /* -------------------------------------------------------
+         Safe Back Navigation
+         ------------------------------------------------------- */
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const savedTheme = localStorage.getItem("geniq_theme") || (systemPrefersDark ? "dark" : "light");
-      applyTheme(savedTheme);
+      const backButton =
+        document.getElementById("backBtn");
 
-      window.addEventListener("storage", (e) => {
-        if (e.key === "geniq_theme") applyTheme(e.newValue);
-      });
-    });
+      if (backButton) {
+        backButton.addEventListener("click", () => {
 
-    function applyTheme(theme) {
-      const themeLabel = document.getElementById("themeLabel");
-      const themeIcon = document.getElementById("themeIcon");
-      const metaThemeColor = document.getElementById("metaThemeColor");
+          if (window.history.length > 1) {
+            window.history.back();
+          } else {
+            window.location.href = "index.html";
+          }
 
-      if (theme === "dark") {
-        document.body.classList.add("dark-theme");
-        if(themeLabel) themeLabel.textContent = "Dark UI";
-        if(themeIcon) themeIcon.innerHTML = sunIcon;
-        if(metaThemeColor) metaThemeColor.setAttribute("content", "#070a12");
-      } else {
-        document.body.classList.remove("dark-theme");
-        if(themeLabel) themeLabel.textContent = "Light UI";
-        if(themeIcon) themeIcon.innerHTML = moonIcon;
-        if(metaThemeColor) metaThemeColor.setAttribute("content", "#f8fafc");
+        });
       }
-      localStorage.setItem("geniq_theme", theme);
-    }
 
-    function toggleTheme() {
-      const isDark = document.body.classList.contains("dark-theme");
-      applyTheme(isDark ? "light" : "dark");
-    }
 
-    // 3. Safe Back Navigation Guard
-    function goBackSafe() {
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = 'index.html';
+      /* -------------------------------------------------------
+         Redirect Timer
+         ------------------------------------------------------- */
+
+      const countdown =
+        document.getElementById("countdown");
+
+      const progress =
+        document.getElementById("progressBar");
+
+      const pauseButton =
+        document.getElementById("pauseBtn");
+
+
+      const TOTAL_SECONDS = 10;
+
+      let remaining = TOTAL_SECONDS;
+      let paused = false;
+
+
+      function updateTimer() {
+
+        if (countdown) {
+          countdown.textContent =
+            String(Math.max(remaining, 0));
+        }
+
+
+        if (progress) {
+          const percentage =
+            (remaining / TOTAL_SECONDS) * 100;
+
+          progress.style.width =
+            `${Math.max(percentage, 0)}%`;
+        }
+
       }
-    }
 
-    // 4. Countdown Engine with Progress Bar & Pause Option
-    let seconds = 10;
-    const totalSeconds = 10;
-    let isPaused = false;
-    const countdownElem = document.getElementById('countdown');
-    const progressBar = document.getElementById('progressBar');
-    const pauseBtn = document.getElementById('pauseBtn');
 
-    const timer = setInterval(() => {
-      if (isPaused) return;
-
-      seconds--;
-      if (countdownElem) countdownElem.textContent = seconds;
-      if (progressBar) progressBar.style.width = `${(seconds / totalSeconds) * 100}%`;
-      
-      if (seconds <= 0) {
-        clearInterval(timer);
-        window.location.href = 'index.html';
+      function redirectHome() {
+        window.location.href = "index.html";
       }
-    }, 1000);
 
-    function togglePause() {
-      isPaused = !isPaused;
-      if (pauseBtn) {
-        pauseBtn.textContent = isPaused ? "Resume Redirect" : "Pause Redirect";
-        pauseBtn.style.color = isPaused ? "var(--primary)" : "var(--text-muted)";
+
+      const timer =
+        window.setInterval(() => {
+
+          if (paused) {
+            return;
+          }
+
+          remaining -= 1;
+
+          updateTimer();
+
+
+          if (remaining <= 0) {
+
+            window.clearInterval(timer);
+
+            redirectHome();
+
+          }
+
+        }, 1000);
+
+
+      if (pauseButton) {
+
+        pauseButton.addEventListener("click", () => {
+
+          paused = !paused;
+
+
+          if (paused) {
+
+            pauseButton.textContent =
+              "Resume";
+
+            pauseButton.setAttribute(
+              "aria-label",
+              "Resume automatic redirect"
+            );
+
+          } else {
+
+            pauseButton.textContent =
+              "Pause";
+
+            pauseButton.setAttribute(
+              "aria-label",
+              "Pause automatic redirect"
+            );
+
+          }
+
+        });
+
       }
-    }
+
+
+      /* -------------------------------------------------------
+         Subtle Pointer Interaction
+         ------------------------------------------------------- */
+
+      const card =
+        document.querySelector(".error-card");
+
+      const backgroundOrb =
+        document.querySelector(".orb.three");
+
+
+      if (
+        card &&
+        backgroundOrb &&
+        window.matchMedia("(pointer: fine)").matches
+      ) {
+
+        let frame = null;
+
+
+        document.addEventListener(
+          "pointermove",
+          (event) => {
+
+            if (frame) {
+              cancelAnimationFrame(frame);
+            }
+
+
+            frame =
+              requestAnimationFrame(() => {
+
+                const x =
+                  (event.clientX /
+                    window.innerWidth -
+                    0.5) * 10;
+
+                const y =
+                  (event.clientY /
+                    window.innerHeight -
+                    0.5) * 10;
+
+
+                card.style.transform =
+                  `translate3d(${x * 0.22}px, ${y * 0.22}px, 0)`;
+
+
+                backgroundOrb.style.transform =
+                  `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+
+              });
+
+          }
+        );
+
+
+        document.addEventListener(
+          "pointerleave",
+          () => {
+
+            card.style.transform =
+              "translate3d(0,0,0)";
+
+            backgroundOrb.style.transform =
+              "translate(-50%, -50%)";
+
+          }
+        );
+
+      }
+
+
+      /* -------------------------------------------------------
+         Initial Timer State
+         ------------------------------------------------------- */
+
+      updateTimer();
+
+    })();
   </script>
-</body>
 
+</body>
 </html>
+

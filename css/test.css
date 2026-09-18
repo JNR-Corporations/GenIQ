@@ -1,0 +1,753 @@
+/* =========================================================
+   GENIQ — TEST HUB
+   Premium Responsive UI
+   Android + Desktop
+   ========================================================= */
+
+#view-tests.tests-page {
+  --primary: #4f46e5;
+  --primary-2: #7c3aed;
+  --blue: #2563eb;
+  --green: #059669;
+  --pink: #db2777;
+  --orange: #f59e0b;
+
+  --bg: var(--background, #f7f8fc);
+  --card: var(--card, #ffffff);
+  --text: var(--text, #111827);
+  --muted: var(--text-sub, #6b7280);
+  --border: rgba(15, 23, 42, .08);
+
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+
+/* ================= HERO ================= */
+
+.tests-hero {
+  position: relative;
+  min-height: 315px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 48px 55px;
+  border-radius: 30px;
+
+  background:
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(139, 92, 246, .35),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 15% 110%,
+      rgba(37, 99, 235, .28),
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #1e1b4b 58%,
+      #312e81
+    );
+
+  color: #fff;
+  box-shadow:
+    0 25px 70px rgba(30, 41, 59, .18);
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+}
+
+.hero-label {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .15em;
+  opacity: .7;
+}
+
+.hero-copy h1 {
+  margin: 10px 0 13px;
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  line-height: 1;
+  letter-spacing: -.055em;
+}
+
+.hero-copy h1 span {
+  display: block;
+  background: linear-gradient(90deg, #a5b4fc, #ddd6fe);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-copy p {
+  max-width: 650px;
+  margin: 0;
+  color: rgba(255,255,255,.68);
+  line-height: 1.65;
+  font-size: .9rem;
+}
+
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 22px;
+}
+
+.hero-pills span {
+  padding: 7px 10px;
+  border: 1px solid rgba(255,255,255,.13);
+  border-radius: 999px;
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.8);
+  font-size: .63rem;
+  font-weight: 800;
+  backdrop-filter: blur(10px);
+}
+
+
+/* ================= HERO VISUAL ================= */
+
+.hero-visual {
+  width: 245px;
+  height: 245px;
+  position: relative;
+  flex: 0 0 245px;
+  margin-right: 25px;
+}
+
+.visual-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 50%;
+}
+
+.ring-a {
+  transform: rotate(25deg) scaleY(.45);
+}
+
+.ring-b {
+  transform: rotate(-25deg) scaleY(.45);
+}
+
+.visual-center {
+  position: absolute;
+  inset: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.17);
+  background: rgba(255,255,255,.07);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 0 50px rgba(99,102,241,.2);
+}
+
+.visual-center strong {
+  font-size: 2rem;
+  letter-spacing: -.05em;
+}
+
+.visual-center small {
+  margin-top: 2px;
+  font-size: .55rem;
+  letter-spacing: .15em;
+  opacity: .6;
+}
+
+
+/* ================= SECTION HEADER ================= */
+
+.tests-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin: 35px 2px 17px;
+}
+
+.tests-heading span {
+  color: var(--primary);
+  font-size: .63rem;
+  font-weight: 900;
+  letter-spacing: .13em;
+}
+
+.tests-heading h2 {
+  margin: 5px 0 0;
+  color: var(--text);
+  font-size: 1.45rem;
+  letter-spacing: -.04em;
+}
+
+.section-gap {
+  margin-top: 48px;
+}
+
+
+/* ================= GRID ================= */
+
+.test-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+
+/* ================= CARD ================= */
+
+.test-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 270px;
+  padding: 23px;
+  box-sizing: border-box;
+
+  border: 1px solid var(--border);
+  border-radius: 23px;
+
+  background: var(--card);
+  color: var(--text);
+  text-decoration: none;
+
+  box-shadow:
+    0 7px 30px rgba(15,23,42,.045);
+
+  overflow: hidden;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    border-color .25s ease;
+}
+
+.test-card::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  right: -70px;
+  top: -70px;
+  border-radius: 50%;
+  background: rgba(79,70,229,.08);
+  pointer-events: none;
+}
+
+.test-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(79,70,229,.2);
+  box-shadow:
+    0 18px 45px rgba(15,23,42,.11);
+}
+
+.test-card:active {
+  transform: translateY(-1px);
+}
+
+
+/* ================= CARD TYPES ================= */
+
+.main-card {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(79,70,229,.12),
+      transparent 35%
+    ),
+    var(--card);
+}
+
+.advanced-card {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(124,58,237,.14),
+      transparent 35%
+    ),
+    var(--card);
+}
+
+.physics-card {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(37,99,235,.12),
+      transparent 35%
+    ),
+    var(--card);
+}
+
+.chemistry-card {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(219,39,119,.11),
+      transparent 35%
+    ),
+    var(--card);
+}
+
+.maths-card {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(5,150,105,.11),
+      transparent 35%
+    ),
+    var(--card);
+}
+
+.pyq-card {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(5,150,105,.12),
+      transparent 35%
+    ),
+    var(--card);
+}
+
+.advanced-pyq-card {
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(124,58,237,.13),
+      transparent 35%
+    ),
+    var(--card);
+}
+
+
+/* ================= TOP ================= */
+
+.card-top {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 6px 9px;
+  border-radius: 7px;
+
+  font-size: .58rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+
+.main-badge {
+  color: #4338ca;
+  background: #eef2ff;
+}
+
+.advanced-badge {
+  color: #7c3aed;
+  background: #f3e8ff;
+}
+
+.physics-badge {
+  color: #1d4ed8;
+  background: #eff6ff;
+}
+
+.chemistry-badge {
+  color: #be185d;
+  background: #fce7f3;
+}
+
+.maths-badge {
+  color: #047857;
+  background: #ecfdf5;
+}
+
+.pyq-badge {
+  color: #047857;
+  background: #ecfdf5;
+}
+
+.card-arrow {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+
+  border-radius: 9px;
+  background: rgba(100,116,139,.07);
+  color: var(--muted);
+
+  font-size: .9rem;
+  transition: .2s ease;
+}
+
+.test-card:hover .card-arrow {
+  color: var(--primary);
+  transform: translate(2px,-2px);
+}
+
+
+/* ================= ICONS ================= */
+
+.card-icon {
+  width: 52px;
+  height: 52px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 22px 0 13px;
+
+  border-radius: 15px;
+
+  color: var(--primary);
+  background: rgba(79,70,229,.08);
+
+  font-size: .72rem;
+  font-weight: 950;
+  letter-spacing: .04em;
+}
+
+.subject-symbol {
+  width: 54px;
+  height: 54px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 21px 0 13px;
+
+  border-radius: 16px;
+
+  color: var(--primary);
+  background: rgba(79,70,229,.08);
+
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.chapter-number {
+  width: 45px;
+  height: 45px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 21px 0 14px;
+
+  border-radius: 13px;
+
+  color: var(--primary);
+  background: rgba(79,70,229,.08);
+
+  font-size: .75rem;
+  font-weight: 900;
+}
+
+.special-icon {
+  width: 48px;
+  height: 48px;
+
+  display: grid;
+  place-items: center;
+
+  margin: 21px 0 14px;
+
+  border-radius: 14px;
+
+  color: var(--primary);
+  background: rgba(79,70,229,.08);
+
+  font-size: 1.15rem;
+}
+
+
+/* ================= CONTENT ================= */
+
+.test-card h3 {
+  position: relative;
+  z-index: 1;
+
+  margin: 0;
+
+  font-size: 1.18rem;
+  line-height: 1.25;
+  letter-spacing: -.025em;
+}
+
+.test-card p {
+  position: relative;
+  z-index: 1;
+
+  max-width: 650px;
+
+  margin: 8px 0 0;
+
+  color: var(--muted);
+
+  font-size: .76rem;
+  line-height: 1.65;
+}
+
+
+/* ================= INFO ================= */
+
+.card-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-top: 17px;
+}
+
+.card-info span {
+  padding: 6px 8px;
+
+  border-radius: 7px;
+
+  color: var(--muted);
+  background: rgba(100,116,139,.065);
+
+  font-size: .62rem;
+  font-weight: 750;
+}
+
+.subject-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  margin-top: 17px;
+}
+
+.subject-tags span,
+.level-row span {
+  padding: 6px 8px;
+
+  border-radius: 7px;
+
+  color: var(--muted);
+  background: rgba(100,116,139,.065);
+
+  font-size: .6rem;
+  font-weight: 800;
+}
+
+.level-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 17px;
+}
+
+
+/* ================= FOOTER ================= */
+
+.card-footer {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.card-footer strong {
+  color: var(--primary);
+  font-size: .72rem;
+}
+
+.card-footer span {
+  color: var(--primary);
+  font-size: .95rem;
+  transition: .2s ease;
+}
+
+.test-card:hover .card-footer span {
+  transform: translateX(4px);
+}
+
+
+/* ================= SPECIAL ================= */
+
+.special-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.special-card {
+  min-height: 245px;
+}
+
+.formula-badge {
+  color: #b45309;
+  background: #fffbeb;
+}
+
+.weak-badge {
+  color: #be123c;
+  background: #fff1f2;
+}
+
+.mixed-badge {
+  color: #6d28d9;
+  background: #f5f3ff;
+}
+
+.speed-badge {
+  color: #0369a1;
+  background: #f0f9ff;
+}
+
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1100px) {
+
+  #view-tests.tests-page {
+    padding: 18px;
+  }
+
+  .hero-visual {
+    transform: scale(.82);
+    margin-right: 0;
+  }
+
+  .special-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+/* ================= ANDROID / MOBILE ================= */
+
+@media (max-width: 700px) {
+
+  #view-tests.tests-page {
+    padding: 11px;
+  }
+
+  .tests-hero {
+    min-height: auto;
+    padding: 27px 21px;
+    border-radius: 23px;
+  }
+
+  .hero-copy h1 {
+    font-size: 2rem;
+  }
+
+  .hero-copy p {
+    font-size: .78rem;
+  }
+
+  .hero-visual {
+    display: none;
+  }
+
+  .hero-pills {
+    gap: 5px;
+  }
+
+  .hero-pills span {
+    font-size: .57rem;
+    padding: 6px 8px;
+  }
+
+  .tests-heading {
+    margin-top: 30px;
+  }
+
+  .tests-heading h2 {
+    font-size: 1.2rem;
+  }
+
+  .test-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .special-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .test-card {
+    min-height: 250px;
+    padding: 19px;
+    border-radius: 19px;
+  }
+
+  .test-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .test-card p {
+    font-size: .72rem;
+  }
+
+  .card-info {
+    gap: 5px;
+  }
+
+  .card-info span {
+    font-size: .58rem;
+  }
+
+}
+
+
+/* ================= SMALL PHONES ================= */
+
+@media (max-width: 420px) {
+
+  .special-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tests-hero {
+    padding: 24px 18px;
+  }
+
+  .hero-copy h1 {
+    font-size: 1.8rem;
+  }
+
+  .card-footer strong {
+    font-size: .68rem;
+  }
+
+}
+
+
+/* ================= REDUCED MOTION ================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .test-card,
+  .card-arrow,
+  .card-footer span {
+    transition: none;
+  }
+
+  .test-card:hover {
+    transform: none;
+  }
+
+}
