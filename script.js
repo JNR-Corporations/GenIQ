@@ -34448,7 +34448,7 @@ R<sub>min</sub> = 0
                             <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                         </div>
                         <div>
-                            <div style="font-size:0.92rem; font-weight:800; color:var(--text-main);">${n.title}</div>
+                            <div style="font-size:0.92rem; font-weight:800; color:var(--text-main-sub);">${n.title}</div>
                             <div style="font-size:0.72rem; color:var(--text-sub); margin-top:2px;">${n.desc}</div>
                         </div>
                     </div>
@@ -34476,7 +34476,7 @@ R<sub>min</sub> = 0
         const header = document.getElementById('subCardsHeaderCard');
         header.innerHTML = `
                     <span style="font-size:0.68rem; font-weight:800; color:var(--primary); text-transform:uppercase;">${subject} • CLASS ${chapter.class}</span>
-                    <h2 style="font-size:1.25rem; font-weight:800; margin-top:4px;">${chapter.title}</h2>
+                    <h2 style="font-size:1.25rem; font-weight:800; margin-top:4px;color:var(--text-chaptitle) ">${chapter.title}</h2>
                     <p style="font-size:0.8rem; color:var(--text-sub); margin-top:2px;">${chapter.desc}</p>
                 `;
 
@@ -34497,7 +34497,7 @@ R<sub>min</sub> = 0
                                 <span style="font-size:0.72rem; font-weight:800; color:var(--primary);">Explore Content →</span>
                             </div>
                             <div>
-                                <div style="font-size:0.98rem; font-weight:800; color:var(--text-main);">${sc.subTitle}</div>
+                                <div style="font-size:0.98rem; font-weight:800; color:var(--text-main-sub);">${sc.subTitle}</div>
                                 <div style="font-size:0.78rem; color:var(--text-sub); margin-top:3px;">${sc.desc}</div>
                             </div>
                             <div style="font-size:0.76rem; color:var(--text-muted); line-height:1.4; border-top:1px dashed var(--border-color); padding-top:8px;">
@@ -34528,7 +34528,7 @@ R<sub>min</sub> = 0
                     <span style="font-size:0.68rem; font-weight:800; color:var(--primary); text-transform:uppercase;">${subject} • ${chapter.title}</span>
                     <span class="sub-card-badge-pill">${index + 1} of ${chapter.subCards.length}</span>
                 </div>
-                <h2 style="font-size:1.2rem; font-weight:800;">${sc.subTitle}</h2>
+                <h2 style="font-size:1.2rem; font-weight:800; color:var(--text-subtitle);">${sc.subTitle}</h2>
                 <p style="font-size:0.8rem; color:var(--text-sub); margin-top:2px;">${sc.desc}</p>
             `;
 

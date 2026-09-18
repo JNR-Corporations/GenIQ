@@ -14,7 +14,7 @@ window.GENIQ_CONFIG = {
     //
     // CURRENT VERSION: v3.0.0
     // ============================================================
-    version: "v3.0.0"
+    version: "v3.0.1"
 };
 
 

@@ -1,407 +1,745 @@
-"use strict";
+```html
+<!-- =========================================================
+     GENIQ HOME — LOCAL DATA CONNECTED DASHBOARD
+     Replace your existing #view-home with this block.
+     ========================================================= -->
 
-/* =========================================================
-   GENIQ PDF HUB — Optimized Viewer
-   Works with the existing HTML IDs/classes.
-   ========================================================= */
+<main id="view-home" class="view-panel active">
 
-/* ---------- PDF.js worker: safe configuration ---------- */
+  <!-- UNIVERSAL SEARCH -->
+  <div class="universal-search-container geniq-home-search">
 
-if (window.pdfjsLib?.GlobalWorkerOptions) {
-  window.pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-}
+    <div class="search-box-advanced geniq-search-box">
 
-/* ---------- PDF data ---------- */
-/*
-  IMPORTANT:
-  Every url must be a plain URL string, not Markdown:
-  "https://drive.google.com/file/d/FILE_ID/view"
+      <svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
 
-  Replace repeated sample IDs with each PDF's real Drive ID.
-*/
-
-const pdfList = [
-  {
-    id: 1,
-    title: "Rotational Dynamics Notes",
-    category: "Physics",
-    url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view",
-    pageCount: 34,
-    featured: false
-  },
-  {
-    id: 2,
-    title: "Organic Chemistry Reactions",
-    category: "Chemistry",
-    url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view",
-    pageCount: 52,
-    featured: false
-  },
-  {
-    id: 3,
-    title: "Calculus & Integration Masterbook",
-    category: "Mathematics",
-    url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view",
-    pageCount: 28,
-    featured: false
-  },
-  {
-    id: 4,
-    title: "Thermodynamics & Heat Transfer",
-    category: "Physics",
-    url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view",
-    pageCount: 40,
-    featured: false
-  },
-  {
-    id: 5,
-    title: "Coordinate Geometry Formula Handbook",
-    category: "Mathematics",
-    url: "https://drive.google.com/file/d/1z9jBeKSNg_9wiRk2NFcdLC_nMUI1uxJp/view",
-    pageCount: 18,
-    featured: false
-  }
-];
-
-/* ---------- DOM references ---------- */
-
-const pdfGrid = document.getElementById("pdfGrid");
-const categoryChips = document.getElementById("categoryChips");
-const searchInput = document.getElementById("searchInput");
-
-const viewerModal = document.getElementById("viewerModal");
-const viewerIframe = document.getElementById("viewerIframe");
-const loaderScreen = document.getElementById("loaderScreen");
-const loaderStatusText = document.getElementById("loaderStatusText");
-const topProgressBar = document.getElementById("topProgressBar");
-
-const vTitle = document.getElementById("vTitle");
-const vCat = document.getElementById("vCat");
-const closeViewerBtn = document.getElementById("closeViewerBtn");
-const openDriveBtn = document.getElementById("openDriveBtn");
-
-const themeBtn = document.getElementById("themeBtn");
-const themeIcon = document.getElementById("themeIcon");
-
-/* ---------- State ---------- */
-
-let activeCategory = "All";
-let searchQuery = "";
-let activePdfId = null;
-let viewerTimer = null;
-let loadTimeout = null;
-let openRequestId = 0;
-
-/* ---------- Helpers ---------- */
-
-function getDriveId(url) {
-  if (typeof url !== "string") return null;
-
-  try {
-    const parsed = new URL(url);
-    const pathMatch = parsed.pathname.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-
-    if (pathMatch) return pathMatch[1];
-
-    return parsed.searchParams.get("id");
-  } catch {
-    return null;
-  }
-}
-
-function getPdfThumbnail(url) {
-  const driveId = getDriveId(url);
-
-  return driveId
-    ? `https://drive.google.com/thumbnail?id=${encodeURIComponent(driveId)}&sz=w600`
-    : null;
-}
-
-function getEmbedUrl(url) {
-  const driveId = getDriveId(url);
-
-  if (driveId) {
-    return `https://drive.google.com/file/d/${encodeURIComponent(driveId)}/preview`;
-  }
-
-  return url;
-}
-
-function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, character => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[character]);
-}
-
-function setLoadingMessage(message) {
-  if (loaderStatusText) loaderStatusText.textContent = message;
-}
-
-function setProgress(value) {
-  if (topProgressBar) {
-    topProgressBar.style.width = `${Math.max(0, Math.min(100, value))}%`;
-  }
-}
-
-function clearViewerTimers() {
-  if (viewerTimer !== null) {
-    clearInterval(viewerTimer);
-    viewerTimer = null;
-  }
-
-  if (loadTimeout !== null) {
-    clearTimeout(loadTimeout);
-    loadTimeout = null;
-  }
-}
-
-function showLoader(message) {
-  loaderScreen?.classList.remove("hidden");
-  viewerIframe?.classList.remove("loaded");
-  setLoadingMessage(message);
-  setProgress(25);
-}
-
-function hideLoader() {
-  loaderScreen?.classList.add("hidden");
-  viewerIframe?.classList.add("loaded");
-  setProgress(0);
-}
-
-/* ---------- Category filters ---------- */
-
-function renderCategories() {
-  if (!categoryChips) return;
-
-  const categories = ["All", ...new Set(pdfList.map(item => item.category))];
-
-  categoryChips.innerHTML = categories.map(category => {
-    const safeCategory = escapeHtml(category);
-    const activeClass = category === activeCategory ? "active" : "";
-
-    return `
-      <button
-        type="button"
-        class="chip-btn ${activeClass}"
-        onclick="setCategory('${safeCategory}')"
-      >${safeCategory}</button>
-    `;
-  }).join("");
-}
-
-function setCategory(category) {
-  activeCategory = category;
-  renderCategories();
-  renderPdfCards();
-}
-
-/* ---------- PDF cards ---------- */
-
-function renderPdfCards() {
-  if (!pdfGrid) return;
-
-  const normalizedQuery = searchQuery.toLowerCase();
-
-  const filtered = pdfList.filter(pdf => {
-    const matchesCategory =
-      activeCategory === "All" || pdf.category === activeCategory;
-
-    const matchesSearch =
-      pdf.title.toLowerCase().includes(normalizedQuery) ||
-      pdf.category.toLowerCase().includes(normalizedQuery);
-
-    return matchesCategory && matchesSearch;
-  });
-
-  if (filtered.length === 0) {
-    pdfGrid.innerHTML = `
-      <p class="pdf-empty-state" role="status">
-        No PDFs found. Try another search or category.
-      </p>
-    `;
-    return;
-  }
-
-  pdfGrid.innerHTML = filtered.map(pdf => {
-    const thumbnail = getPdfThumbnail(pdf.url);
-    const imageMarkup = thumbnail
-      ? `<img
-           class="thumb-img"
-           src="${thumbnail}"
-           alt="${escapeHtml(pdf.title)}"
-           loading="lazy"
-           decoding="async"
-           onerror="fallbackThumb(this)"
-         >`
-      : `<div class="thumb-placeholder" aria-label="PDF preview unavailable">PDF</div>`;
-
-    return `
-      <article
-        class="pdf-card"
-        role="button"
-        tabindex="0"
-        aria-label="Open ${escapeHtml(pdf.title)}"
-        onclick="openPdf(${Number(pdf.id)})"
-        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openPdf(${Number(pdf.id)});}"
+      <input
+        type="text"
+        id="universalSearchInput"
+        placeholder="Search topics, formulas, notes, PYQs, tests..."
+        oninput="handleUniversalSearch(this.value)"
+        autocomplete="off"
       >
-        <div class="thumb-frame">
-          ${pdf.featured ? '<span class="badge-top-right">Featured</span>' : ""}
-          ${imageMarkup}
-          <div class="thumb-overlay"></div>
+
+    </div>
+
+    <div
+      class="search-results-overlay"
+      id="universalSearchResults"
+    ></div>
+
+  </div>
+
+
+  <!-- =========================================================
+       WELCOME / DAILY OVERVIEW
+       ========================================================= -->
+
+  <section class="geniq-home-welcome-card">
+
+    <div class="geniq-welcome-content">
+
+      <div class="geniq-eyebrow">
+        <span class="geniq-live-dot"></span>
+        YOUR JEE PREPARATION SPACE
+      </div>
+
+      <h1>
+        Keep learning.<br>
+        Keep moving forward.
+      </h1>
+
+      <p id="geniqHomeDateText">
+        Your preparation dashboard
+      </p>
+
+    </div>
+
+    <div class="geniq-welcome-stat">
+
+      <span>Today's Progress</span>
+
+      <strong id="geniqDailyProgressText">
+        0%
+      </strong>
+
+      <div class="geniq-progress-track">
+        <div
+          id="geniqDailyProgressBar"
+          class="geniq-progress-fill"
+          style="width:0%;"
+        ></div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       ACTIVE REPOSITORY + CONTACT
+       ========================================================= -->
+
+  <div class="grid-2">
+
+    <div
+      class="card geniq-active-card"
+      id="geniqActiveRepositoryCard"
+      onclick="geniqHomeOpenActiveRepository()"
+    >
+
+      <div class="geniq-card-eyebrow">
+        ACTIVE REPOSITORY
+      </div>
+
+      <div
+        class="geniq-active-title"
+        id="activeTargetText"
+      >
+        Rotational Dynamics
+      </div>
+
+      <div
+        class="geniq-active-meta"
+        id="geniqActiveMeta"
+      >
+        Physics • Continue learning
+      </div>
+
+      <button
+        class="btn-pill btn-white"
+        type="button"
+        onclick="event.stopPropagation();geniqHomeOpenActiveRepository()"
+      >
+        Continue
+      </button>
+
+    </div>
+
+
+    <div
+      class="card geniq-contact-card"
+      onclick="window.location.href='report.html'"
+    >
+
+      <div class="geniq-card-eyebrow">
+        NEED HELP?
+      </div>
+
+      <div class="geniq-contact-title">
+        Contact GENIQ
+      </div>
+
+      <div class="geniq-contact-text">
+        Found a problem, missing content or have a suggestion?
+      </div>
+
+      <span class="geniq-arrow-action">
+        Send Request →
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       QUICK STATS
+       ========================================================= -->
+
+  <section class="geniq-home-section">
+
+    <div class="section-title">
+      Study Snapshot
+      <span
+        class="action-link"
+        onclick="geniqHomeResetTodayStats()"
+      >
+        Today
+      </span>
+    </div>
+
+    <div class="geniq-stat-grid">
+
+      <div class="geniq-stat-card">
+
+        <div class="geniq-stat-icon blue">
+          ⏱
         </div>
 
-        <div class="card-body">
-          <div>
-            <div class="card-cat">${escapeHtml(pdf.category)}</div>
-            <h3 class="card-title">${escapeHtml(pdf.title)}</h3>
-          </div>
-
-          <div class="card-footer">
-            <span class="page-count-tag">
-              ${Number(pdf.pageCount) > 0 ? `${Number(pdf.pageCount)} Pages` : "PDF"}
-            </span>
-            <span class="read-btn">Open</span>
-          </div>
+        <div class="geniq-stat-copy">
+          <span>Study Time</span>
+          <strong id="geniqStudyTime">
+            0m
+          </strong>
         </div>
-      </article>
-    `;
-  }).join("");
-}
 
-function fallbackThumb(img) {
-  if (!img || img.dataset.fallbackUsed === "true") return;
+      </div>
 
-  img.dataset.fallbackUsed = "true";
-  img.onerror = null;
-  img.src =
-    "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=75";
-}
 
-/* ---------- Open PDF ---------- */
+      <div class="geniq-stat-card">
 
-function openPdf(id) {
-  const pdf = pdfList.find(item => item.id === Number(id));
-  if (!pdf || !viewerModal || !viewerIframe) return;
+        <div class="geniq-stat-icon purple">
+          Q
+        </div>
 
-  const embedUrl = getEmbedUrl(pdf.url);
-  if (!embedUrl) {
-    setLoadingMessage("This PDF link is invalid.");
-    return;
-  }
+        <div class="geniq-stat-copy">
+          <span>Questions</span>
+          <strong id="geniqQuestionCount">
+            0
+          </strong>
+        </div>
 
-  clearViewerTimers();
+      </div>
 
-  const requestId = ++openRequestId;
-  activePdfId = pdf.id;
 
-  if (vTitle) vTitle.textContent = pdf.title;
-  if (vCat) vCat.textContent = pdf.category;
+      <div class="geniq-stat-card">
 
-  if (openDriveBtn) {
-    openDriveBtn.onclick = () => window.open(pdf.url, "_blank", "noopener,noreferrer");
-  }
+        <div class="geniq-stat-icon green">
+          %
+        </div>
 
-  showLoader("Connecting to PDF preview…");
+        <div class="geniq-stat-copy">
+          <span>Accuracy</span>
+          <strong id="geniqAccuracy">
+            0%
+          </strong>
+        </div>
 
-  viewerModal.classList.add("active");
-  document.body.style.overflow = "hidden";
+      </div>
 
-  /*
-    Register handlers BEFORE assigning src.
-    The browser's iframe load event only confirms that the frame loaded;
-    it cannot confirm that every PDF page has finished rendering.
-  */
 
-  viewerIframe.onload = () => {
-    if (requestId !== openRequestId) return;
+      <div class="geniq-stat-card">
 
-    clearViewerTimers();
-    setProgress(100);
-    setLoadingMessage("PDF preview loaded.");
+        <div class="geniq-stat-icon pink">
+          ★
+        </div>
 
-    window.setTimeout(() => {
-      if (requestId !== openRequestId) return;
-      hideLoader();
-    }, 180);
-  };
+        <div class="geniq-stat-copy">
+          <span>Study Streak</span>
+          <strong id="geniqStudyStreak">
+            0 days
+          </strong>
+        </div>
 
-  viewerIframe.onerror = () => {
-    if (requestId !== openRequestId) return;
+      </div>
 
-    clearViewerTimers();
-    setProgress(0);
-    setLoadingMessage("Could not load the preview. Try opening it in Drive.");
-  };
+    </div>
 
-  /*
-    Avoid an endless loader if Drive/network never finishes.
-    This does not cancel the iframe; it only updates the message.
-  */
-  loadTimeout = window.setTimeout(() => {
-    if (requestId !== openRequestId) return;
+  </section>
 
-    setProgress(0);
-    setLoadingMessage(
-      "Preview is taking longer than expected. Check your connection or open it in Drive."
-    );
-  }, 30000);
 
-  viewerIframe.src = embedUrl;
-}
+  <!-- =========================================================
+       POMODORO
+       ========================================================= -->
 
-/* ---------- Close PDF ---------- */
+  <section
+    class="card geniq-focus-card"
+    id="geniqPomodoroHomeCard"
+  >
 
-function closeViewer() {
-  clearViewerTimers();
-  ++openRequestId;
-  activePdfId = null;
+    <div class="geniq-focus-top">
 
-  viewerModal?.classList.remove("active");
+      <div>
 
-  if (viewerIframe) {
-    viewerIframe.onload = null;
-    viewerIframe.onerror = null;
-    viewerIframe.src = "about:blank";
-    viewerIframe.classList.remove("loaded");
-  }
+        <div class="geniq-card-eyebrow">
+          FOCUS SESSION
+        </div>
 
-  loaderScreen?.classList.remove("hidden");
-  setProgress(0);
-  document.body.style.overflow = "";
-}
+        <div class="geniq-focus-title">
+          Deep Work Mode
+        </div>
 
-closeViewerBtn?.addEventListener("click", closeViewer);
+        <div class="geniq-focus-description">
+          One focused session. One clear target.
+        </div>
 
-/* ---------- Search ---------- */
+      </div>
 
-searchInput?.addEventListener("input", event => {
-  searchQuery = event.target.value.trim();
-  renderPdfCards();
-});
+      <div
+        id="pomodoroTimerDisplay"
+        class="geniq-focus-timer"
+      >
+        25:00
+      </div>
 
-/* ---------- Theme toggle ---------- */
+    </div>
 
-function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const nextTheme = currentTheme === "dark" ? "light" : "dark";
 
-  document.documentElement.setAttribute("data-theme", nextTheme);
+    <div class="geniq-focus-actions">
 
-  if (themeIcon) {
-    themeIcon.innerHTML = nextTheme === "dark"
-      ? `<path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0-5v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>`
-      : `<path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36A6.5 6.5 0 0 1 13.36 3.1C13.08 3.04 12.54 3 12 3z"/>`;
-  }
-}
+      <button
+        class="btn-pill btn-white"
+        onclick="togglePomodoroTimer()"
+      >
+        Start Focus
+      </button>
 
-themeBtn?.addEventListener("click", toggleTheme);
+      <button
+        class="btn-pill btn-outline"
+        onclick="resetPomodoroTimer()"
+      >
+        Reset
+      </button>
 
-/* ---------- Initial render ---------- */
+    </div>
 
-renderCategories();
-renderPdfCards();
+  </section>
+
+
+  <!-- =========================================================
+       DAILY TARGETS
+       ========================================================= -->
+
+  <section class="card geniq-target-card">
+
+    <div class="section-title">
+
+      <span>
+        Today's Targets
+      </span>
+
+      <span
+        class="action-link"
+        onclick="openAddTaskModal()"
+      >
+        + Add Target
+      </span>
+
+    </div>
+
+    <div
+      id="taskList"
+      class="geniq-local-task-list"
+    ></div>
+
+    <div
+      id="geniqEmptyTasks"
+      class="geniq-empty-state"
+      style="display:none;"
+    >
+      <strong>No targets yet</strong>
+      <span>Add your first study target for today.</span>
+
+      <button
+        class="btn-pill btn-primary"
+        onclick="openAddTaskModal()"
+      >
+        Add Target
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       CONTINUE LEARNING
+       ========================================================= -->
+
+  <section class="geniq-home-section">
+
+    <div class="section-title">
+
+      Continue Learning
+
+      <span
+        class="action-link"
+        onclick="switchTab('notes')"
+      >
+        All Chapters
+      </span>
+
+    </div>
+
+    <div
+      id="geniqContinueLearning"
+      class="geniq-learning-grid"
+    ></div>
+
+  </section>
+
+
+  <!-- =========================================================
+       QUICK PRACTICE
+       ========================================================= -->
+
+  <section class="geniq-home-section">
+
+    <div class="section-title">
+      Quick Practice
+    </div>
+
+    <div class="geniq-action-grid">
+
+      <button
+        class="geniq-action-card"
+        onclick="geniqHomeOpenPractice()"
+      >
+
+        <span class="geniq-action-icon blue">
+          Q
+        </span>
+
+        <span class="geniq-action-title">
+          Practice
+        </span>
+
+        <span class="geniq-action-subtitle">
+          Topic-wise questions
+        </span>
+
+      </button>
+
+
+      <button
+        class="geniq-action-card"
+        onclick="geniqHomeOpenTests()"
+      >
+
+        <span class="geniq-action-icon purple">
+          T
+        </span>
+
+        <span class="geniq-action-title">
+          Mock Tests
+        </span>
+
+        <span class="geniq-action-subtitle">
+          Main + Advanced
+        </span>
+
+      </button>
+
+
+      <button
+        class="geniq-action-card"
+        onclick="geniqHomeOpenPYQ()"
+      >
+
+        <span class="geniq-action-icon green">
+          P
+        </span>
+
+        <span class="geniq-action-title">
+          PYQs
+        </span>
+
+        <span class="geniq-action-subtitle">
+          Previous year questions
+        </span>
+
+      </button>
+
+
+      <button
+        class="geniq-action-card"
+        onclick="geniqHomeOpenPDF()"
+      >
+
+        <span class="geniq-action-icon pink">
+          F
+        </span>
+
+        <span class="geniq-action-title">
+          Formula Hub
+        </span>
+
+        <span class="geniq-action-subtitle">
+          Handbooks & formulas
+        </span>
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       FOCUS AREAS
+       ========================================================= -->
+
+  <section class="card">
+
+    <div class="section-title">
+
+      Focus Areas
+
+      <span
+        class="action-link"
+        onclick="geniqHomeOpenFocusArea()"
+      >
+        Practice
+      </span>
+
+    </div>
+
+    <div
+      id="geniqFocusAreas"
+      class="geniq-focus-list"
+    ></div>
+
+  </section>
+
+
+  <!-- =========================================================
+       JEE MODES
+       ========================================================= -->
+
+  <section class="geniq-home-section">
+
+    <div class="section-title">
+      JEE Preparation Modes
+    </div>
+
+    <div class="geniq-mode-grid">
+
+      <button
+        class="geniq-mode-card main-mode"
+        onclick="geniqHomeOpenTests()"
+      >
+
+        <span class="geniq-mode-label">
+          JEE MAIN
+        </span>
+
+        <strong>
+          Speed + Accuracy
+        </strong>
+
+        <small>
+          Timed practice, PYQs and chapter tests.
+        </small>
+
+        <span class="geniq-mode-arrow">
+          →
+        </span>
+
+      </button>
+
+
+      <button
+        class="geniq-mode-card advanced-mode"
+        onclick="geniqHomeOpenTests()"
+      >
+
+        <span class="geniq-mode-label">
+          JEE ADVANCED
+        </span>
+
+        <strong>
+          Concept + Depth
+        </strong>
+
+        <small>
+          Multi-concept and higher-level problems.
+        </small>
+
+        <span class="geniq-mode-arrow">
+          →
+        </span>
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       SUBJECT REPOSITORY
+       ========================================================= -->
+
+  <section class="geniq-home-section">
+
+    <div class="section-title">
+
+      Core JEE Repository
+
+      <span
+        class="action-link"
+        onclick="switchTab('notes')"
+      >
+        Explore
+      </span>
+
+    </div>
+
+    <div class="geniq-subject-grid">
+
+      <button
+        class="geniq-subject-card physics"
+        onclick="geniqHomeOpenSubject('Physics')"
+      >
+
+        <span class="geniq-subject-code">
+          PH
+        </span>
+
+        <strong>
+          Physics
+        </strong>
+
+        <small>
+          36 Chapters
+        </small>
+
+        <span class="geniq-subject-progress">
+          <i id="geniqPhysicsProgress"></i>
+        </span>
+
+      </button>
+
+
+      <button
+        class="geniq-subject-card chemistry"
+        onclick="geniqHomeOpenSubject('Chemistry')"
+      >
+
+        <span class="geniq-subject-code">
+          CH
+        </span>
+
+        <strong>
+          Chemistry
+        </strong>
+
+        <small>
+          28 Chapters
+        </small>
+
+        <span class="geniq-subject-progress">
+          <i id="geniqChemistryProgress"></i>
+        </span>
+
+      </button>
+
+
+      <button
+        class="geniq-subject-card mathematics"
+        onclick="geniqHomeOpenSubject('Mathematics')"
+      >
+
+        <span class="geniq-subject-code">
+          MA
+        </span>
+
+        <strong>
+          Mathematics
+        </strong>
+
+        <small>
+          21 Chapters
+        </small>
+
+        <span class="geniq-subject-progress">
+          <i id="geniqMathProgress"></i>
+        </span>
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       TODAY'S CHALLENGE
+       ========================================================= -->
+
+  <section class="card geniq-challenge-card">
+
+    <div class="geniq-challenge-badge">
+      DAILY CHALLENGE
+    </div>
+
+    <div class="geniq-challenge-title">
+      10 Questions • 15 Minutes
+    </div>
+
+    <p>
+      A mixed JEE practice session designed to keep your concepts active.
+    </p>
+
+    <div class="geniq-challenge-bottom">
+
+      <span id="geniqChallengeStatus">
+        Not attempted today
+      </span>
+
+      <button
+        class="btn-pill btn-primary"
+        onclick="geniqHomeStartChallenge()"
+      >
+        Start Challenge
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       RECENT ACTIVITY
+       ========================================================= -->
+
+  <section class="card">
+
+    <div class="section-title">
+
+      Recent Activity
+
+      <span
+        class="action-link"
+        onclick="geniqHomeClearActivity()"
+      >
+        Clear
+      </span>
+
+    </div>
+
+    <div
+      id="geniqRecentActivity"
+      class="geniq-activity-list"
+    ></div>
+
+    <div
+      id="geniqNoActivity"
+      class="geniq-empty-small"
+      style="display:none;"
+    >
+      Your recent learning activity will appear here.
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       STUDY INSIGHT
+       ========================================================= -->
+
+  <section class="card geniq-insight-card">
+
+    <div class="geniq-insight-label">
+      GENIQ INSIGHT
+    </div>
+
+    <strong id="geniqInsightTitle">
+      Build consistency before intensity.
+    </strong>
+
+    <p id="geniqInsightText">
+      Complete small targets regularly and gradually increase your practice load.
+    </p>
+
+  </section>
+
+
+</main>
+
+
+
