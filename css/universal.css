@@ -1,0 +1,337 @@
+/* =========================================================
+   GENIQ EXIT DIALOG
+========================================================= */
+
+.geniq-exit-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+
+  transition:
+    opacity .22s ease,
+    visibility .22s ease;
+}
+
+.geniq-exit-dialog.is-open {
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+
+/* ---------- BACKDROP ---------- */
+
+.geniq-exit-backdrop {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(15, 23, 42, .42);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* ---------- CARD ---------- */
+
+.geniq-exit-card {
+  position: relative;
+  z-index: 2;
+
+  width: min(430px, 100%);
+
+  padding: 28px;
+
+  border: 1px solid rgba(15, 23, 42, .10);
+  border-radius: 28px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 30px 90px rgba(15, 23, 42, .20),
+    0 8px 30px rgba(15, 23, 42, .08);
+
+  transform:
+    translateY(18px)
+    scale(.96);
+
+  transition:
+    transform .25s cubic-bezier(.2,.8,.2,1);
+}
+
+.geniq-exit-dialog.is-open .geniq-exit-card {
+  transform:
+    translateY(0)
+    scale(1);
+}
+
+
+/* ---------- ICON ---------- */
+
+.geniq-exit-icon {
+  width: 54px;
+  height: 54px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 19px;
+
+  border-radius: 17px;
+
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.geniq-exit-icon svg {
+  width: 26px;
+  height: 26px;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* ---------- TEXT ---------- */
+
+.geniq-exit-label {
+  margin-bottom: 6px;
+
+  color: #4f46e5;
+
+  font-family: "JetBrains Mono", monospace;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.geniq-exit-content h2 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 25px;
+  line-height: 1.15;
+
+  letter-spacing: -.035em;
+  font-weight: 800;
+}
+
+.geniq-exit-content p {
+  margin: 10px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+
+/* ---------- ACTIONS ---------- */
+
+.geniq-exit-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  margin-top: 25px;
+}
+
+.geniq-exit-btn {
+  min-height: 49px;
+
+  border: 0;
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  transition:
+    transform .18s ease,
+    opacity .18s ease,
+    box-shadow .18s ease;
+}
+
+.geniq-exit-btn:hover {
+  transform: translateY(-2px);
+}
+
+.geniq-exit-btn:active {
+  transform: translateY(0) scale(.98);
+}
+
+.geniq-exit-btn:focus-visible {
+  outline: 3px solid rgba(79, 70, 229, .25);
+  outline-offset: 2px;
+}
+
+
+/* ---------- STAY ---------- */
+
+.geniq-exit-stay {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.geniq-exit-stay:hover {
+  background: #e2e8f0;
+}
+
+
+/* ---------- EXIT ---------- */
+
+.geniq-exit-leave {
+  background: #4f46e5;
+  color: #ffffff;
+
+  box-shadow:
+    0 10px 24px rgba(79, 70, 229, .22);
+}
+
+.geniq-exit-leave:hover {
+  box-shadow:
+    0 14px 30px rgba(79, 70, 229, .28);
+}
+
+
+/* =========================================================
+   DARK THEME
+   Compatible with GENIQ theme.js
+========================================================= */
+
+body.dark-theme .geniq-exit-backdrop {
+  background: rgba(0, 0, 0, .68);
+}
+
+body.dark-theme .geniq-exit-card {
+  border-color: rgba(255, 255, 255, .10);
+
+  background: #0b0c0f;
+
+  box-shadow:
+    0 35px 100px rgba(0, 0, 0, .55),
+    0 8px 30px rgba(0, 0, 0, .30);
+}
+
+body.dark-theme .geniq-exit-icon {
+  background: rgba(99, 102, 241, .14);
+  color: #818cf8;
+}
+
+body.dark-theme .geniq-exit-label {
+  color: #818cf8;
+}
+
+body.dark-theme .geniq-exit-content h2 {
+  color: #f8fafc;
+}
+
+body.dark-theme .geniq-exit-content p {
+  color: #a8b4c7;
+}
+
+body.dark-theme .geniq-exit-stay {
+  background: #181b22;
+  color: #f8fafc;
+}
+
+body.dark-theme .geniq-exit-stay:hover {
+  background: #20242d;
+}
+
+body.dark-theme .geniq-exit-leave {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 520px) {
+
+  .geniq-exit-dialog {
+    align-items: flex-end;
+    padding: 12px;
+  }
+
+  .geniq-exit-card {
+    width: 100%;
+    padding: 22px;
+
+    border-radius: 25px;
+
+    transform:
+      translateY(30px)
+      scale(.98);
+  }
+
+  .geniq-exit-dialog.is-open .geniq-exit-card {
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+  .geniq-exit-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+  }
+
+  .geniq-exit-content h2 {
+    font-size: 23px;
+  }
+
+  .geniq-exit-content p {
+    font-size: 12px;
+  }
+
+  .geniq-exit-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .geniq-exit-btn {
+    min-height: 50px;
+  }
+
+  .geniq-exit-leave {
+    order: -1;
+  }
+}
+
+
+/* ---------- REDUCED MOTION ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .geniq-exit-dialog,
+  .geniq-exit-card,
+  .geniq-exit-btn {
+    transition: none !important;
+  }
+}
+
+/*
+ * Prevent background scrolling while the exit dialog
+ * is visible.
+ */
+
+body.geniq-exit-lock {
+  overflow: hidden !important;
+}

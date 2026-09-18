@@ -86,6 +86,7 @@
   <link rel="stylesheet" href="css/sidebar.css">
   <link rel="stylesheet" href="css/notepad.css">
   <link rel="stylesheet" href="css/root.css">
+  <link rel="stylesheet" href="css/universal.css">
 
 </head>
 
@@ -1068,12 +1069,80 @@
   </footer>
 </aside>
 
+
+<!-- =========================================================
+     GENIQ BACK NAVIGATION GUARD
+     Place this near the end of <body>
+========================================================= -->
+
+<div
+  id="geniqExitDialog"
+  class="geniq-exit-dialog"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="geniqExitTitle"
+  aria-describedby="geniqExitMessage"
+>
+  <div class="geniq-exit-backdrop" data-exit-close></div>
+
+  <div class="geniq-exit-card" role="document">
+
+    <div class="geniq-exit-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24">
+        <path d="M9 6H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4"></path>
+        <path d="M13 8l4 4-4 4"></path>
+        <path d="M17 12H9"></path>
+      </svg>
+    </div>
+
+    <div class="geniq-exit-content">
+
+      <div class="geniq-exit-label">
+        GENIQ
+      </div>
+
+      <h2 id="geniqExitTitle">
+        Leave GENIQ?
+      </h2>
+
+      <p id="geniqExitMessage">
+        Are you sure you want to leave GENIQ?
+        Your current progress will remain saved.
+      </p>
+
+    </div>
+
+    <div class="geniq-exit-actions">
+
+      <button
+        type="button"
+        id="geniqStayBtn"
+        class="geniq-exit-btn geniq-exit-stay"
+      >
+        Stay
+      </button>
+
+      <button
+        type="button"
+        id="geniqLeaveBtn"
+        class="geniq-exit-btn geniq-exit-leave"
+      >
+        Exit GENIQ
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
   <script src="script.js"></script>
   <script src="pdf.js"></script>
   <script src="theme.js"></script>
   <script src="sidebar.js"></script>
   <script src="notepad.js"></script>
   <script src="version.js"></script>
+  <script src="universal.js"></script>
 
 </body>
 
