@@ -1,0 +1,265 @@
+{
+  "id": "p1",
+  "subject": "Physics",
+  "chapterNumber": 1,
+  "title": "Units and Measurements",
+  "description": "Dimensional Analysis, SI Units, Significant Figures, Errors and Experimental Measurements",
+  "level": "JEE Main & Advanced",
+  "sections": [
+    {
+      "id": "overview",
+      "title": "1. Overview",
+      "type": "overview",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Measurement is the core foundation of experimental physics. Physical quantities are quantified using standard units to formulate physical laws."
+        },
+        {
+          "type": "paragraph",
+          "text": "In JEE Main & Advanced, this chapter is high-yield and fundamental. Questions frequently involve Error Analysis, Dimensional Formulas, Vernier Calipers, and Screw Gauges."
+        }
+      ]
+    },
+    {
+      "id": "physical-quantities",
+      "title": "2. Physical Quantities",
+      "type": "concept",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Any property of a material or system that can be quantified and measured is a physical quantity: \\(Q = n \\times u\\), where \\(n\\) is the numerical value and \\(u\\) is the unit."
+        },
+        {
+          "type": "tip",
+          "text": "Magnitude remains constant across unit systems: \\(n_1 u_1 = n_2 u_2\\). Hence, numerical value \\(n\\) is inversely proportional to unit size \\(u\\)."
+        },
+        {
+          "type": "bulletList",
+          "items": [
+            "Fundamental Quantities: Independent base quantities (e.g., Mass, Length, Time).",
+            "Derived Quantities: Expressed in terms of fundamental quantities (e.g., Velocity, Force, Pressure)."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "si-system",
+      "title": "3. SI System",
+      "type": "concept",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "The International System of Units (SI) defines 7 fundamental base units and 2 supplementary units."
+        },
+        {
+          "type": "table",
+          "headers": ["Quantity", "SI Unit Name", "Symbol", "Dimension"],
+          "rows": [
+            ["Length", "Meter", "m", "L"],
+            ["Mass", "Kilogram", "kg", "M"],
+            ["Time", "Second", "s", "T"],
+            ["Electric Current", "Ampere", "A", "I or A"],
+            ["Thermodynamic Temp.", "Kelvin", "K", "K or θ"],
+            ["Amount of Substance", "Mole", "mol", "N"],
+            ["Luminous Intensity", "Candela", "cd", "J"]
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "Supplementary Units: Plane Angle measured in Radian (rad) and Solid Angle in Steradian (sr). Both are dimensionless."
+        }
+      ]
+    },
+    {
+      "id": "dimensions",
+      "title": "4. Dimensions",
+      "type": "concept",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Dimensions represent the powers to which base units are raised to express a physical quantity."
+        },
+        {
+          "type": "table",
+          "headers": ["Physical Quantity", "Relation / Formula", "Dimensional Formula"],
+          "rows": [
+            ["Work / Energy", "Force × Displacement", "\\[[M L^2 T^{-2}]\\]"],
+            ["Planck's Constant (h)", "E = hν", "\\[[M L^2 T^{-1}]\\]"],
+            ["Gravitational Constant (G)", "F = G m₁m₂ / r²", "\\[[M^{-1} L^3 T^{-2}]\\]"],
+            ["Permittivity (ε₀)", "Coulomb's Law", "\\[[M^{-1} L^{-3} T^4 A^2]\\]"],
+            ["Permeability (μ₀)", "B = μ₀ I / (2π r)", "\\[[M L T^{-2} A^{-2}]\\]"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "homogeneity",
+      "title": "5. Principle of Homogeneity",
+      "type": "concept",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "According to the Principle of Homogeneity, terms added, subtracted, or equated in a valid equation MUST have the same dimensions."
+        },
+        {
+          "type": "formula",
+          "latex": "\\[ [A] = [B] = [C] \\quad \\text{in} \\quad A + B = C \\]"
+        },
+        {
+          "type": "warning",
+          "text": "Arguments of trigonometric, logarithmic, and exponential functions must always be dimensionless!"
+        }
+      ]
+    },
+    {
+      "id": "dimensional-analysis",
+      "title": "6. Dimensional Analysis",
+      "type": "concept",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Applications include checking correctness of physical relations, converting units between systems, and deriving functional dependencies."
+        },
+        {
+          "type": "trick",
+          "text": "Limitations: Cannot derive dimensionless constants, equations with sum/difference of terms, or trigonometric/exponential functions."
+        }
+      ]
+    },
+    {
+      "id": "significant-figures",
+      "title": "7. Significant Figures",
+      "type": "concept",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Rules for identifying significant digits:"
+        },
+        {
+          "type": "numberedList",
+          "items": [
+            "All non-zero digits are significant.",
+            "Zeros between non-zero digits are significant.",
+            "Leading zeros are never significant.",
+            "Trailing zeros after a decimal point are significant."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "errors",
+      "title": "8. Error Analysis",
+      "type": "concept",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Uncertainty in measurement is called error. In experimental calculations, errors propagate based on mathematical operations."
+        },
+        {
+          "type": "formula",
+          "latex": "\\[ \\text{If } Z = \\frac{X^a Y^b}{W^c}, \\text{ then maximum fractional error is } \\frac{\\Delta Z}{Z} = a\\frac{\\Delta X}{X} + b\\frac{\\Delta Y}{Y} + c\\frac{\\Delta W}{W} \\]"
+        },
+        {
+          "type": "advancedInsight",
+          "text": "In fractional error estimation, powers always multiply the relative error and exponents are added constructively regardless of division or subtraction."
+        }
+      ]
+    },
+    {
+      "id": "vernier-calipers",
+      "title": "9. Vernier Calipers",
+      "type": "concept",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Used for precise length and depth measurements."
+        },
+        {
+          "type": "formula",
+          "latex": "\\[ \\text{Least Count (LC)} = 1\\text{ MSD} - 1\\text{ VSD} = 1\\text{ MSD} \\left(1 - \\frac{N-1}{N}\\right) \\]"
+        },
+        {
+          "type": "paragraph",
+          "text": "Total Reading = MSR + (Coinciding VSD × LC) - (Zero Error)."
+        }
+      ]
+    },
+    {
+      "id": "screw-gauge",
+      "title": "10. Screw Gauge",
+      "type": "concept",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Used for measuring wire diameter or thin sheet thickness."
+        },
+        {
+          "type": "formula",
+          "latex": "\\[ \\text{Least Count (LC)} = \\frac{\\text{Pitch}}{\\text{Total Circular Scale Divisions}} \\]"
+        }
+      ]
+    },
+    {
+      "id": "jee-tricks",
+      "title": "11. JEE High-Yield Tricks",
+      "type": "concept",
+      "content": [
+        {
+          "type": "trick",
+          "text": "Damping & Resonance: Product of resistance R and capacitance C, or L/R, both have dimensions of Time [T]."
+        },
+        {
+          "type": "trick",
+          "text": "Speed of Light: \\(c = \\frac{1}{\\sqrt{\\mu_0 \\varepsilon_0}}\\). Hence \\([\\mu_0 \\varepsilon_0] = [L^{-2} T^2]\\)."
+        }
+      ]
+    },
+    {
+      "id": "advanced-insights",
+      "title": "12. Advanced Insights",
+      "type": "concept",
+      "content": [
+        {
+          "type": "advancedInsight",
+          "text": "When fundamental units change in hypothetical problems (e.g., speed of light c, Planck's constant h, and G taken as base units), express derived units by solving linear exponent equations."
+        }
+      ]
+    },
+    {
+      "id": "solved-examples",
+      "title": "13. Solved Examples",
+      "type": "examples",
+      "content": [
+        {
+          "type": "example",
+          "title": "Example 1 (van der Waals Equation)",
+          "concept": "Principle of Homogeneity",
+          "question": "In equation \\((P + \\frac{a}{V^2})(V - b) = RT\\), determine dimensions of constant \\(a\\).",
+          "given": ["Pressure P = [M L⁻¹ T⁻²]", "Volume V = [L³]"],
+          "solution": [
+            "By homogeneity, terms added to pressure must have dimensions of pressure.",
+            "\\[ [P] = \\left[\\frac{a}{V^2}\\right] \\implies [a] = [P] \\cdot [V]^2 \\]",
+            "\\[ [a] = [M L^{-1} T^{-2}] \\cdot [L^3]^2 = [M L^5 T^{-2}] \\]"
+          ],
+          "answer": "[M L⁵ T⁻²]"
+        }
+      ]
+    },
+    {
+      "id": "quick-revision",
+      "title": "14. Quick Revision",
+      "type": "summary",
+      "content": [
+        {
+          "type": "bulletList",
+          "items": [
+            "Velocity gradient and Frequency both have dimension [T⁻¹].",
+            "Pressure, Stress, Young's Modulus all share dimension [M L⁻¹ T⁻²].",
+            "Zero Correction is always the negative of Zero Error: Corrected Value = Measured Value - Zero Error."
+          ]
+        }
+      ]
+    }
+  ]
+}

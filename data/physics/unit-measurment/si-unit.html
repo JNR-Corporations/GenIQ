@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GENIQ - JEE Chapter Reader</title>
+
+  <!-- MathJax Configuration & Loader -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        processEscapes: true
+      },
+      options: {
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Theme JS (Syncs Theme from Local Storage instantly) -->
+  <script src="theme.js"></script>
+
+  <style>
+    /* ==========================================================================
+       GENIQ LIGHTWEIGHT & HIGH-READABILITY DESIGN SYSTEM
+       ========================================================================== */
+    :root {
+      /* LIGHT THEME (DEFAULT) */
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
+      --card-subtle: #f1f5f9;
+      --card-glass: rgba(255, 255, 255, 0.88);
+      --text-main: #0f172a;
+      --text-sub: #475569;
+      --text-muted: #64748b;
+      --primary: #4f46e5;
+      --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      --primary-container: rgba(79, 70, 229, 0.08);
+      --accent-blue: #2563eb;
+      --accent-pink: #db2777;
+      --accent-green: #059669;
+      --accent-amber: #d97706;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --glow-color: rgba(79, 70, 229, 0.15);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.06);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+
+    /* DARK THEME OVERRIDES (Triggered by theme.js class .dark-theme) */
+    body.dark-theme {
+      --bg-main: #0b0f19;
+      --card-bg: #131b2e;
+      --card-subtle: #1c263b;
+      --card-glass: rgba(19, 27, 46, 0.85);
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --text-muted: #64748b;
+      --primary: #6366f1;
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
+      --primary-container: rgba(99, 102, 241, 0.15);
+      --accent-blue: #3b82f6;
+      --accent-pink: #ec4899;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --border-color: rgba(255, 255, 255, 0.1);
+      --glow-color: rgba(99, 102, 241, 0.35);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* TOP PROGRESS BAR */
+    .progress-bar-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+      z-index: 1000;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--primary-gradient);
+      transition: width 0.1s linear;
+    }
+
+    /* MAIN APPVIEWPORT */
+    .geniq-app-viewport {
+      width: 100%;
+      max-width: 900px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* APP HEADER */
+    .reader-app-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+    }
+
+    .brand-title {
+      font-weight: 900;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .theme-icon-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease;
+    }
+
+    .theme-icon-btn:active {
+      transform: scale(0.92);
+    }
+
+    .theme-icon-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* CHAPTER CARD HEADER */
+    .reader-header-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reader-header-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--primary-gradient);
+    }
+
+    .header-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .pill-subject {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: rgba(59, 130, 246, 0.12);
+      color: var(--accent-blue);
+      text-transform: uppercase;
+    }
+
+    .pill-level {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: var(--primary-container);
+      color: var(--primary);
+    }
+
+    .chapter-main-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+
+    .chapter-sub-desc {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+    }
+
+    /* STICKY SECTION NAV */
+    .section-nav-sticky {
+      position: sticky;
+      top: 8px;
+      z-index: 500;
+      background: var(--card-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 6px;
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      box-shadow: var(--shadow-md);
+    }
+
+    .section-nav-sticky::-webkit-scrollbar { display: none; }
+
+    .nav-pill {
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 700;
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-pill:hover, .nav-pill.active {
+      background: var(--primary-container);
+      color: var(--primary);
+    }
+
+    /* SECTIONS & CONTENT CARDS */
+    .geniq-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .section-title-head {
+      font-size: 1.2rem;
+      font-weight: 800;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    /* CONTENT BLOCKS */
+    .block-paragraph {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    .block-heading {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    .block-subheading {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 4px;
+    }
+
+    .block-formula {
+      background: var(--card-subtle);
+      border-left: 4px solid var(--primary);
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.98rem;
+      overflow-x: auto;
+      margin: 6px 0;
+    }
+
+    /* CALLOUT BOXES */
+    .callout-card {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      border-left: 4px solid;
+      margin: 6px 0;
+    }
+
+    .callout-tip { background: rgba(16, 185, 129, 0.08); border-color: var(--accent-green); }
+    .callout-trick { background: rgba(245, 158, 11, 0.08); border-color: var(--accent-amber); }
+    .callout-warning { background: rgba(239, 68, 68, 0.08); border-color: #ef4444; }
+    .callout-advanced { background: rgba(139, 92, 246, 0.08); border-color: #8b5cf6; }
+
+    .callout-title {
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* RESPONSIVE TABLES */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      margin: 8px 0;
+    }
+
+    .geniq-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+
+    .geniq-table th {
+      background: var(--card-subtle);
+      color: var(--text-sub);
+      padding: 10px 12px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .geniq-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    /* SOLVED EXAMPLES */
+    .example-card {
+      background: var(--card-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin: 8px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .example-badge {
+      align-self: flex-start;
+      font-size: 0.7rem;
+      font-weight: 800;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .example-concept {
+      font-size: 0.82rem;
+      color: var(--accent-amber);
+      font-weight: 700;
+    }
+
+    .geniq-list {
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.92rem;
+    }
+
+    /* FOOTER & BUTTON */
+    .chapter-footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 24px 0 60px 0;
+    }
+
+    .btn-complete {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 26px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px var(--glow-color);
+      transition: all 0.2s ease;
+    }
+
+    .btn-complete:active {
+      transform: scale(0.96);
+    }
+
+    .btn-complete.completed {
+      background: var(--accent-green);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    }
+
+    /* STATE OVERLAYS */
+    .state-overlay {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      text-align: center;
+      gap: 14px;
+    }
+
+    .spinner {
+      width: 38px;
+      height: 38px;
+      border: 3px solid var(--border-color);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    @media (max-width: 600px) {
+      .geniq-app-viewport { padding: 12px; }
+      .chapter-main-title { font-size: 1.4rem; }
+      .geniq-section { padding: 16px; }
+    }
+  </style>
+</head>
+<body class="tex2jax_ignore">
+
+  <!-- Scroll Progress -->
+  <div class="progress-bar-container">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+
+  <div class="geniq-app-viewport" id="appViewport">
+    <!-- Header with Theme Button for theme.js -->
+    <div class="reader-app-bar">
+      <span class="brand-title">GENIQ JEE</span>
+      <button id="themeBtn" class="theme-icon-btn" aria-label="Toggle theme">
+        <span id="themeIcon"></span>
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="stateContainer" class="state-overlay">
+      <div class="spinner"></div>
+      <div>
+        <h3 style="font-size: 0.98rem; font-weight: 700;">Loading Notes...</h3>
+        <p style="font-size: 0.8rem; color: var(--text-sub);">Fetching p1.json</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================================
+       FAST LIGHTWEIGHT RENDERER & LOGIC ENGINE
+       ========================================================================== */
+    const CHAPTER_ID = "p1";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initScrollEngine();
+      fetchChapterData();
+    });
+
+    // Fetch JSON from the same directory
+    async function fetchChapterData() {
+      try {
+        const response = await fetch("p1.json");
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        const data = await response.json();
+        renderChapterShell(data);
+      } catch (error) {
+        console.error("GENIQ Data Load Error:", error);
+        renderErrorState();
+      }
+    }
+
+    function renderErrorState() {
+      const viewport = document.getElementById("appViewport");
+      viewport.innerHTML = `
+        <div class="reader-app-bar">
+          <span class="brand-title">GENIQ JEE</span>
+          <button id="themeBtn" class="theme-icon-btn" aria-label="Toggle theme">
+            <span id="themeIcon"></span>
+          </button>
+        </div>
+        <div class="state-overlay">
+          <div style="font-size: 2rem;">⚠️</div>
+          <h3 style="font-weight: 800;">Unable to load chapter</h3>
+          <p style="font-size: 0.82rem; color: var(--text-sub);">Ensure p1.json is in the same folder.</p>
+          <button class="btn-complete" onclick="fetchChapterData()" style="padding: 8px 20px; font-size: 0.82rem;">Retry</button>
+        </div>
+      `;
+      if (typeof initTheme === 'function') initTheme();
+    }
+
+    // Main Renderer
+    function renderChapterShell(data) {
+      const viewport = document.getElementById("appViewport");
+
+      // App Header with Theme Button
+      const appBarHtml = `
+        <div class="reader-app-bar">
+          <span class="brand-title">GENIQ JEE</span>
+          <button id="themeBtn" class="theme-icon-btn" aria-label="Toggle theme">
+            <span id="themeIcon"></span>
+          </button>
+        </div>
+      `;
+
+      // Header Card
+      const headerHtml = `
+        <header class="reader-header-card">
+          <div class="header-pills">
+            <span class="pill-subject">${data.subject}</span>
+            <span class="pill-level">Chapter ${data.chapterNumber} • ${data.level}</span>
+          </div>
+          <h1 class="chapter-main-title">${data.title}</h1>
+          <p class="chapter-sub-desc">${data.description}</p>
+        </header>
+      `;
+
+      // Sticky Section Navigation
+      const navButtons = data.sections.map(sec => 
+        `<button class="nav-pill" onclick="scrollToSection('${sec.id}')">${sec.title}</button>`
+      ).join('');
+      const navHtml = `<nav class="section-nav-sticky">${navButtons}</nav>`;
+
+      // Sections Content
+      const sectionsHtml = data.sections.map(sec => `
+        <section id="${sec.id}" class="geniq-section">
+          <div class="section-title-head">${sec.title}</div>
+          <div class="section-body tex2jax_process">
+            ${sec.content.map(block => renderBlock(block)).join('')}
+          </div>
+        </section>
+      `).join('');
+
+      // Footer Actions
+      const footerHtml = `
+        <footer class="chapter-footer">
+          <button id="completeChapterBtn" class="btn-complete" onclick="completeChapter()">
+            ✓ Complete Chapter
+          </button>
+          <div id="chapterCompletionStatus" style="font-size: 0.82rem; color: var(--accent-green); font-weight: 700;"></div>
+        </footer>
+      `;
+
+      viewport.innerHTML = appBarHtml + headerHtml + navHtml + sectionsHtml + footerHtml;
+
+      // Re-initialize theme buttons with theme.js
+      if (typeof initTheme === 'function') {
+        initTheme();
+      }
+
+      // Trigger MathJax rendering
+      if (window.MathJax && MathJax.typesetPromise) {
+        MathJax.typesetPromise();
+      }
+    }
+
+    // Modular Block Renderer
+    function renderBlock(block) {
+      switch (block.type) {
+        case "paragraph":
+          return `<p class="block-paragraph">${block.text}</p>`;
+        case "heading":
+          return `<h3 class="block-heading">${block.text}</h3>`;
+        case "subheading":
+          return `<h4 class="block-subheading">${block.text}</h4>`;
+        case "formula":
+          return `<div class="block-formula">${block.latex}</div>`;
+        case "tip":
+          return `<div class="callout-card callout-tip"><div class="callout-title">💡 Pro Tip</div><div>${block.text}</div></div>`;
+        case "trick":
+          return `<div class="callout-card callout-trick"><div class="callout-title">⚡ JEE Trick</div><div>${block.text}</div></div>`;
+        case "warning":
+          return `<div class="callout-card callout-warning"><div class="callout-title">⚠️ Common Trap</div><div>${block.text}</div></div>`;
+        case "advancedInsight":
+          return `<div class="callout-card callout-advanced"><div class="callout-title">🚀 Advanced Insight</div><div>${block.text}</div></div>`;
+        case "table":
+          return renderTable(block);
+        case "bulletList":
+          return `<ul class="geniq-list">${block.items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+        case "numberedList":
+          return `<ol class="geniq-list">${block.items.map(i => `<li>${i}</li>`).join('')}</ol>`;
+        case "example":
+          return renderExample(block);
+        default:
+          return `<p class="block-paragraph">${block.text || ''}</p>`;
+      }
+    }
+
+    function renderTable(block) {
+      const headers = block.headers.map(h => `<th>${h}</th>`).join('');
+      const rows = block.rows.map(r => `<tr>${r.map(cell => `<td>${cell}</td>`).join('')}</tr>`).join('');
+      return `
+        <div class="table-container">
+          <table class="geniq-table">
+            <thead><tr>${headers}</tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderExample(block) {
+      return `
+        <div class="example-card">
+          <span class="example-badge">${block.title}</span>
+          <div class="example-concept">Concept: ${block.concept}</div>
+          <div style="font-weight: 700; font-size: 0.94rem;">${block.question}</div>
+          ${block.given ? `<div style="font-size: 0.84rem; color: var(--text-sub);"><b>Given:</b> ${block.given.join(', ')}</div>` : ''}
+          <div style="margin-top: 4px; font-size: 0.88rem;">
+            <b>Solution:</b>
+            ${Array.isArray(block.solution) ? block.solution.map(s => `<p style="margin-top: 2px;">${s}</p>`).join('') : `<p>${block.solution}</p>`}
+          </div>
+          <div style="font-weight: 800; color: var(--accent-green); font-size: 0.88rem; margin-top: 2px;">Answer: ${block.answer}</div>
+        </div>
+      `;
+    }
+
+    function initScrollEngine() {
+      window.addEventListener("scroll", () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("progressBar").style.width = scrolled + "%";
+      });
+    }
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        const yOffset = -60;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+
+    async function completeChapter() {
+      console.log("Chapter completed:", CHAPTER_ID);
+      const btn = document.getElementById("completeChapterBtn");
+      const status = document.getElementById("chapterCompletionStatus");
+      
+      btn.classList.add("completed");
+      btn.innerHTML = "✓ Completed";
+      status.innerText = "Chapter marked as completed!";
+    }
+  </script>
+</body>
+</html>
