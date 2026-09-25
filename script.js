@@ -2304,80 +2304,7 @@ function saveState() {
 }
 
 
-/* ==========================================================================
-   LOGIN
-   ========================================================================== */
 
-function loginUser(isDemo = false) {
-
-  const pin =
-    document.getElementById("authPinInput")?.value.trim() || "";
-
-
-  if (!isDemo && pin !== "84000") {
-
-    showToast(
-      "Incorrect Passcode! Enter 84000"
-    );
-
-    return;
-
-  }
-
-
-  const name =
-    document.getElementById("authNameInput")?.value.trim()
-    || "Raj Verma";
-
-
-  const cls =
-    document.getElementById("authClassInput")?.value
-    || "Class 12";
-
-
-  const yr =
-    document.getElementById("authYearInput")?.value
-    || "2026";
-
-
-  state.user.name = name;
-
-  state.user.class = cls;
-
-  state.user.year = yr;
-
-
-  saveState();
-
-
-  document
-    .getElementById("authOverlay")
-    ?.classList.remove("active");
-
-
-  renderAppUI();
-
-  showToast(
-    "Welcome back, " + name + "!"
-  );
-
-}
-
-
-/* ==========================================================================
-   LOGOUT
-   ========================================================================== */
-
-function logoutUser() {
-
-  document
-    .getElementById("authOverlay")
-    ?.classList.add("active");
-
-
-  showToast("Logged out");
-
-}
 
 
 /* ==========================================================================
@@ -2484,80 +2411,6 @@ function updateLoginStreak() {
 
 }
 
-
-/* ==========================================================================
-   AUTH INPUTS
-   ========================================================================== */
-
-function fillAuthInputs() {
-
-  const authName =
-    document.getElementById(
-      "authNameInput"
-    );
-
-  const authClass =
-    document.getElementById(
-      "authClassInput"
-    );
-
-  const authYear =
-    document.getElementById(
-      "authYearInput"
-    );
-
-  const profileDate =
-    document.getElementById(
-      "profileDateSelector"
-    );
-
-  const profileYear =
-    document.getElementById(
-      "profileYearSelector"
-    );
-
-
-  if (authName) {
-
-    authName.value =
-      state.user.name || "Raj Verma";
-
-  }
-
-
-  if (authClass) {
-
-    authClass.value =
-      state.user.class || "Class 12";
-
-  }
-
-
-  if (authYear) {
-
-    authYear.value =
-      state.user.year || "2026";
-
-  }
-
-
-  if (profileDate) {
-
-    profileDate.value =
-      state.user.selectedDate ||
-      new Date().toISOString().split("T")[0];
-
-  }
-
-
-  if (profileYear) {
-
-    profileYear.value =
-      state.user.year || "2026";
-
-  }
-
-}
 
 
 /* ==========================================================================
@@ -6109,3 +5962,46 @@ window.geniqSidebarTab =
 
 window.openGeniqNotepad =
   openGeniqNotepad;
+
+   const authBtn = document.getElementById("geniqAuthBtn");
+  const authBtnText = document.getElementById("geniqAuthBtnText");
+  const authIcon = document.getElementById("geniqAuthIcon");
+  
+  onAuthStateChanged(auth, (user) => {
+  
+    if (user) {
+  
+      authBtnText.textContent = "Logout";
+  
+      authIcon.innerHTML = `
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+        <path d="m16 17 5-5-5-5"></path>
+        <path d="M21 12H9"></path>
+      `;
+  
+      authBtn.onclick = async () => {
+        try {
+          await signOut(auth);
+        } catch (error) {
+          console.error("Logout failed:", error);
+        }
+      };
+  
+    } else {
+  
+      authBtnText.textContent = "Login";
+  
+      authIcon.innerHTML = `
+        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+        <path d="M10 17l5-5-5-5"></path>
+        <path d="M15 12H3"></path>
+      `;
+  
+      authBtn.onclick = () => {
+        window.location.href = "login.html";
+      };
+  
+    }
+  
+  });
+  

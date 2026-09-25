@@ -99,57 +99,8 @@
     <div style="font-size: 0.85rem; font-weight: 800; color: #fff; letter-spacing: 0.5px;">Loading Content...</div>
   </div>
 
-  <!-- AUTH MODAL WITH PASSCODE 84000 -->
-  <div class="auth-overlay" id="authOverlay">
-    <div class="brand-icon"
-      style="width: 60px; height: 60px; border-radius: 20px; font-size: 1.6rem; margin-bottom: 14px;">
-      <svg class="svg-icon" style="width: 30px; height: 30px;" viewBox="0 0 24 24">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-      </svg>
-    </div>
-    <h2 style="font-weight: 800; font-size: 1.5rem; margin-bottom: 6px;">Welcome to GENIQ v3.0</h2>
-    <p style="font-size: 0.82rem; color: var(--text-sub); margin-bottom: 20px; max-width: 300px; line-height: 1.5;">
-      Enter passcode 84000 to unlock full JEE features.
-    </p>
-
-    <div style="width: 100%; max-width: 310px; display: flex; flex-direction: column; gap: 12px; text-align: left;">
-      <div>
-        <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">STUDENT NAME</label>
-        <input type="text" id="authNameInput" class="custom-input" placeholder="Your Name">
-      </div>
-
-      <div style="display: flex; gap: 8px;">
-        <div style="flex: 1;">
-          <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">CLASS</label>
-          <select id="authClassInput" class="custom-select">
-            <option value="Class 11">Class 11</option>
-            <option value="Class 12">Class 12</option>
-            <option value="Dropper">Dropper</option>
-          </select>
-        </div>
-
-        <div style="flex: 1;">
-          <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">JEE YEAR</label>
-          <select id="authYearInput" class="custom-select">
-            <option value="2026">2026</option>
-            <option value="2027">2027</option>
-            <option value="2028">2028</option>
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">PASSCODE</label>
-        <input type="password" id="authPinInput" class="custom-input"
-          style="text-align: center; font-size: 1.2rem; letter-spacing: 6px;" placeholder="• • • • •" maxlength="6">
-      </div>
-
-      <button class="btn-pill btn-primary" style="padding: 13px; margin-top: 6px;" onclick="loginUser()">Save &
-        Unlock Platform</button>
-      <button class="btn-pill btn-outline" style="padding: 11px;" onclick="loginUser(true)">Quick Demo
-        Entrance</button>
-    </div>
-  </div>
+  
+  
 
   <div class="app-viewport">
 
@@ -592,86 +543,159 @@
 
     </main>
 
-    <!-- VIEW 5: PROFILE & STATS -->
-    <main id="view-profile" class="view-panel">
-      <div class="card"
-        style="background: var(--primary-gradient); color: #fff; display: flex; align-items: center; gap: 16px; box-shadow: var(--shadow-md);">
-        <div class="user-avatar-sm"
-          style="width: 64px; height: 64px; font-size: 1.6rem; background: #fff; color: var(--primary);"
-          id="profileAvatarBig">R</div>
+    <!-- VIEW 5: PROFILE & STATS (REFINED & MODERNIZED) -->
+<main id="view-profile" class="view-panel">
+  
+  <!-- HERO PROFILE CARD -->
+  <div class="profile-hero-card">
+    <div class="profile-avatar-wrapper">
+      <div class="user-avatar-lg" id="profileAvatarBig">R</div>
+      <span class="avatar-status-badge" title="Online & Active"></span>
+    </div>
+    <div class="profile-hero-info">
+      <div class="profile-title-row">
+        <h3 id="profileNameDisplay" class="profile-name">Raj Verma</h3>
+        <span class="badge-verified" title="Verified Student">
+          <svg class="svg-icon-xs" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" fill="none" stroke="currentColor"/></svg>
+        </span>
+      </div>
+      <p id="profileGoalDisplay" class="profile-subtitle">Class 12 • JEE Target 2026</p>
+      <div class="profile-pill-tag">
+        <span class="pulse-dot"></span>
+        Active Workspace
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS METRICS GRID -->
+  <div class="grid-3 stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon-badge primary-glow">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" fill="none" stroke="currentColor"/></svg>
+      </div>
+      <div class="stat-value text-primary">85</div>
+      <div class="stat-label">Total Modules</div>
+    </div>
+
+    <div class="stat-card streak-glow-card">
+      <div class="stat-icon-badge streak-glow">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" fill="none" stroke="currentColor"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" fill="none" stroke="currentColor"/></svg>
+      </div>
+      <div class="stat-value text-green" id="profileStreakCount">1 Day</div>
+      <div class="stat-label">Streak</div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon-badge sync-glow">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" fill="none" stroke="currentColor"/></svg>
+      </div>
+      <div class="stat-value text-purple">100%</div>
+      <div class="stat-label">Offline Sync</div>
+    </div>
+  </div>
+
+  <!-- STUDY PLANNER & PREFERENCES CARD -->
+  <div class="card planner-card">
+    <div class="card-section-title">
+      <svg class="svg-icon text-primary" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" fill="none" stroke="currentColor"/></svg>
+      <span>Interactive Study Planner & Preferences</span>
+    </div>
+
+    <div class="form-row-2">
+      <div class="input-field-group">
+        <label class="input-label" for="profileDateSelector">SELECT DATE</label>
+        <div class="input-wrapper">
+          <input type="date" id="profileDateSelector" class="custom-input elegant-input"
+            onchange="updateProfileDate(this.value)">
+        </div>
+      </div>
+      
+      <div class="input-field-group">
+        <label class="input-label" for="profileYearSelector">TARGET YEAR</label>
+        <div class="input-wrapper">
+          <select id="profileYearSelector" class="custom-select elegant-select"
+            onchange="updateProfileYear(this.value)">
+            <option value="2026">2026</option>
+            <option value="2027">2027</option>
+            <option value="2028">2028</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORAGE STATUS BANNER -->
+    <div class="storage-status-banner">
+      <div class="storage-info">
+        <div class="storage-title">
+          <svg class="svg-icon-xs text-primary" viewBox="0 0 24 24"><path d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" fill="none" stroke="currentColor"/></svg>
+          <span>Local Storage Status</span>
+        </div>
+        <div class="storage-subtext" id="localStorageSizeInfo">59 Chapters & PDFs Cached Locally</div>
+      </div>
+      <button class="btn-pill btn-export" onclick="exportLocalData()">
+        <svg class="svg-icon-xs" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" fill="none" stroke="currentColor"/></svg>
+        <span>Export JSON</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- SETTINGS & ACTIONS LIST -->
+  <div class="card settings-card">
+    
+    <!-- DARK MODE TOGGLE ROW -->
+    <div class="setting-item-row">
+      <div class="setting-item-meta">
+        <div class="setting-icon-box">
+          <svg class="svg-icon" viewBox="0 0 24 24"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" fill="none" stroke="currentColor"/></svg>
+        </div>
         <div>
-          <h3 style="font-size: 1.25rem; font-weight: 800;" id="profileNameDisplay">Raj Verma</h3>
-          <p style="font-size: 0.82rem; opacity: 0.9;" id="profileGoalDisplay">Class 12 • JEE Target 2026</p>
-          <span
-            style="display: inline-block; background: rgba(255,255,255,0.2); font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; margin-top: 6px;">Active
-            Workspace</span>
+          <div class="setting-title">Dark Theme Mode</div>
+          <div class="setting-desc">Switch between Light and Dark interface</div>
         </div>
       </div>
+      <label class="switch-toggle" for="themeToggle">
+        <input type="checkbox" id="themeToggle" onchange="toggleTheme(this.checked)">
+        <span class="switch-slider"></span>
+      </label>
+    </div>
 
-      <div class="grid-3">
-        <div class="card" style="text-align: center; padding: 14px;">
-          <div style="font-size: 1.2rem; font-weight: 800; color: var(--primary);">85</div>
-          <div style="font-size: 0.7rem; color: var(--text-sub); margin-top: 2px;">Total Modules</div>
-        </div>
-        <div class="card" style="text-align: center; padding: 14px;">
-          <div style="font-size: 1.2rem; font-weight: 800; color: var(--accent-green);" id="profileStreakCount">1 Day
+    <div class="divider-line"></div>
+
+    <!-- ACTION BUTTONS MENU -->
+    <div class="action-menu-list">
+      <button class="action-menu-btn" onclick="openEditProfileModal()">
+        <div class="action-btn-content">
+          <div class="action-icon-box">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" fill="none" stroke="currentColor"/></svg>
           </div>
-          <div style="font-size: 0.7rem; color: var(--text-sub); margin-top: 2px;">Streak</div>
+          <span>Edit Student Profile</span>
         </div>
-        <div class="card" style="text-align: center; padding: 14px;">
-          <div style="font-size: 1.2rem; font-weight: 800; color: var(--accent-purple);">100%</div>
-          <div style="font-size: 0.7rem; color: var(--text-sub); margin-top: 2px;">Offline Sync</div>
-        </div>
-      </div>
+        <svg class="svg-icon-xs chevron-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor"/></svg>
+      </button>
 
-      <div class="card" style="display: flex; flex-direction: column; gap: 14px;">
-        <div style="font-size: 0.9rem; font-weight: 800; color: var(--primary);">Interactive Study Planner &
-          Preferences</div>
-
-        <div style="display: flex; gap: 10px;">
-          <div style="flex: 1;">
-            <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">SELECT DATE</label>
-            <input type="date" id="profileDateSelector" class="custom-input" style="font-size: 0.8rem; padding: 10px;"
-              onchange="updateProfileDate(this.value)">
+      <button class="action-menu-btn" onclick="openAboutModal()">
+        <div class="action-btn-content">
+          <div class="action-icon-box">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" fill="none" stroke="currentColor"/></svg>
           </div>
-          <div style="flex: 1;">
-            <label style="font-size: 0.72rem; font-weight: 800; color: var(--text-sub);">TARGET YEAR</label>
-            <select id="profileYearSelector" class="custom-select" style="font-size: 0.8rem; padding: 10px;"
-              onchange="updateProfileYear(this.value)">
-              <option value="2026">2026</option>
-              <option value="2027">2027</option>
-              <option value="2028">2028</option>
-            </select>
-          </div>
+          <span>About GENIQ App & Developer</span>
         </div>
+        <svg class="svg-icon-xs chevron-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor"/></svg>
+      </button>
 
-        <div
-          style="background: var(--card-subtle); padding: 14px; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;">
-          <div>
-            <div style="font-size: 0.8rem; font-weight: 800;">Local Storage Status</div>
-            <div style="font-size: 0.72rem; color: var(--text-sub); margin-top: 2px;" id="localStorageSizeInfo">59
-              Chapters & PDFs Cached Locally</div>
+      <button class="action-menu-btn danger-action" >
+        <div class="action-btn-content">
+          <div class="action-icon-box danger-icon-bg">
+            <svg class="svg-icon" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" fill="none" stroke="currentColor"/></svg>
           </div>
-          <button class="btn-pill btn-outline" style="padding: 6px 12px; font-size: 0.75rem;"
-            onclick="exportLocalData()">Export JSON</button>
+          <span>Log Out of Platform</span>
         </div>
-      </div>
+        <svg class="svg-icon-xs chevron-icon" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor"/></svg>
+      </button>
+    </div>
 
-      <div class="card" style="display: flex; flex-direction: column; gap: 14px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 0.88rem; font-weight: 700;">Dark Theme Mode</span>
-          <input type="checkbox" id="themeToggle" style="width: 22px; height: 22px;"
-            onchange="toggleTheme(this.checked)">
-        </div>
-        <hr style="border: none; border-top: 1px solid var(--divider);">
-        <button class="btn-pill btn-outline" style="justify-content: flex-start;" onclick="openEditProfileModal()">Edit
-          Student Profile</button>
-        <button class="btn-pill btn-outline" style="justify-content: flex-start;" onclick="openAboutModal()">About GENIQ
-          App & Developer</button>
-        <button class="btn-pill btn-danger" style="justify-content: flex-start;" onclick="logoutUser()">Log Out
-          of Platform</button>
-      </div>
-    </main>
+  </div>
+</main>
     <!-- FLOATING DOCK -->
     <div class="iphone-dock-wrapper">
   <nav class="iphone-dock">
@@ -797,105 +821,167 @@
   </div>
 
   <!-- MODAL SHEET: ABOUT DEVELOPER -->
-  <div class="modal-overlay" id="aboutAppModal">
-    <div class="modal-sheet" style="text-align: center; align-items: center; max-height: 85vh; overflow-y: auto;">
-      <div class="modal-handle"></div>
+ <!-- ULTRA-PREMIUM ABOUT GENIQ APP MODAL SHEET -->
+<div class="modal-overlay" id="aboutAppModal" onclick="handleOverlayClick(event, 'aboutAppModal')">
+  <div class="modal-sheet modal-about-sheet-v2">
+    
+    <!-- Drag/Close Handle Bar -->
+    <div class="modal-handle" onclick="closeModal('aboutAppModal')"></div>
 
-      <!-- Animated Logo Wrapper -->
-      <div class="geniq-logo-wrapper geniq-animate-up" style="--delay: 0.05s;">
-        <div class="geniq-pulse-ring"></div>
-        <div style="width: 64px; height: 64px; border-radius: 22px; background: var(--primary-gradient); display: flex; align-items: center; justify-content: center; color: #fff; box-shadow: 0 8px 24px var(--glow-color); position: relative; z-index: 2;">
-          <svg class="svg-icon" style="width: 32px; height: 32px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-          </svg>
+    <!-- Header Navigation & Quick Actions -->
+    <div class="about-nav-bar geniq-animate-up" style="--delay: 0.02s;">
+      <div class="edition-pill">
+        <span class="live-pulse-dot"></span>
+        <span>JEE ULTIMATE v3.0</span>
+      </div>
+      <button class="modal-close-btn-round" onclick="closeModal('aboutAppModal')" aria-label="Close modal">
+        <svg class="svg-icon-sm" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <!-- Animated Hero Logo Section -->
+    <div class="geniq-hero-brand geniq-animate-up" style="--delay: 0.06s;">
+      <div class="brand-glow-halo"></div>
+      <div class="brand-logo-hex">
+        <svg class="brand-logo-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+      </div>
+      <div class="brand-verified-badge" title="Verified App">
+        <svg viewBox="0 0 24 24" class="svg-icon-xs" fill="none" stroke="currentColor"><path d="M5 13l4 4L19 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+
+    <!-- Title & Subtitle -->
+    <div class="brand-title-wrap geniq-animate-up" style="--delay: 0.1s;">
+      <h3 class="geniq-app-title-glow">GENIQ Platform</h3>
+      <p class="geniq-tagline">Next-Gen Offline Study Architecture for JEE Aspirants</p>
+    </div>
+
+    <!-- App Stats Metrics Grid -->
+    <div class="geniq-stats-grid-v2 geniq-animate-up" style="--delay: 0.16s;">
+      <div class="geniq-stat-card-v2">
+        <div class="stat-icon-wrapper theme-blue">
+          <svg class="svg-icon-sm" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="stat-data">
+          <span class="geniq-stat-number">500+</span>
+          <span class="geniq-stat-label">JEE Modules</span>
         </div>
       </div>
 
-      <!-- App Title & Live Version Badge -->
-      <h3 style="font-size: 1.35rem; font-weight: 800; margin-top: 10px;" class="geniq-animate-up" style="--delay: 0.1s;">GENIQ Platform</h3>
-      
-      <div class="geniq-version-badge geniq-animate-up" style="--delay: 0.15s;">
-        <span class="geniq-badge-dot"></span>
-        v3.0 • JEE Ultimate Edition
+      <div class="geniq-stat-card-v2">
+        <div class="stat-icon-wrapper theme-green">
+          <svg class="svg-icon-sm" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="stat-data">
+          <span class="geniq-stat-number">100%</span>
+          <span class="geniq-stat-label">Offline Vault</span>
+        </div>
       </div>
 
-      <p style="font-size: 0.82rem; color: var(--text-sub); line-height: 1.6; max-width: 350px; margin-top: 10px;" class="geniq-animate-up" style="--delay: 0.2s;">
-        High-performance intelligent Android-first web application built with offline PDF repositories, instant search, and complete JEE chapter coverage.
+      <div class="geniq-stat-card-v2">
+        <div class="stat-icon-wrapper theme-purple">
+          <svg class="svg-icon-sm" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <div class="stat-data">
+          <span class="geniq-stat-number">60 FPS</span>
+          <span class="geniq-stat-label">Fast Engine</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Capabilities Grid with SVG Icons -->
+    <div class="geniq-section-container geniq-animate-up" style="--delay: 0.22s;">
+      <div class="geniq-section-title-bar">
+        <span class="title-text">Core Capabilities</span>
+        <div class="title-line"></div>
+      </div>
+
+      <div class="geniq-features-grid-v2">
+        <div class="geniq-feature-item-v2">
+          <div class="feature-icon-box theme-amber">
+            <svg class="svg-icon-sm" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <div class="feature-meta">
+            <div class="feature-title">Ultra-Fast Viewer</div>
+            <div class="feature-sub">Instant PDF rendering</div>
+          </div>
+        </div>
+
+        <div class="geniq-feature-item-v2">
+          <div class="feature-icon-box theme-pink">
+            <svg class="svg-icon-sm" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <div class="feature-meta">
+            <div class="feature-title">Chapterwise JEE</div>
+            <div class="feature-sub">Strictly aligned 2026</div>
+          </div>
+        </div>
+
+        <div class="geniq-feature-item-v2">
+          <div class="feature-icon-box theme-blue">
+            <svg class="svg-icon-sm" viewBox="0 0 24 24"><path d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <div class="feature-meta">
+            <div class="feature-title">Android Native PWA</div>
+            <div class="feature-sub">Fluid gesture support</div>
+          </div>
+        </div>
+
+        <div class="geniq-feature-item-v2">
+          <div class="feature-icon-box theme-cyan">
+            <svg class="svg-icon-sm" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <div class="feature-meta">
+            <div class="feature-title">Offline Cache Vault</div>
+            <div class="feature-sub">Zero internet needed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lead Architect / Developer Card -->
+    <div class="geniq-dev-card-v2 geniq-animate-up" style="--delay: 0.28s;">
+      <div class="dev-card-badge">LEAD ARCHITECT & CREATOR</div>
+
+      <div class="dev-profile-row">
+        <div class="dev-avatar-sm">R</div>
+        <div class="dev-info">
+          <div class="glowing-developer-name-v2">Raj Verma</div>
+          <div class="dev-role">Full-Stack Engineer & Mobile UI Specialist</div>
+        </div>
+      </div>
+
+      <p class="dev-bio-text">
+        Building high-performance, distraction-free digital tools designed for top-tier competitive examination preparation.
       </p>
 
-      <!-- App Stats Grid -->
-      <div class="geniq-stats-grid geniq-animate-up" style="--delay: 0.25s;">
-        <div class="geniq-stat-card">
-          <div class="geniq-stat-number">500+</div>
-          <div class="geniq-stat-label">JEE Chapters</div>
-        </div>
-        <div class="geniq-stat-card">
-          <div class="geniq-stat-number">100%</div>
-          <div class="geniq-stat-label">Offline PDF</div>
-        </div>
-        <div class="geniq-stat-card">
-          <div class="geniq-stat-number">v3.0</div>
-          <div class="geniq-stat-label">Fast Engine</div>
-        </div>
+      <!-- Interactive Social Actions -->
+      <div class="dev-social-actions">
+        <a href="https://github.com" target="_blank" rel="noopener" class="dev-btn btn-ghost">
+          <svg class="svg-icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          <span>Portfolio</span>
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener" class="dev-btn btn-solid">
+          <svg class="svg-icon-xs" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
       </div>
-
-      <!-- Key Features Section -->
-      <div class="geniq-section-container geniq-animate-up" style="--delay: 0.3s;">
-        <div class="geniq-section-title">Core Capabilities</div>
-        <div class="geniq-features-grid">
-          <div class="geniq-feature-item">
-            <span class="geniq-feature-icon">⚡</span>
-            <span class="geniq-feature-text">Ultra-Fast Viewer</span>
-          </div>
-          <div class="geniq-feature-item">
-            <span class="geniq-feature-icon">🎯</span>
-            <span class="geniq-feature-text">Chapterwise JEE</span>
-          </div>
-          <div class="geniq-feature-item">
-            <span class="geniq-feature-icon">📱</span>
-            <span class="geniq-feature-text">Android Native PWA</span>
-          </div>
-          <div class="geniq-feature-item">
-            <span class="geniq-feature-icon">🔒</span>
-            <span class="geniq-feature-text">Offline Vault</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Developer Info Card -->
-      <div class="geniq-dev-card geniq-animate-up" style="--delay: 0.35s;">
-        <div style="font-size: 0.68rem; font-weight: 800; text-transform: uppercase; color: var(--text-sub); letter-spacing: 1px; margin-bottom: 6px;">
-          Lead Software Architect & Creator
-        </div>
-
-        <div class="glowing-developer-name">Raj Verma</div>
-
-        <p style="font-size: 0.78rem; color: var(--text-sub); margin-top: 8px; line-height: 1.4;">
-          Passionate Full-Stack Engineer & JEE UI Specialist building robust, lightning-fast mobile learning tools.
-        </p>
-
-        <!-- Developer Links -->
-        <div class="geniq-social-links">
-          <a href="#" class="geniq-social-btn" title="Developer Portfolio">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-            Portfolio
-          </a>
-          <a href="#" class="geniq-social-btn" title="GitHub Profile">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-
-      <!-- App Footer Note -->
-      <div class="geniq-app-footer geniq-animate-up" style="--delay: 0.4s;">
-        Crafted with ❤️ for JEE Aspirants
-      </div>
-
-      <button class="btn-pill btn-primary geniq-animate-up" style="width: 100%; padding: 12px; margin-top: 10px; --delay: 0.45s;"
-        onclick="closeModal('aboutAppModal')">Close Info</button>
     </div>
+
+    <!-- App Footer & Action Button -->
+    <div class="geniq-modal-footer geniq-animate-up" style="--delay: 0.34s;">
+      <div class="footer-note">
+        Crafted with <span class="heart-pulse-glow">❤️</span> for JEE Aspirants
+      </div>
+      <button class="btn-pill btn-primary modal-primary-close-btn" onclick="closeModal('aboutAppModal')">
+        <span>Close Modal</span>
+      </button>
+    </div>
+
   </div>
+</div>
   
  
   <!-- Sidebar backdrop -->
@@ -1135,8 +1221,7 @@
 
   </div>
 </div>
-  <script src="script/chapter-data.js"></script>
-  <script src="script/pdf-data.js"></script>
+  
   <script src="script.js"></script>
   <script src="pdf.js"></script>
   <script src="theme.js"></script>
