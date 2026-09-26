@@ -1,9 +1,8 @@
 {
   "id": "/",
-  "name": "GENIQ - JEE AI Prep Platform",
+  "name": "GENIQ - JEE Main & Advanced AI Prep Platform",
   "short_name": "GENIQ",
-  "description": "AI-powered JEE Main & JEE Advanced preparation platform with notes, formulas, PYQs, mock tests, AI Tutor and progress tracking.",
-
+  "description": "A structured JEE Main and JEE Advanced preparation platform with notes, formulas, PYQs, mock tests, AI Tutor and progress-oriented learning.",
   "lang": "en-IN",
   "dir": "ltr",
 
@@ -17,15 +16,14 @@
     "browser"
   ],
 
-  "orientation": "portrait",
+  "orientation": "any",
 
-  "background_color": "#0B1020",
-  "theme_color": "#6D5DF6",
+  "background_color": "#030303",
+  "theme_color": "#6366F1",
 
   "categories": [
     "education",
-    "productivity",
-    "utilities"
+    "productivity"
   ],
 
   "prefer_related_applications": false,
@@ -49,7 +47,7 @@
     {
       "name": "AI Tutor",
       "short_name": "AI Tutor",
-      "description": "Ask questions and solve JEE doubts with AI Tutor.",
+      "description": "Open GENIQ AI Tutor.",
       "url": "./?section=ai",
       "icons": [
         {
@@ -60,11 +58,10 @@
         }
       ]
     },
-
     {
       "name": "Physics",
       "short_name": "Physics",
-      "description": "Open Physics notes, formulas and JEE resources.",
+      "description": "Open Physics learning resources.",
       "url": "./?section=physics",
       "icons": [
         {
@@ -75,11 +72,10 @@
         }
       ]
     },
-
     {
       "name": "Mock Tests",
       "short_name": "Tests",
-      "description": "Start JEE Main and JEE Advanced mock tests.",
+      "description": "Open GENIQ mock tests and assessments.",
       "url": "./?section=mock",
       "icons": [
         {
@@ -90,11 +86,10 @@
         }
       ]
     },
-
     {
-      "name": "Formula Sheet",
-      "short_name": "Formula",
-      "description": "Quickly revise important JEE formulas.",
+      "name": "Formula Revision",
+      "short_name": "Formulas",
+      "description": "Open JEE formula revision resources.",
       "url": "./?section=formulas",
       "icons": [
         {
@@ -104,23 +99,6 @@
           "purpose": "any"
         }
       ]
-    }
-  ],
-
-  "screenshots": [
-    {
-      "src": "screenshots/home.png",
-      "sizes": "1080x2400",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "GENIQ mobile home screen"
-    },
-    {
-      "src": "screenshots/dashboard.png",
-      "sizes": "1920x1080",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "GENIQ desktop dashboard"
     }
   ],
 
