@@ -2,7 +2,9 @@
   "id": "/",
   "name": "GENIQ - JEE Main & Advanced AI Prep Platform",
   "short_name": "GENIQ",
+
   "description": "A structured JEE Main and JEE Advanced preparation platform with notes, formulas, PYQs, mock tests, AI Tutor and progress-oriented learning.",
+
   "lang": "en-IN",
   "dir": "ltr",
 
@@ -10,6 +12,7 @@
   "scope": "./",
 
   "display": "standalone",
+
   "display_override": [
     "standalone",
     "minimal-ui",
@@ -18,8 +21,8 @@
 
   "orientation": "any",
 
-  "background_color": "#030303",
-  "theme_color": "#6366F1",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
 
   "categories": [
     "education",
@@ -58,6 +61,7 @@
         }
       ]
     },
+
     {
       "name": "Physics",
       "short_name": "Physics",
@@ -72,6 +76,7 @@
         }
       ]
     },
+
     {
       "name": "Mock Tests",
       "short_name": "Tests",
@@ -86,6 +91,7 @@
         }
       ]
     },
+
     {
       "name": "Formula Revision",
       "short_name": "Formulas",
